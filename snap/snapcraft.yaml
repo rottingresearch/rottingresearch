@@ -1,18 +1,17 @@
 name: linkrot
-version: 0.9.8.2
-summary: linkrot
+version: 1.0
+summary: rottingresearch
 description: |
   This script searches a pdf for hyperlinks and tests them for active status or errors returned.
-base: core18
-confinement: devmode
+base: core20
 
 
 parts:
-  linkrot:
+  rottingresearch:
     plugin: python
     python-version: python3
     source: .
  
 apps:
   linkrot:
-    command: bin/linkrot
+    command: bin/rottingresearch
