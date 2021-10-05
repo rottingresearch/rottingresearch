@@ -38,10 +38,11 @@
       }
     </script>
     <script>
-      var inv = {{flash}};
-      if(inv.localeCompare('pdf')==0) {
+      var inv = {{flash|tojson}};
+      if(inv.localeCompare('pdf')==0) 
         alert("The website or file can only be a pdf!");
-      }
+      else if(inv.localeCompare('none')==0)
+        alert("Please upload a file or enter a URL");
     </script>
   </head>
   <body>

@@ -287,7 +287,7 @@ footer {
 
 .pdf-link,
 .url-link {
-  color: #333;
+  color: #4cac47;
   text-decoration: none;
   font-weight: 500;
 }
@@ -295,6 +295,32 @@ footer {
 .pdf-link:hover,
 .url-link:hover {
   color: #3cb7d3;
+}
+
+.download {
+  color: #ffffff;
+  font-weight: 600;
+  padding: 20px 0px;
+  font-size: 15px;
+}
+
+.fa-download {
+  margin-right: 10px;
+}
+
+.download a {
+  text-decoration: none;
+  background-color: red;
+  border-radius: 10px;
+  border: 2px solid red;
+  padding: 10px;
+  transition: all 200ms ease-in-out;
+}
+
+.download a:hover {
+  background-color: #ffffff;
+  color: red;
+  border: 2px solid #bdbdbd;
 }
 
 @media only screen and (max-width: 680px) {
