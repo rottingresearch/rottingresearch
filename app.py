@@ -2,7 +2,7 @@ import string
 import re
 import json
 import os
-from flask import Flask, flash, render_template, redirect, request, session, make_response, redirect, url_for, send_from_directory
+from flask import Flask, flash, render_template, redirect, request, session, make_response, redirect, url_for, send_from_directory, after_this_request
 import requests
 from werkzeug.utils import secure_filename
 import subprocess as sp
@@ -39,6 +39,7 @@ def upload_pdf():
     if website:
         if website.endswith('.pdf'):
             session['file'] = website.split('/')[-1].split('.')[0]
+            session['type'] = 'url'
             metadata, pdfs, urls, pdf_codes, url_codes = pdfdata(website)
             print(url_codes)
             return render_template('analysis.html', meta_titles=list(metadata.keys()), meta_values=list(metadata.values()), pdfs=pdfs, urls=urls, pdf_codes=pdf_codes, url_codes=url_codes)
@@ -54,9 +55,9 @@ def upload_pdf():
             filename = secure_filename(file.filename)
             path = os.path.join(app.config['UPLOAD_FOLDER'], filename)
             session['file'] = filename.split('.')[0]
+            session['type'] = 'file'
             file.save(path)
             metadata, pdfs, urls, pdf_codes, url_codes = pdfdata(path)
-            os.remove(path)
             return render_template('analysis.html', meta_titles=list(metadata.keys()), meta_values=list(metadata.values()), pdfs=pdfs, urls=urls, pdf_codes=pdf_codes, url_codes=url_codes)
         else:
             return render_template('upload.html', flash='pdf')
@@ -80,6 +81,10 @@ def pdfdata(path):
 
 @app.route('/download', methods=['GET', 'POST'])
 def download():
+    @after_this_request
+    def remove_file(response):
+        os.remove(app.config['UPLOAD_FOLDER']+session['file']+'.zip')
+        return response
     download_folder_path = os.path.join(
         app.config['UPLOAD_FOLDER'], session['file'])
     print(download_folder_path)
@@ -87,6 +92,9 @@ def download():
     linkrot.linkrot(session['path']).download_pdfs(download_folder_path)
     shutil.make_archive(
         app.config['UPLOAD_FOLDER']+session['file'], 'zip', download_folder_path)
+    if session['type'] is 'file':
+        os.remove(session['path'])
+    shutil.rmtree(download_folder_path)
     return send_from_directory(app.config['UPLOAD_FOLDER'], session['file']+'.zip', as_attachment=True)
 
 
@@ -100,3 +108,4 @@ def get_status_code(url):
 
 if __name__ == '__main__':
     app.run(debug=True, port=5000)
+
