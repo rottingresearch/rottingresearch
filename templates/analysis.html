@@ -76,12 +76,13 @@
       </header>
       <main class="about--main">
         <h1 class="important">Analysis of PDF</h1>
+        <div class="download"><a href="/download"><i class="fa fa-download"></i>Download Reference PDFs</a></div>
         <div id="doc-info">
           <h1 class="subhead">Document Information</h1>
           <ul>
-            {% for i in meta_titles %} {% set item_1 = meta_titles[loop.index-1]
+            {% for i in meta_titles %}{% set item_1 = meta_titles[loop.index-1]
             %} {% set item_2 = meta_values[loop.index-1] %}
-            <li><span class="meta-title">{{item_1}}</span
+            <li><span class="meta-title">{{item_1}} : </span
             ><span class="meta-values">{{item_2}}</span></li></br>
             {% endfor %}
           </ul>
@@ -90,7 +91,10 @@
           <h1 class="subhead">PDF References</h1>
           <ol>
           {% for pdf in pdfs %}
-          <li><a class="pdf-link" href="{{pdf}}">{{pdf}}</a></li></br>
+          {% set item_1 = pdfs[loop.index-1]
+            %} {% set item_2 = pdf_codes[loop.index-1] %}
+          <li><a class="pdf-link" target="_blank" href="{{item_1}}" {% if item_2 == 404 %} style="color:red" 
+    {% endif %}>[{{item_2}} status code] {{item_1}}</a></li></br>
           {% endfor %}
           </ol>
         </div>
@@ -98,7 +102,10 @@
           <h1 class="subhead">URL References</h1>
           <ol>
           {% for url in urls %}
-          <li><a class="url-link" href="{{url}}">{{url}}</a></li></br>
+          {% set item_1 = urls[loop.index-1]
+            %} {% set item_2 = url_codes[loop.index-1] %}
+          <li><a class="url-link" target="_blank" href="{{item_1}}" {% if item_2 == 404 %} style="color:red" 
+    {% endif %}>[{{item_2}} status code] {{item_1}}</a></li></br>
           {% endfor %}
           </ol>
         </div>
