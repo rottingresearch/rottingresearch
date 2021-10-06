@@ -68,10 +68,14 @@ def pdfdata(path):
     session['path'] = path
     metadata = pdf.get_metadata()
     references_dict = pdf.get_references_as_dict()
-    pdfs = references_dict['pdf']
-    urls = references_dict['url']
+    pdfs = []
+    urls = []
     pdf_codes = []
     url_codes = []
+    if 'pdf' in references_dict:
+        pdfs = references_dict['pdf']
+    if 'url' in references_dict:
+        urls = references_dict['url']
     for p in pdfs:
         pdf_codes.append(get_status_code(p))
     for u in urls:
@@ -108,4 +112,3 @@ def get_status_code(url):
 
 if __name__ == '__main__':
     app.run(debug=True, port=5000)
-
