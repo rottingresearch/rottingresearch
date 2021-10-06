@@ -1,65 +1,17 @@
 # Introduction
 
-Scans pdfs for links written in plaintext and checks if they are active or returns an error code. It then generates a report of its findings. Extract references (pdf, url, doi, arxiv) and metadata from a PDF.
+This repository is for a Flask app that deliveries the [linkrot](https://github.com/marshalmiller/linkrot/) project.
+
+# Mission
+The mission of this project is to provide a place for researchers and scholars to check the links cited in their works and the works of others. The goal is to make publications more accessible and replicatable. This tool will coincide with research into persistent links and preserving the Internet and Commons at large.
 
 # Features
 
-- Extract references and metadata from a given PDF.  
-- Detects pdf, url, arxiv and doi references.  
-- Checks for valid SSL certificate.  
-- Find broken hyperlinks (using the -c flag).  
-- Output as text or JSON (using the -j flag).  
-- Extract the PDF text (using the --text flag).  
-- Use as command-line tool or Python package.  
-- Works with local and online pdfs.  
+- Coming Soon
 
-# Installation
+# Demo Site
 
-Grab a copy of the code with pip or snap:
- 
-`pip install linkrot`  
-
-`snap install linkrot`
-
-# Usage
-
-`linkrot [pdf-file-or-url]`  
-
-Run linkrot -h to see the help output:
-`linkrot -h`  
-
-usage: linkrot [-h] [-d OUTPUT_DIRECTORY] [-c] [-j] [-v] [-t] [-o OUTPUT_FILE]
-            [--version]
-            pdf
-
-Extract metadata and references from a PDF, and optionally download all
-referenced PDFs.
-
-# Arguments
-
-## positional arguments:
-  pdf                   (Filename or URL of a PDF file)  
-
-## optional arguments:
-    -h, --help            (Show this help message and exit)  
-    -d OUTPUT_DIRECTORY,  --download-pdfs OUTPUT_DIRECTORY (Download all referenced PDFs into specified directory)  
-    -c, --check-links     (Check for broken links)  
-    -j, --json            (Output infos as JSON (instead of plain text))  
-    -v, --verbose         (Print all references (instead of only PDFs))  
-    -t, --text            (Only extract text (no metadata or references))  
-    -o OUTPUT_FILE,        --output-file OUTPUT_FILE (Output to specified file instead of console)  
-    --version             (Show program's version number and exit)  
-
-# Examples
-
-## Extract text to console
-`linkrot https://example.com/example.pdf -t`
-
-## Extract text to file
-`linkrot https://example.com/example.pdf -t -o pdf-text.txt`
-
-## Check Links
-`linkrot https://example.com/example.pdf -c`
+The App is hosted at [https://linkrot-temp.herokuapp.com/](https://linkrot-temp.herokuapp.com/) during development.
             
 # License
 This program is licensed with an [MIT License](https://github.com/marshalmiller/linkrot/blob/main/LICENSE).
