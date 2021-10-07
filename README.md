@@ -17,6 +17,7 @@ The mission of this project is to provide a place for researchers and scholars t
 - Navigate to the root folder.
 
 - Install Requirements
+	
 	`pip install -r requirements.txt`
 
 - Run Flask App
