@@ -76,7 +76,15 @@
       </header>
       <main class="about--main">
         <h1 class="important">Analysis of PDF</h1>
-        <div class="download"><a href="{{ url_for('download')}}"><i class="fa fa-download"></i>Download Reference PDFs</a></div>
+        <div class="download">
+          <a href="{{url_for('download')}}" onclick="LoaderFunction()">
+            <i class="fa fa-download"></i>
+            Download Reference PDFs</a>
+          <div class="loader">
+          <div class="loading">
+          </div>
+        </div></div>
+
         <div id="doc-info">
           <h1 class="subhead">Document Information</h1>
           <ul>
@@ -135,6 +143,8 @@
         </div>
       </footer>
     </div>
-    <script></script>
+    <script>function LoaderFunction(){
+       document.getElementsByClassName("loader")[0].style.display = "block";
+    }</script>
   </body>
 </html>
