@@ -14,7 +14,7 @@ from linkrot.downloader import sanitize_url, get_status_code
 from collections import defaultdict
 
 app = Flask(__name__)
-app.config['UPLOAD_FOLDER'] = 'D:'
+app.config['UPLOAD_FOLDER'] = '/tmp/'
 app.secret_key = os.environ.get('APP_SECRET_KEY')
 app.config['PERMANENT_SESSION_LIFETIME'] = timedelta(minutes=60)
 
@@ -104,5 +104,4 @@ def download():
 
 
 if __name__ == '__main__':
-    app.secret_key="helloaditi"
     app.run(debug=True, port=5000)
