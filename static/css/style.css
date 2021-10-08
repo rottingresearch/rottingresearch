@@ -281,6 +281,12 @@ footer {
   margin-right: 10px;
 }
 
+.sum-title {
+  font-size: 18px;
+  font-weight: 600;
+  margin-right: 10px;
+}
+
 .meta-values {
   color: #333;
 }
@@ -293,8 +299,15 @@ footer {
 }
 
 .pdf-link:hover,
-.url-link:hover {
+.url-link:hover,
+.sum-link:hover {
   color: #3cb7d3;
+}
+
+.sum-link {
+  color: #333;
+  text-decoration: none;
+  font-weight: 500;
 }
 
 .download {

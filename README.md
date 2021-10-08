@@ -19,10 +19,18 @@ The mission of this project is to provide a place for researchers and scholars t
 - Install Requirements
 	
 	`pip install -r requirements.txt`
+	
+- If using Windows, open app.py and set app.config['UPLOAD_FOLDER'] to a valid temporary folder.
+	
+- Set APP_SECRET_KEY environment variable before running the python script.
+
+	Linux: `export APP_SECRET_KEY = "random"`
+	
+	Windows: `setx APP_SECRET_KEY "random"`
 
 - Run Flask App
 
-	`python app.py`
+	`python3 app.py`
 
 # Features
 
@@ -34,3 +42,4 @@ The App is hosted at [https://linkrot-temp.herokuapp.com/](https://linkrot-temp.
             
 # License
 This program is licensed with an [MIT License](https://github.com/marshalmiller/linkrot/blob/main/LICENSE).
+
