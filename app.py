@@ -12,7 +12,7 @@ import shutil
 from urllib.request import Request, urlopen, HTTPError, URLError
 
 app = Flask(__name__)
-app.config['UPLOAD_FOLDER'] = '/tmp/'
+app.config['UPLOAD_FOLDER'] = 'D:'
 app.secret_key = os.environ.get('APP_SECRET_KEY')
 app.config['PERMANENT_SESSION_LIFETIME'] = timedelta(minutes=60)
 
@@ -111,4 +111,5 @@ def get_status_code(url):
 
 
 if __name__ == '__main__':
+    app.secret_key="helloaditi"
     app.run(debug=True, port=5000)
