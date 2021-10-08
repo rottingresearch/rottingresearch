@@ -1,0 +1,89 @@
+{
+  "source": {
+    "type": "file",
+    "location": "D:imperfect-forward-secrecy.pdf",
+    "filename": "imperfect-forward-secrecy.pdf"
+  },
+  "metadata": {
+    "CreationDate": "D:20150821110623-04'00'",
+    "Creator": "LaTeX with hyperref package",
+    "ModDate": "D:20150821110805-04'00'",
+    "PTEX.Fullbanner": "This is pdfTeX, Version 3.1415926-2.5-1.40.14 (TeX Live 2013/Debian) kpathsea version 6.1.1",
+    "Producer": "pdfTeX-1.40.14",
+    "Title": "Imperfect Forward Secrecy: How Diffie-Hellman Fails in Practice",
+    "Trapped": "False",
+    "rdf": {
+      "li": "Imperfect Forward Secrecy: How Diffie-Hellman Fails in Practice"
+    },
+    "dc": {
+      "format": "application/pdf",
+      "description": {
+        "x-default": null
+      },
+      "title": {
+        "x-default": "Imperfect Forward Secrecy: How Diffie-Hellman Fails in Practice"
+      }
+    },
+    "xap": {
+      "CreateDate": "2015-08-21T11:06:23-04:00",
+      "CreatorTool": "LaTeX with hyperref package",
+      "ModifyDate": "2015-08-21T11:08:05-04:00",
+      "MetadataDate": "2015-08-21T11:08:05-04:00"
+    },
+    "pdf": {
+      "Keywords": null,
+      "Producer": "pdfTeX-1.40.14",
+      "Trapped": "False"
+    },
+    "pdfx": {
+      "PTEX.Fullbanner": "This is pdfTeX, Version 3.1415926-2.5-1.40.14 (TeX Live 2013/Debian) kpathsea version 6.1.1"
+    },
+    "xapmm": {
+      "DocumentID": "uuid:98988d37-b43d-4c1a-965b-988dfb2944b6",
+      "InstanceID": "uuid:4e570f88-cd0f-4488-85ad-03f4435a4048"
+    },
+    "Pages": 13
+  },
+  "references": {
+    "pdf": [
+      "http://www.spiegel.de/media/media-35529.pdf",
+      "http://cryptome.org/2013/08/spy-budget-fy13.pdf",
+      "http://www.spiegel.de/media/media-35533.pdf",
+      "http://www.spiegel.de/media/media-35527.pdf",
+      "http://www.spiegel.de/media/media-35513.pdf",
+      "http://www.spiegel.de/media/media-35509.pdf",
+      "http://www.spiegel.de/media/media-35522.pdf",
+      "http://www.hyperelliptic.org/tanja/SHARCS/talks06/thorsten.pdf",
+      "http://www.spiegel.de/media/media-35551.pdf",
+      "http://www.spiegel.de/media/media-35526.pdf",
+      "http://www.spiegel.de/media/media-35514.pdf",
+      "http://www.spiegel.de/media/media-35528.pdf",
+      "http://cr.yp.to/factorization/smoothparts-20040510.pdf",
+      "http://www.spiegel.de/media/media-35515.pdf",
+      "http://www.spiegel.de/media/media-35519.pdf",
+      "http://www.spiegel.de/media/media-35517.pdf",
+      "http://www.spiegel.de/media/media-35520.pdf",
+      "http://www.spiegel.de/media/media-35671.pdf"
+    ],
+    "url": [
+      "WeakDH.org",
+      "https://github.com/bumptech/stud/blob/19a7f19686bcdbd689c6fbea31f68a276e62d886/stud.c#L593",
+      "http://www.nytimes.com/interactive/2013/11/23/us/politics/23nsa-sigint-strategy-document.html",
+      "http://dx.doi.org/10.1145/2810103.2813707",
+      "sohu.com",
+      "www.fbi.gov",
+      "https://www.olcf.ornl.gov/titan",
+      "https://gforge.inria.fr/projects/ecm",
+      "https://github.com/bumptech/stud/blob/",
+      "devcentral.f5.com/articles/ssl-pro\ufb01les-part-5-ssl-options",
+      "http://www.nytimes.com/interactive/2013/11/23/us/",
+      "http://www.hyperelliptic.org/tanja/",
+      "https://devcentral.f5.com/articles/ssl-profiles-part-5-ssl-options",
+      "http://caramel.loria.fr/p180.txt",
+      "http://www.spiegel.de/international/germany/",
+      "https://weakdh.org",
+      "http://www.sagemath.org",
+      "http://www.spiegel.de/international/germany/inside-the-nsa-s-war-on-internet-security-a-1010361.html"
+    ]
+  }
+}

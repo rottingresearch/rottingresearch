@@ -10,6 +10,8 @@ import linkrot
 from datetime import timedelta
 import shutil
 from urllib.request import Request, urlopen, HTTPError, URLError
+from linkrot.downloader import sanitize_url, get_status_code
+from collections import defaultdict
 
 app = Flask(__name__)
 app.config['UPLOAD_FOLDER'] = 'D:'
@@ -38,11 +40,11 @@ def upload_pdf():
     website = request.form['text']
     if website:
         if website.endswith('.pdf'):
+            website = sanitize_url(website)
             session['file'] = website.split('/')[-1].split('.')[0]
             session['type'] = 'url'
-            metadata, pdfs, urls, pdf_codes, url_codes = pdfdata(website)
-            print(url_codes)
-            return render_template('analysis.html', meta_titles=list(metadata.keys()), meta_values=list(metadata.values()), pdfs=pdfs, urls=urls, pdf_codes=pdf_codes, url_codes=url_codes)
+            metadata, codes, pdfs, urls = pdfdata(website)
+            return render_template('analysis.html', meta_titles=list(metadata.keys()), meta_values=list(metadata.values()), codes=codes, pdfs=pdfs, urls=urls)
         else:
             return render_template('upload.html', flash='pdf')
     else:
@@ -57,8 +59,8 @@ def upload_pdf():
             session['file'] = filename.split('.')[0]
             session['type'] = 'file'
             file.save(path)
-            metadata, pdfs, urls, pdf_codes, url_codes = pdfdata(path)
-            return render_template('analysis.html', meta_titles=list(metadata.keys()), meta_values=list(metadata.values()), pdfs=pdfs, urls=urls, pdf_codes=pdf_codes, url_codes=url_codes)
+            metadata, codes, pdfs, urls = pdfdata(path)
+            return render_template('analysis.html', meta_titles=list(metadata.keys()), meta_values=list(metadata.values()), codes=codes, pdfs=pdfs, urls=urls)
         else:
             return render_template('upload.html', flash='pdf')
 
@@ -67,47 +69,38 @@ def pdfdata(path):
     pdf = linkrot.linkrot(path)
     session['path'] = path
     metadata = pdf.get_metadata()
-    references_dict = pdf.get_references_as_dict()
+    refs_all = pdf.get_references()
+    refs = [ref for ref in refs_all if ref.reftype in ["url", "pdf"]]
+    codes = defaultdict(list)
     pdfs = []
     urls = []
-    pdf_codes = []
-    url_codes = []
-    if 'pdf' in references_dict:
-        pdfs = references_dict['pdf']
-    if 'url' in references_dict:
-        urls = references_dict['url']
-    for p in pdfs:
-        pdf_codes.append(get_status_code(p))
-    for u in urls:
-        url_codes.append(get_status_code(u))
-    return metadata, pdfs, urls, pdf_codes, url_codes
+    for r in refs:
+        url = sanitize_url(r.ref)
+        c = get_status_code(url)
+        codes[c].append([url, r.page])
+        if r.reftype == 'url':
+            urls.append([c, url])
+        else:
+            pdfs.append([c, url])
+    return metadata, dict(codes), pdfs, urls
 
 
-@app.route('/download', methods=['GET', 'POST'])
+@ app.route('/download', methods=['GET', 'POST'])
 def download():
-    @after_this_request
+    @ after_this_request
     def remove_file(response):
         os.remove(app.config['UPLOAD_FOLDER']+session['file']+'.zip')
         return response
     download_folder_path = os.path.join(
         app.config['UPLOAD_FOLDER'], session['file'])
-    print(download_folder_path)
     os.mkdir(download_folder_path)
     linkrot.linkrot(session['path']).download_pdfs(download_folder_path)
     shutil.make_archive(
         app.config['UPLOAD_FOLDER']+session['file'], 'zip', download_folder_path)
-    if session['type'] is 'file':
+    if session['type'] == 'file':
         os.remove(session['path'])
     shutil.rmtree(download_folder_path)
     return send_from_directory(app.config['UPLOAD_FOLDER'], session['file']+'.zip', as_attachment=True)
-
-
-def get_status_code(url):
-    try:
-        r = requests.head(url)
-        return r.status_code
-    except:
-        return 404
 
 
 if __name__ == '__main__':

@@ -99,10 +99,8 @@
           <h1 class="subhead">PDF References</h1>
           <ol>
           {% for pdf in pdfs %}
-          {% set item_1 = pdfs[loop.index-1]
-            %} {% set item_2 = pdf_codes[loop.index-1] %}
-          <li><a class="pdf-link" target="_blank" href="{{item_1}}" {% if item_2 == 404 %} style="color:red" 
-    {% endif %}>[{{item_2}} status code] {{item_1}}</a></li></br>
+          <li><a class="pdf-link" target="_blank" href="{{pdf[1]}}" {% if pdf[0] != 200 %} style="color:red" 
+    {% endif %}>{{pdf[0]}} - {{pdf[1]}}</a></li></br>
           {% endfor %}
           </ol>
         </div>
@@ -110,12 +108,27 @@
           <h1 class="subhead">URL References</h1>
           <ol>
           {% for url in urls %}
-          {% set item_1 = urls[loop.index-1]
-            %} {% set item_2 = url_codes[loop.index-1] %}
-          <li><a class="url-link" target="_blank" href="{{item_1}}" {% if item_2 == 404 %} style="color:red" 
-    {% endif %}>[{{item_2}} status code] {{item_1}}</a></li></br>
+          <li><a class="url-link" target="_blank" href="{{url[1]}}" {% if url[0] != 200 %} style="color:red" 
+    {% endif %}>{{url[0]}} - {{url[1]}}</a></li></br>
           {% endfor %}
           </ol>
+        </div>
+        <div id="summary">
+          <h1 class="subhead">Summary of Link Checker</h1>
+          <ul>
+          <li style="color:#4cac47"><span class="sum-title">{{codes[200]|length}} working</span></li></br>
+          {% for key, value in codes.items() %}
+          {% if key != 200 %}
+          <li style="color:red"> <span class="sum-title">{{value|length}} broken (reason: {{key}})</span>
+          <ol>
+          {% for v in value %}
+          <li style="color:#333"><a class="sum-link" target="_blank" href="{{v[0]}}">{{v[0]}} (page {{v[1]}})</a></li></br>
+          {% endfor %}
+          </ol>
+          </li>
+          {% endif %}
+          {% endfor %}
+          </ul>
         </div>
       </main>
       <footer>
