@@ -15,7 +15,7 @@ from collections import defaultdict
 
 app = Flask(__name__)
 app.config['UPLOAD_FOLDER'] = '/tmp/'
-app.secret_key = os.environ.get('${{ secrets.HEROKU_SECRET }}')
+app.secret_key = os.environ.get('APP_SECRET_KEY')
 app.config['PERMANENT_SESSION_LIFETIME'] = timedelta(minutes=60)
 
 ALLOWED_EXTENSIONS = set(['pdf'])
@@ -78,7 +78,7 @@ def pdfdata(path):
         url = sanitize_url(r.ref)
         c = get_status_code(url)
         codes[c].append([url, r.page])
-        if r.reftype == 'url':
+        if r.reftype is 'url':
             urls.append([c, url])
         else:
             pdfs.append([c, url])
@@ -97,7 +97,7 @@ def download():
     linkrot.linkrot(session['path']).download_pdfs(download_folder_path)
     shutil.make_archive(
         app.config['UPLOAD_FOLDER']+session['file'], 'zip', download_folder_path)
-    if session['type'] == 'file':
+    if session['type'] is 'file':
         os.remove(session['path'])
     shutil.rmtree(download_folder_path)
     return send_from_directory(app.config['UPLOAD_FOLDER'], session['file']+'.zip', as_attachment=True)
