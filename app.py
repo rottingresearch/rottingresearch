@@ -15,7 +15,7 @@ from collections import defaultdict
 
 app = Flask(__name__)
 app.config['UPLOAD_FOLDER'] = '/tmp/'
-app.secret_key = os.environ.get('APP_SECRET_KEY')
+app.secret_key = os.environ.get('HEROKU_SECRET')
 app.config['PERMANENT_SESSION_LIFETIME'] = timedelta(minutes=60)
 
 ALLOWED_EXTENSIONS = set(['pdf'])
