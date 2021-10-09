@@ -443,10 +443,10 @@ footer {
   width: 60px;
   height: 60px;
   border-radius: 50%;
-  border-top-color: #cdad1e;
-  border-left-color: #49c9e9;
-  border-right-color: #49e971;
-  border-bottom-color: #e9496c;
+  border-top-color: #f89e04;
+  border-left-color: #3cb7d3;
+  border-right-color: #4cac47;
+  border-bottom-color: #cb236e;
   animation: spin 1s infinite ease-in;
 }
 
