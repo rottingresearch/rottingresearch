@@ -76,15 +76,24 @@
       </header>
       <main class="about--main">
         <h1 class="important">Analysis of PDF</h1>
-        <div class="download">
-          <a href="{{url_for('download')}}" onclick="LoaderFunction()">
+        <div class="download-pdf">
+          <a href="{{url_for('downloadpdf')}}" onclick="LoaderFunction()">
             <i class="fa fa-download"></i>
             Download Reference PDFs</a>
           <div class="loader">
-          <div class="loading">
+            <div class="loading">
+            </div>
           </div>
-        </div></div>
-
+        </div>
+        <div class="download-report">
+          <a onclick="this.href='data:text/html;charset=UTF-8,'+encodeURIComponent(document.documentElement.outerHTML)" href="#" download="report.html">
+            <i class="fa fa-download"></i>
+            Download Report</a>
+          <div class="loader">
+            <div class="loading">
+            </div>
+          </div>
+        </div>
         <div id="doc-info">
           <h1 class="subhead">Document Information</h1>
           <ul>
@@ -99,7 +108,7 @@
           <h1 class="subhead">PDF References</h1>
           <ol>
           {% for pdf in pdfs %}
-          <li><a class="pdf-link" target="_blank" href="{{pdf[1]}}" {% if pdf[0] != 200 %} style="color:red" 
+          <li><a class="pdf-link" target="_blank" href="{{pdf[1]}}" {% if pdf[0] != 200 %} style="color:red" {% else %} style="color:green"
     {% endif %}>{{pdf[0]}} - {{pdf[1]}}</a></li></br>
           {% endfor %}
           </ol>
@@ -108,7 +117,7 @@
           <h1 class="subhead">URL References</h1>
           <ol>
           {% for url in urls %}
-          <li><a class="url-link" target="_blank" href="{{url[1]}}" {% if url[0] != 200 %} style="color:red" 
+          <li><a class="url-link" target="_blank" href="{{url[1]}}" {% if url[0] != 200 %} style="color:red" {% else %} style="color:green"
     {% endif %}>{{url[0]}} - {{url[1]}}</a></li></br>
           {% endfor %}
           </ol>

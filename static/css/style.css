@@ -293,7 +293,6 @@ footer {
 
 .pdf-link,
 .url-link {
-  color: #4cac47;
   text-decoration: none;
   font-weight: 500;
 }
@@ -310,7 +309,8 @@ footer {
   font-weight: 500;
 }
 
-.download {
+.download-pdf,
+.download-report {
   color: #ffffff;
   font-weight: 600;
   padding: 20px 0px;
@@ -321,7 +321,7 @@ footer {
   margin-right: 10px;
 }
 
-.download a {
+.download-pdf a {
   text-decoration: none;
   background-color: red;
   border-radius: 10px;
@@ -330,9 +330,24 @@ footer {
   transition: all 200ms ease-in-out;
 }
 
-.download a:hover {
+.download-pdf a:hover {
   background-color: #ffffff;
   color: red;
+  border: 2px solid #bdbdbd;
+}
+
+.download-report a {
+  text-decoration: none;
+  background-color: #4cac47;
+  border-radius: 10px;
+  border: 2px solid #4cac47;
+  padding: 10px;
+  transition: all 200ms ease-in-out;
+}
+
+.download-report a:hover {
+  background-color: #ffffff;
+  color: #4cac47;
   border: 2px solid #bdbdbd;
 }
 
@@ -443,10 +458,10 @@ footer {
   width: 60px;
   height: 60px;
   border-radius: 50%;
-  border-top-color: #cdad1e;
-  border-left-color: #49c9e9;
-  border-right-color: #49e971;
-  border-bottom-color: #e9496c;
+  border-top-color: #f89e04;
+  border-left-color: #3cb7d3;
+  border-right-color: #4cac47;
+  border-bottom-color: #cb236e;
   animation: spin 1s infinite ease-in;
 }
 
