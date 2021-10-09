@@ -78,7 +78,7 @@ def pdfdata(path):
         url = sanitize_url(r.ref)
         c = get_status_code(url)
         codes[c].append([url, r.page])
-        if r.reftype is 'url':
+        if r.reftype == 'url':
             urls.append([c, url])
         else:
             pdfs.append([c, url])
@@ -97,7 +97,7 @@ def downloadpdf():
     linkrot.linkrot(session['path']).download_pdfs(download_folder_path)
     shutil.make_archive(
         app.config['UPLOAD_FOLDER']+session['file'], 'zip', download_folder_path)
-    if session['type'] is 'file':
+    if session['type'] == 'file':
         os.remove(session['path'])
     shutil.rmtree(download_folder_path)
     return send_from_directory(app.config['UPLOAD_FOLDER'], session['file']+'.zip', as_attachment=True)
