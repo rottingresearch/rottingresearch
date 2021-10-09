@@ -85,12 +85,26 @@ def pdfdata(path):
     return metadata, dict(codes), pdfs, urls
 
 
-@ app.route('/download', methods=['GET', 'POST'])
-def download():
+@ app.route('/downloadpdf', methods=['GET', 'POST'])
+def downloadpdf():
     @ after_this_request
     def remove_file(response):
         os.remove(app.config['UPLOAD_FOLDER']+session['file']+'.zip')
         return response
+    download_folder_path = os.path.join(
+        app.config['UPLOAD_FOLDER'], session['file'])
+    os.mkdir(download_folder_path)
+    linkrot.linkrot(session['path']).download_pdfs(download_folder_path)
+    shutil.make_archive(
+        app.config['UPLOAD_FOLDER']+session['file'], 'zip', download_folder_path)
+    if session['type'] is 'file':
+        os.remove(session['path'])
+    shutil.rmtree(download_folder_path)
+    return send_from_directory(app.config['UPLOAD_FOLDER'], session['file']+'.zip', as_attachment=True)
+
+
+@ app.route('/downloadreport', methods=['GET', 'POST'])
+def downloadreport():
     download_folder_path = os.path.join(
         app.config['UPLOAD_FOLDER'], session['file'])
     os.mkdir(download_folder_path)
