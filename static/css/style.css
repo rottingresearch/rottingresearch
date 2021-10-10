@@ -289,11 +289,6 @@ footer {
 
 .meta-values {
   color: #333;
-
-  white-space: nowrap;
-  overflow: hidden;
-  width: 100%;
-  text-overflow: ellipsis;
 }
 
 .pdf-link,
