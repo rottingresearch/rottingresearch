@@ -15,7 +15,7 @@ from collections import defaultdict
 
 app = Flask(__name__)
 
-with open('config.json') as config_file:
+with open("config.json") as config_file:
   config = json.load(config_file)
 
 app.config['UPLOAD_FOLDER'] = '/tmp/'
