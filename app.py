@@ -15,9 +15,6 @@ from collections import defaultdict
 
 app = Flask(__name__)
 
-with open('/config.json') as config_file:
-  config = json.load(config_file)
-
 app.config['UPLOAD_FOLDER'] = '/tmp/'
 app.secret_key = os.environ.get('APP_SECRET_KEY')
 app.config['PERMANENT_SESSION_LIFETIME'] = timedelta(minutes=60)
