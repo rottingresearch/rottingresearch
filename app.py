@@ -14,7 +14,6 @@ from linkrot.downloader import sanitize_url, get_status_code
 from collections import defaultdict
 
 app = Flask(__name__)
-
 app.config['UPLOAD_FOLDER'] = '/tmp/'
 app.secret_key = os.environ.get('APP_SECRET_KEY')
 app.config['PERMANENT_SESSION_LIFETIME'] = timedelta(minutes=60)
