@@ -14,7 +14,7 @@ The mission of this project is to provide a place for researchers and scholars t
 
 - Download Project
 
-  `wget https://github.com/marshalmiller/rottingresearch`
+  `git clone https://github.com/marshalmiller/rottingresearch`
 
 - Navigate to the root folder.
 
