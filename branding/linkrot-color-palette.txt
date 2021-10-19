@@ -1,0 +1,7 @@
+Primary Red: #EF3B24
+Primary Dark: #323232
+Light Gray: #F2F2F3
+White: #FFFFFF
+
+Success: #47C85C
+Error: #F56768
