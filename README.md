@@ -43,6 +43,9 @@ The mission of this project is to provide a place for researchers and scholars t
 
 The App is hosted at [https://linkrot-temp.herokuapp.com/](https://linkrot-temp.herokuapp.com/) during development.
 
+# Code of Conduct
+For our code of conduct please visit our [Code of Conduct page](https://github.com/marshalmiller/rottingresearch/blob/main/code_of_conduct.md).
+
 # License
 
 This program is licensed with an [MIT License](https://github.com/marshalmiller/linkrot/blob/main/LICENSE).
