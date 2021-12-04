@@ -15,7 +15,7 @@ from collections import defaultdict
 
 app = Flask(__name__)
 app.config['UPLOAD_FOLDER'] = '/tmp/'
-app.secret_key = 'random'
+app.secret_key = os.environ.get('APP_SECRET_KEY')
 app.config['PERMANENT_SESSION_LIFETIME'] = timedelta(minutes=60)
 
 ALLOWED_EXTENSIONS = set(['pdf'])
@@ -69,19 +69,19 @@ def pdfdata(path):
     pdf = linkrot.linkrot(path)
     session['path'] = path
     metadata = pdf.get_metadata()
-    '''refs_all = pdf.get_references()
-    refs = [ref for ref in refs_all if ref.reftype in ["url", "pdf"]]'''
+    refs_all = pdf.get_references()
+    refs = [ref for ref in refs_all if ref.reftype in ["url", "pdf"]]
     codes = defaultdict(list)
     pdfs = []
     urls = []
-    '''for r in refs:
+    for r in refs:
         url = sanitize_url(r.ref)
         c = get_status_code(url)
         codes[c].append([url, r.page])
         if r.reftype == 'url':
             urls.append([c, url])
         else:
-            pdfs.append([c, url])'''
+            pdfs.append([c, url])
     return metadata, dict(codes), pdfs, urls
 
 
