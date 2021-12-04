@@ -7,7 +7,7 @@
       content="width=device-width, initial-scale=1, maximum-scale=12.0, minimum-scale=1, user-scalable=yes"
     />
 
-    <link rel="icon" href="../static/img/logo.png" />
+    <link rel="icon" href="../branding/app-logo/red/rotting-research-red.png" />
 
     <link rel="preconnect" href="https://fonts.gstatic.com" />
     <link
@@ -39,7 +39,7 @@
     </script>
     <script>
       var inv = {{flash|tojson}};
-      if(inv.localeCompare('pdf')==0) 
+      if(inv.localeCompare('pdf')==0)
         alert("The website or file can only be a pdf!");
       else if(inv.localeCompare('none')==0)
         alert("Please upload a file or enter a URL");
@@ -48,7 +48,7 @@
   <body>
     <div class="mobile-navigation" id="mobile-navigation">
       <div class="mobile-navigation--header">
-        <img src="../static/img/logo.png" alt=""/>
+        <img src="../branding/app-logo/red/rotting-research-red.png" alt="Linkrot Logo"/>
 
         <div class="close-button" onclick="toggleMobileNavigation()">
           <button>
@@ -67,7 +67,7 @@
 
     <div id="container">
       <header>
-        <a href="" class="logo"><img src="../static/img/logo.png" alt=""/></a>
+        <a href="" class="logo"><img src="https://github.com/marshalmiller/rottingresearch/blob/6f55546a3225f724613a1a9f542869ac5e0dc643/branding/app-logo/red/rotting-research-red.png" alt="Linkrot Logo"/></a>
 
         <nav class="navigation">
           <a href="" class="navigation--item navigation--item__active">Home</a>
@@ -95,7 +95,7 @@
 						<img src="{{ url_for('display_image', filename=filename) }}">
 					</div>
 				{% endif %}
-				
+
 				<form method="post" action="/" enctype="multipart/form-data">
         <h2>Upload your pdf or provide a link to the pdf</h2>
 					<dl>
@@ -138,8 +138,8 @@
         </div>
       </footer>
     </div>
-  
+
   <script></script>
 </body>
-  
+
 </html>

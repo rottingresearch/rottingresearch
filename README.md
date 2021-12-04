@@ -1,3 +1,4 @@
+![Rotting Research Logo](https://github.com/marshalmiller/rottingresearch/blob/a898614a4e933064a36478be259aee29b9f188fa/branding/project-banner/red/rottingresearch-github-project-banner-red.png)
 # Introduction
 
 This repository is for a Flask app that deliveries the [linkrot](https://github.com/marshalmiller/linkrot/) project.
@@ -42,6 +43,9 @@ The mission of this project is to provide a place for researchers and scholars t
 # Demo Site
 
 The App is hosted at [https://linkrot-temp.herokuapp.com/](https://linkrot-temp.herokuapp.com/) during development.
+
+# Code of Conduct
+For our code of conduct please visit our [Code of Conduct page](https://github.com/marshalmiller/rottingresearch/blob/main/code_of_conduct.md).
 
 # License
 
