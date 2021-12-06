@@ -94,16 +94,24 @@
             </div>
           </div>
         </div>
-        <div id="doc-info">
-          <h1 class="subhead">Document Information</h1>
+        <div id="summary">
+          <h1 class="subhead">Summary of Link Checker</h1>
           <ul>
-            {% for i in meta_titles %}{% set item_1 = meta_titles[loop.index-1]
-            %} {% set item_2 = meta_values[loop.index-1] %}
-            <li><span class="meta-title">{{item_1}} : </span
-            ><span class="meta-values">{{item_2}}</span></li></br>
-            {% endfor %}
+          <li style="color:#4cac47"><span class="sum-title">{{codes[200]|length}} working</span></li></br>
+          {% for key, value in codes.items() %}
+          {% if key != 200 %}
+          <li style="color:red"> <span class="sum-title">{{value|length}} broken (reason: {{key}})</span>
+          <ol>
+          {% for v in value %}
+          <li style="color:#333"><a class="sum-link" target="_blank" href="{{v[0]}}">{{v[0]}} (page {{v[1]}})</a></li></br>
+          {% endfor %}
+          </ol>
+          </li>
+          {% endif %}
+          {% endfor %}
           </ul>
         </div>
+       
         <div id="pdfs">
           <h1 class="subhead">PDF References</h1>
           <ol>
@@ -122,21 +130,14 @@
           {% endfor %}
           </ol>
         </div>
-        <div id="summary">
-          <h1 class="subhead">Summary of Link Checker</h1>
+        <div id="doc-info">
+          <h1 class="subhead">Document Information</h1>
           <ul>
-          <li style="color:#4cac47"><span class="sum-title">{{codes[200]|length}} working</span></li></br>
-          {% for key, value in codes.items() %}
-          {% if key != 200 %}
-          <li style="color:red"> <span class="sum-title">{{value|length}} broken (reason: {{key}})</span>
-          <ol>
-          {% for v in value %}
-          <li style="color:#333"><a class="sum-link" target="_blank" href="{{v[0]}}">{{v[0]}} (page {{v[1]}})</a></li></br>
-          {% endfor %}
-          </ol>
-          </li>
-          {% endif %}
-          {% endfor %}
+            {% for i in meta_titles %}{% set item_1 = meta_titles[loop.index-1]
+            %} {% set item_2 = meta_values[loop.index-1] %}
+            <li><span class="meta-title">{{item_1}} : </span
+            ><span class="meta-values">{{item_2}}</span></li></br>
+            {% endfor %}
           </ul>
         </div>
       </main>
