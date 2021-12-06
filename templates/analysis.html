@@ -41,7 +41,6 @@
   <body>
     <div class="mobile-navigation" id="mobile-navigation">
       <div class="mobile-navigation--header">
-        <img src="../static/img/branding/app-logo/red/rotting-research-red.png" alt="" />
 
         <div class="close-button" onclick="toggleMobileNavigation()">
           <button>
@@ -57,9 +56,6 @@
     </div>
     <div id="container">
       <header>
-        <a class="logo" href="{{ url_for('upload_form')}}"
-          ><img src="../static/img/branding/app-logo/red/rotting-research-red.png" alt=""
-        /></a>
 
         <nav class="navigation">
           <a href="{{ url_for('upload_form')}}" class="navigation--item"
@@ -111,7 +107,7 @@
           {% endfor %}
           </ul>
         </div>
-       
+
         <div id="pdfs">
           <h1 class="subhead">PDF References</h1>
           <ol>
