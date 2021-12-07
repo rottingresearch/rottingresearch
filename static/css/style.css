@@ -42,7 +42,6 @@ a:hover {
 header {
   display: flex;
   align-items: center;
-  background-color: #ffffff;
 }
 
 header img {
@@ -184,7 +183,6 @@ footer {
   font-size: 15px;
   margin-top: 20px;
   width: 100%;
-  background-color: #000000;
 }
 
 .social {
