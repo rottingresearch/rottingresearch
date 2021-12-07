@@ -37,6 +37,7 @@ a:hover {
   grid-template-rows: auto 1fr auto;
   height: 97vh;
   width: 95vw;
+  background-color: #ffffff;
 }
 
 header {
