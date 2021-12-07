@@ -105,7 +105,6 @@ input[type="file"]::file-selector-button {
   flex: 1;
   margin-top: 40px;
   margin-bottom: 40px;
-  background-color: #ffffff;
 }
 
 .headline {
@@ -133,6 +132,7 @@ input[type="file"]::file-selector-button {
 
 .about--main {
   margin-left: 10px;
+  background-color: #ffffff;
 }
 
 .important {
