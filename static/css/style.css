@@ -76,6 +76,7 @@ input[type="file"]::file-selector-button {
 .navigation {
   flex-grow: 1;
   margin-left: 40px;
+  background-color: #ffffff
 }
 
 .navigation--item {
