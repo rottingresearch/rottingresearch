@@ -42,6 +42,7 @@ a:hover {
 header {
   display: flex;
   align-items: center;
+  background-color: #ffffff;
 }
 
 header img {
