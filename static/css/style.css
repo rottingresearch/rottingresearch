@@ -78,7 +78,7 @@ input[type="file"]::file-selector-button {
 
 .navigation {
   flex-grow: 1;
-  margin-left: 15px;
+  margin-left: 0px;
 }
 
 .navigation--item {
