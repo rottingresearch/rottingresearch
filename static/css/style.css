@@ -139,7 +139,7 @@ input[type="file"]::file-selector-button {
   margin-left: 20px;
   background-color: #ffffff;
   border-radius: 25px;
-  padding-left: 15px;
+  padding-left: 25px;
 }
 
 .important {
