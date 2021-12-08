@@ -42,6 +42,8 @@ a:hover {
 header {
   display: flex;
   align-items: center;
+  background: #ffffff;
+  padding: 60px;
 }
 
 header img {
@@ -76,8 +78,6 @@ input[type="file"]::file-selector-button {
 .navigation {
   flex-grow: 1;
   margin-left: 40px;
-  background-color: #ffffff;
-  width: 100%
 }
 
 .navigation--item {
