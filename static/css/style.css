@@ -78,12 +78,12 @@ input[type="file"]::file-selector-button {
 
 .navigation {
   flex-grow: 1;
-  margin-left: 40px;
+  margin-left: 15px;
 }
 
 .navigation--item {
   text-decoration: none;
-  margin-left: 24px;
+  margin-left: 15px;
   color: #ffffff;
   font-size: 18px;
 }
@@ -109,6 +109,7 @@ input[type="file"]::file-selector-button {
   margin-top: 10px;
   margin-bottom: 10px;
   margin-left: 25px;
+  align-items: center;
 }
 
 .headline {
@@ -138,6 +139,7 @@ input[type="file"]::file-selector-button {
   margin-left: 20px;
   background-color: #ffffff;
   border-radius: 25px;
+  padding-left: 15px;
 }
 
 .important {
