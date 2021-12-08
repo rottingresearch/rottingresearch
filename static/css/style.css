@@ -136,6 +136,7 @@ input[type="file"]::file-selector-button {
 .about--main {
   margin-left: 20px;
   background-color: #ffffff;
+  border-radius: 25px;
 }
 
 .important {
