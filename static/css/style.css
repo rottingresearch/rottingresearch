@@ -12,7 +12,7 @@ body {
   margin-right: 0px;
   color: black;
   background-color: #EF3B24;
-  max-width: 90%;
+  max-width: 80%;
   align: center;
 }
 
@@ -84,7 +84,7 @@ input[type="file"]::file-selector-button {
 .navigation--item {
   text-decoration: none;
   margin-left: 24px;
-  color: #3cb7d3;
+  color: #ffffff;
   font-size: 18px;
 }
 
