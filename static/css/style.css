@@ -13,6 +13,7 @@ body {
   color: black;
   background-color: #EF3B24;
   max-width: 90%;
+  align: center;
 }
 
 .logo {
@@ -25,7 +26,7 @@ body {
 }
 
 a:hover {
-  color: #e52763;
+  color: #000000;
 }
 
 #container {
@@ -68,7 +69,7 @@ input[type="file"]::file-selector-button {
   border: 1px solid #333;
   text-decoration: none;
   border-radius: 10px;
-  color: #333;
+  color: #000000;
   width: 75%;
   margin-left: 10px;
   text-indent: 5px;
@@ -92,7 +93,7 @@ input[type="file"]::file-selector-button {
 }
 
 .navigation--item__active {
-  color: #333;
+  color: #000000;
 }
 
 .home--main {
@@ -118,7 +119,7 @@ input[type="file"]::file-selector-button {
 }
 
 .description {
-  color: #3cb7d3;
+  color: #ffffff;
   font-weight: 500;
   font-size: 17px;
   margin: 0;
