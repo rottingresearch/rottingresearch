@@ -44,7 +44,6 @@ header {
   align-items: center;
   background: #ffffff;
   padding: 30px;
-  width: 100%
 }
 
 header img {
@@ -368,6 +367,8 @@ footer {
 
   form {
     margin-left: 5%;
+    background-color: #ffffff;
+    padding: 25px;
   }
 
   .description {
