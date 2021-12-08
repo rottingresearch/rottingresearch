@@ -42,8 +42,9 @@ a:hover {
 header {
   display: flex;
   align-items: center;
-  background: inherit;
+  background: #ffffff;
   padding: 30px;
+  margin: 0px;
 }
 
 header img {
@@ -133,7 +134,7 @@ input[type="file"]::file-selector-button {
 }
 
 .about--main {
-  margin-left: 10px;
+  margin-left: 20px;
   background-color: #ffffff;
 }
 
