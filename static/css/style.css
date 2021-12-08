@@ -83,7 +83,6 @@ input[type="file"]::file-selector-button {
 
 .navigation--item {
   text-decoration: none;
-  margin-left: 15px;
   color: #ffffff;
   font-size: 18px;
 }
