@@ -42,9 +42,8 @@ a:hover {
 header {
   display: flex;
   align-items: center;
-  background: #ffffff;
+  background: inherit;
   padding: 30px;
-  margin: 0px;
 }
 
 header img {
