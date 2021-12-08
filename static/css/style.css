@@ -139,6 +139,7 @@ input[type="file"]::file-selector-button {
   background-color: #ffffff;
   border-radius: 25px;
   padding-left: 25px;
+  padding-right: 25px;
 }
 
 .important {
@@ -189,6 +190,7 @@ footer {
   display: flex;
   font-size: 15px;
   margin-top: 20px;
+  margin-left: 15px;
   width: 100%;
 }
 
