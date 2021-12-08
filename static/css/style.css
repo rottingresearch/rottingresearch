@@ -79,13 +79,14 @@ input[type="file"]::file-selector-button {
 .navigation {
   flex-grow: 1;
   margin-bottom: 25px;
+  margin-left: 15px;
 }
 
 .navigation--item {
   text-decoration: none;
   color: #ffffff;
   font-size: 18px;
-  margin-left: 25px;
+  margin-left: 15px;
 }
 
 .navigation--item:first-child {
