@@ -42,7 +42,7 @@ a:hover {
 header {
   display: flex;
   align-items: center;
-  background: #ffffff;
+  background: inherit;
   padding: 30px;
 }
 
