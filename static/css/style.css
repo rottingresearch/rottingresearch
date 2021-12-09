@@ -379,6 +379,13 @@ footer {
     padding: 25px;
   }
 
+  .form {
+    background-color: #ffffff;
+    border-radius: 10px;
+    padding: 10px;
+
+  }
+
   .description {
     margin-top: 0px;
     margin-left: 5%;
