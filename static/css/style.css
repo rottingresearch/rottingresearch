@@ -30,16 +30,17 @@ a:hover {
 }
 
 #container {
-  padding: 5px;
+  padding: 0px;
   padding-top: 20px;
   margin: 0 auto;
   display: grid;
   grid-template-rows: auto 1fr auto;
-  height: 97vh;
-  width: 95vw;
+  height: 100vh;
+  width: 100vw;
 }
 
 header {
+  width: 100vw;
   display: flex;
   align-items: center;
   background: inherit;
@@ -136,7 +137,8 @@ input[type="file"]::file-selector-button {
 }
 
 .about--main {
-  margin-left: 20px;
+  margin-left: 5vw;
+  width: 90w;
   background-color: #ffffff;
   border-radius: 25px;
   padding-left: 25px;
@@ -189,9 +191,8 @@ form input[type="submit"]:hover {
 footer {
   display: flex;
   font-size: 15px;
-  margin-top: 30px;
-  margin-left: 15px;
-  width: 100%;
+  padding: 30px 15px;
+  width: 100vw;
 }
 
 .social {
@@ -299,6 +300,12 @@ footer {
   color: #333;
 }
 
+.sum-link,
+.pdf-link,
+.url-link {
+  overflow-wrap: break-word;
+}
+
 .pdf-link,
 .url-link {
   text-decoration: none;
@@ -367,12 +374,15 @@ footer {
     padding-top: 10px;
   }
 
+  .home--main {
+    padding-top: 100px;
+  }
+
   .main--content {
     margin-bottom: 0px;
   }
 
   form {
-    margin-left: 5%;
     background-color: #ffffff;
     padding: 25px;
   }
@@ -403,6 +413,8 @@ footer {
     display: flex;
     align-items: center;
     position: fixed;
+    left: 0px;
+    top: 0px;
     background-color: #ffffff;
     align-items: center;
     z-index: 1;
@@ -447,11 +459,22 @@ footer {
   .about--main .important {
     margin-top: 80px;
     font-size: 38px;
+    text-align: center;
+  }
+
+  .download-pdf,
+  .download-report {
+    text-align: center;
   }
 
   .about--main {
-    width: 90%;
-    margin-left: 10px;
+    width: 90vw;
+    margin-left: 5vw;
+    margin-top: calc(100px + 5vw);
+  }
+
+  #summary ol {
+    padding-left: 20px;
   }
 }
 
