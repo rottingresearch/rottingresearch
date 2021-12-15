@@ -60,7 +60,7 @@ def upload_pdf():
             session['type'] = 'file'
             file.save(path)
             metadata, codes, pdfs, urls = pdfdata(path)
-            return render_template('analysis.html', meta_titles=list(metadata.keys()), meta_values=list(metadata.values()), codes=codes, pdfs=pdfs, urls=urls)
+            return render_template('analysis.html', meta_titles=list(metadata.keys()), meta_values=list(metadata.values()), codes=codes, pdfs=pdfs, urls=urls, filename=filename)
         else:
             return render_template('upload.html', flash='pdf')
 
