@@ -155,8 +155,8 @@ input[type="file"]::file-selector-button {
 
 .file-grid {
   display: grid;
-  grid-template-columns: 65px auto max-content max-content 30px;
-  column-gap: 10px;
+  grid-template-columns: max-content calc(min(45vw, max(50%, 430px)));
+  column-gap: 20px;
 }
 
 .pdf-icon {
@@ -435,48 +435,54 @@ footer {
   font-size: 15px;
 }
 
-.pdf-icon, 
-.pdf-filename,
-.download-pdf,
-.download-report,
-.expand-chevron {
+.pdf-lockup {
+  display: flex;
+  flex-wrap: nowrap;
+  align-items: center;
+  max-width: calc(90vw - 300px);
+}
+
+.pdf-icon {
+  flex-grow: 0;
+  flex-shrink: 0;
+  padding: 10px;
+}
+
+.pdf-lockup,
+.downloads {
   margin: auto 0px;
+}
+
+.downloads {
+  display: flex;
+  flex-wrap: wrap;
 }
 
 .fa-download {
   margin-right: 10px;
 }
 
-.download-pdf a {
-  text-decoration: underline;
-  text-decoration-color: #EF3B24;
-  text-underline-offset: 4px;
+.download-pdf,
+.download-report {
   border-radius: 10px;
-  border: 2px solid #fff;
+  border: 2px solid transparent;
   padding: 10px;
   transition: all 200ms ease-in-out;
 }
 
-.download-pdf a:hover {
-  background-color: #EF3B24;
-  color: #fff;
-  border: 2px solid #EF3B24;
-}
-
+.download-pdf a,
 .download-report a {
   text-decoration: underline;
   text-decoration-color: #EF3B24;
   text-underline-offset: 4px;
-  border-radius: 10px;
-  border: 2px solid #fff;
-  padding: 10px;
-  transition: all 200ms ease-in-out;
+  display: flex;
+  flex-wrap: nowrap;
 }
 
-.download-report a:hover {
+.download-pdf:hover,
+.download-report:hover {
   background-color: #EF3B24;
   color: #fff;
-  border: 2px solid #EF3B24;
 }
 
 @media only screen and (max-width: 680px) {
@@ -589,6 +595,36 @@ footer {
   #summary ol {
     padding-left: 20px;
   }
+
+  .sum-box-container {
+    flex-wrap: wrap;
+  }
+
+  .sum-box {
+    width: 100%;
+    min-width: calc(100% - 20px);
+    min-height: 100px;
+    margin: 5px 10px;
+  }
+
+  .file-grid {
+    grid-template-columns: 1fr;
+  }
+
+  .pdf-lockup,
+  .downloads {
+    max-width: 100%;
+  }
+
+  .pdf-icon {
+    margin: -1rem 5px -1rem 0px;
+  }
+
+  .downloads {
+    padding-left: 70px;
+    margin-top: -15px;
+  }
+
 }
 
 @media only screen and (max-width: 1444px) {

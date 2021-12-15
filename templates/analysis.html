@@ -73,27 +73,32 @@
       <main class="about--main">
         <h1 class="important">PDF Analysis</h1>
         <div class="file-grid">
-          <div class="pdf-icon"><i class="fa fa-file-pdf-o"></i></div>
-          <div class="pdf-filename">(PDF Filename)</div>
-          <div class="download-pdf">
-            <a href="{{url_for('downloadpdf')}}" onclick="LoaderFunction()">
-              <i class="fa fa-download"></i>
-              Download Reference PDFs</a>
-            <div class="loader">
-              <div class="loading">
+          <div class="pdf-lockup">
+            <div class="pdf-icon"><i class="fa fa-file-pdf-o"></i></div>
+            <div class="pdf-filename">{{filename}}</div>  
+          </div>
+          <div class="downloads">
+            <div class="download-pdf">
+              <a href="{{url_for('downloadpdf')}}" onclick="LoaderFunction()">
+                <div><i class="fa fa-download"></i></div>
+                <div style="text-align:left;">Download Reference&nbsp;PDFs</div>
+              </a>
+              <div class="loader">
+                <div class="loading">
+                </div>
+              </div>
+            </div>
+            <div class="download-report">
+              <a onclick="this.href='data:text/html;charset=UTF-8,'+encodeURIComponent(document.documentElement.outerHTML)" href="#" download="report.html">
+                <div><i class="fa fa-download"></i></div>
+                <div style="text-align:left;">Download Report</div>
+              </a>
+              <div class="loader">
+                <div class="loading">
+                </div>
               </div>
             </div>
           </div>
-          <div class="download-report">
-            <a onclick="this.href='data:text/html;charset=UTF-8,'+encodeURIComponent(document.documentElement.outerHTML)" href="#" download="report.html">
-              <i class="fa fa-download"></i>
-              Download Report</a>
-            <div class="loader">
-              <div class="loading">
-              </div>
-            </div>
-          </div>
-          <div class="expand-chevron"></div>
         </div>
         <div id="summary">
           <h2 class="subhead">Linkrot Summary</h2>
