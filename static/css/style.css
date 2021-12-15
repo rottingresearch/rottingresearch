@@ -485,6 +485,11 @@ footer {
   color: #fff;
 }
 
+.download-pdf a:hover,
+.download-report a:hover {
+  color: #fff;
+}
+
 @media only screen and (max-width: 680px) {
   main {
     display: flex;
