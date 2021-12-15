@@ -124,7 +124,7 @@
             </div>
           </div>
         </div>
-
+        <div class="pdfs-urls-container">
         <div id="pdfs">
           <h1 class="subhead">PDF References</h1>
           <ul class="checklist">
@@ -132,7 +132,7 @@
           <li>
             <div class="check">
               {% if pdf[0] != 200 %}
-              <i class="fa fa-times-circle text-failure"></i>
+              <i class="fa fa-exclamation-circle text-failure"></i>
               {% else %}
               <i class="fa fa-check-circle text-success"></i>
               {% endif %}
@@ -167,6 +167,7 @@
           {% endfor %}
           </ul>
         </div>
+      </div>
         <div id="doc-info">
           <h1 class="subhead">Document Information</h1>
           <div class="meta-grid">
