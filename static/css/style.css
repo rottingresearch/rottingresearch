@@ -146,18 +146,32 @@ input[type="file"]::file-selector-button {
 }
 
 .important {
-  font-size: 42px;
+  font-size: 3rem;
   font-weight: 600;
   margin-top: 15px;
   padding: 0;
+  color: rgba(50,50,50,1);
+}
+
+.file-grid {
+  display: grid;
+  grid-template-columns: 65px auto max-content max-content 30px;
+  column-gap: 10px;
+}
+
+.pdf-icon {
+  font-size: 4rem;
   color: #EF3B24;
 }
 
 .subhead {
-  font-size: 32px;
+  font-size: 2rem;
   font-weight: 600;
-  padding: 0;
-  color: #EF3B24;
+  padding: 0px 0px 10px 0px;
+  margin-bottom: 20px;
+  margin-top: 40px;
+  border-bottom: 1px solid #f2f2f3;
+  color: rgba(50,50,50,1);
 }
 
 form input[type="submit"] {
@@ -284,7 +298,7 @@ footer {
 }
 
 .meta-title {
-  color: #3cb7d3;
+  color: #333;
   font-size: 18px;
   font-weight: 600;
   margin-right: 10px;
@@ -294,6 +308,55 @@ footer {
   font-size: 18px;
   font-weight: 600;
   margin-right: 10px;
+}
+
+.sum-box-container {
+  display: flex; 
+  flex-wrap: nowrap; 
+  justify-content: stretch; 
+  margin: 0px -20px;
+  padding: 10px;
+  max-width: 700px;
+}
+
+.sum-box {
+  display:flex; 
+  flex-direction: column; 
+  justify-content: center; 
+  margin: 0px 10px;  
+  border-radius: 8px;
+  text-align: center;
+  flex-basis: 33%;
+  min-height: 150px;
+}
+
+.sum-box.success {
+  background-color: rgba(76, 172, 71, 0.2); 
+  border: 1px solid rgb(76, 172, 71)
+}
+
+.sum-box.failure {
+  background-color: rgba(245, 103, 104, 0.2); 
+  border: 1px solid rgb(245, 103, 104);
+}
+
+.sum-rollup {
+  font-size: 3rem;
+  margin-bottom: -0.8rem;
+}
+
+.checklist {
+  list-style-type: none; 
+  padding: 0px; 
+  margin: 5px 0px;
+}
+
+.meta-grid {
+  display: grid;
+  grid-template-columns: max-content auto;
+  column-gap: 10px;
+  row-gap: 15px;
+  margin: 15px 0px;
 }
 
 .meta-values {
@@ -309,7 +372,7 @@ footer {
 .pdf-link,
 .url-link {
   text-decoration: none;
-  font-weight: 500;
+  font-weight: 400;
 }
 
 .pdf-link:hover,
@@ -324,12 +387,46 @@ footer {
   font-weight: 500;
 }
 
+#pdfs li,
+#urls li {
+  display:flex; 
+  flex-wrap: nowrap; 
+  margin: 5px 0px;
+}
+
+#pdfs li .check,
+#urls li .check {
+  width: 50px; 
+  flex-shrink: 0; 
+  flex-grow: 0; 
+  font-size: 1.25rem;
+}
+
+#pdfs li .fetch-response,
+#urls li .fetch-response {
+  width: 50px; 
+  flex-shrink: 0; 
+  flex-grow: 0;
+}
+
+#pdfs li .link-container,
+#urls li .link-container {
+  overflow: hidden;
+}
+
 .download-pdf,
 .download-report {
-  color: #ffffff;
   font-weight: 600;
   padding: 20px 0px;
   font-size: 15px;
+}
+
+.pdf-icon, 
+.pdf-filename,
+.download-pdf,
+.download-report,
+.expand-chevron {
+  margin: auto 0px;
 }
 
 .fa-download {
@@ -337,33 +434,35 @@ footer {
 }
 
 .download-pdf a {
-  text-decoration: none;
-  background-color: red;
+  text-decoration: underline;
+  text-decoration-color: #EF3B24;
+  text-underline-offset: 4px;
   border-radius: 10px;
-  border: 2px solid red;
+  border: 2px solid #fff;
   padding: 10px;
   transition: all 200ms ease-in-out;
 }
 
 .download-pdf a:hover {
-  background-color: #ffffff;
-  color: red;
-  border: 2px solid #bdbdbd;
+  background-color: #EF3B24;
+  color: #fff;
+  border: 2px solid #EF3B24;
 }
 
 .download-report a {
-  text-decoration: none;
-  background-color: #4cac47;
+  text-decoration: underline;
+  text-decoration-color: #EF3B24;
+  text-underline-offset: 4px;
   border-radius: 10px;
-  border: 2px solid #4cac47;
+  border: 2px solid #fff;
   padding: 10px;
   transition: all 200ms ease-in-out;
 }
 
 .download-report a:hover {
-  background-color: #ffffff;
-  color: #4cac47;
-  border: 2px solid #bdbdbd;
+  background-color: #EF3B24;
+  color: #fff;
+  border: 2px solid #EF3B24;
 }
 
 @media only screen and (max-width: 680px) {
@@ -496,6 +595,14 @@ footer {
   border-right-color: #4cac47;
   border-bottom-color: #cb236e;
   animation: spin 1s infinite ease-in;
+}
+
+.text-success {
+  color: rgba(71, 200, 92, 1);
+}
+
+.text-failure {
+  color: rgba(245, 103, 104, 1);
 }
 
 @keyframes spin {

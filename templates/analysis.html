@@ -71,70 +71,111 @@
         </div>
       </header>
       <main class="about--main">
-        <h1 class="important">Analysis of PDF</h1>
-        <div class="download-pdf">
-          <a href="{{url_for('downloadpdf')}}" onclick="LoaderFunction()">
-            <i class="fa fa-download"></i>
-            Download Reference PDFs</a>
-          <div class="loader">
-            <div class="loading">
+        <h1 class="important">PDF Analysis</h1>
+        <div class="file-grid">
+          <div class="pdf-icon"><i class="fa fa-file-pdf-o"></i></div>
+          <div class="pdf-filename">(PDF Filename)</div>
+          <div class="download-pdf">
+            <a href="{{url_for('downloadpdf')}}" onclick="LoaderFunction()">
+              <i class="fa fa-download"></i>
+              Download Reference PDFs</a>
+            <div class="loader">
+              <div class="loading">
+              </div>
             </div>
           </div>
-        </div>
-        <div class="download-report">
-          <a onclick="this.href='data:text/html;charset=UTF-8,'+encodeURIComponent(document.documentElement.outerHTML)" href="#" download="report.html">
-            <i class="fa fa-download"></i>
-            Download Report</a>
-          <div class="loader">
-            <div class="loading">
+          <div class="download-report">
+            <a onclick="this.href='data:text/html;charset=UTF-8,'+encodeURIComponent(document.documentElement.outerHTML)" href="#" download="report.html">
+              <i class="fa fa-download"></i>
+              Download Report</a>
+            <div class="loader">
+              <div class="loading">
+              </div>
             </div>
           </div>
+          <div class="expand-chevron"></div>
         </div>
         <div id="summary">
-          <h1 class="subhead">Summary of Link Checker</h1>
-          <ul>
-          <li style="color:#4cac47"><span class="sum-title">{{codes[200]|length}} working</span></li></br>
-          {% for key, value in codes.items() %}
-          {% if key != 200 %}
-          <li style="color:red"> <span class="sum-title">{{value|length}} broken (reason: {{key}})</span>
-          <ol>
-          {% for v in value %}
-          <li style="color:#333"><a class="sum-link" target="_blank" href="{{v[0]}}">{{v[0]}} (page {{v[1]}})</a></li></br>
-          {% endfor %}
-          </ol>
-          </li>
-          {% endif %}
-          {% endfor %}
-          </ul>
+          <h2 class="subhead">Linkrot Summary</h2>
+          <div class="sum-box-container">
+            <div class="sum-box success">
+              <div class="sum-rollup">{{codes[200]|length}}</div>
+              {% if codes[200]|length == 1 %}
+              <div>working link</div>
+              {% else %}
+              <div>working links</div>
+              {% endif %}
+            </div>
+            <div class="sum-box failure">
+              <div class="sum-rollup">{{codes[403]|length}}</div>
+              {% if codes[403]|length == 1 %}
+              <div>403 error</div>
+              {% else %}
+              <div>403 errors</div>
+              {% endif %}
+            </div>
+            <div class="sum-box failure">
+              <div class="sum-rollup">{{codes[404]|length}}</div>
+              {% if codes[404]|length == 1 %}
+              <div>404 error</div>
+              {% else %}
+              <div>404 errors</div>
+              {% endif %}
+            </div>
+          </div>
         </div>
 
         <div id="pdfs">
           <h1 class="subhead">PDF References</h1>
-          <ol>
+          <ul class="checklist">
           {% for pdf in pdfs %}
-          <li><a class="pdf-link" target="_blank" href="{{pdf[1]}}" {% if pdf[0] != 200 %} style="color:red" {% else %} style="color:green"
-    {% endif %}>{{pdf[0]}} - {{pdf[1]}}</a></li></br>
+          <li>
+            <div class="check">
+              {% if pdf[0] != 200 %}
+              <i class="fa fa-times-circle text-failure"></i>
+              {% else %}
+              <i class="fa fa-check-circle text-success"></i>
+              {% endif %}
+            </div>
+            <div class="fetch-response"><b>{{pdf[0]}}</b></div>
+            <div class="link-container">
+              <a class="pdf-link" target="_blank" href="{{pdf[1]}}">{{pdf[1]}}</a>
+            </div>
+            </li>
           {% endfor %}
           </ol>
         </div>
         <div id="urls">
           <h1 class="subhead">URL References</h1>
-          <ol>
+          <ul class="checklist">
           {% for url in urls %}
-          <li><a class="url-link" target="_blank" href="{{url[1]}}" {% if url[0] != 200 %} style="color:red" {% else %} style="color:green"
-    {% endif %}>{{url[0]}} - {{url[1]}}</a></li></br>
+            <li>
+              <div class="check">
+                {% if url[0] != 200 %}
+                <i class="fa fa-times-circle text-failure"></i>
+                {% else %}
+                <i class="fa fa-check-circle text-success"></i>
+                {% endif %}
+              </div>
+              <div class="fetch-response"><b>{{url[0]}}</b></div>
+              <div class="link-container">
+                <a class="url-link" target="_blank" href="{{url[1]}}">
+                  {{url[1]}}
+                </a>
+              </div>
+            </li>
           {% endfor %}
-          </ol>
+          </ul>
         </div>
         <div id="doc-info">
           <h1 class="subhead">Document Information</h1>
-          <ul>
+          <div class="meta-grid">
             {% for i in meta_titles %}{% set item_1 = meta_titles[loop.index-1]
             %} {% set item_2 = meta_values[loop.index-1] %}
-            <li><span class="meta-title">{{item_1}} : </span
-            ><span class="meta-values">{{item_2}}</span></li></br>
+            <div class="meta-title"><b>{{item_1}}:</b></div>
+            <div class="meta-values">{{item_2}}</div>
             {% endfor %}
-          </ul>
+          </div>
         </div>
       </main>
       <footer>
