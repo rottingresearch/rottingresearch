@@ -316,7 +316,7 @@ footer {
   justify-content: stretch; 
   margin: 0px -20px;
   padding: 10px;
-  max-width: 700px;
+  max-width: 720px;
 }
 
 .sum-box {
@@ -331,18 +331,18 @@ footer {
 }
 
 .sum-box.success {
-  background-color: rgba(76, 172, 71, 0.2); 
+  background-color: rgba(76, 172, 71, 0.05); 
   border: 1px solid rgb(76, 172, 71)
 }
 
 .sum-box.failure {
-  background-color: rgba(245, 103, 104, 0.2); 
+  background-color: rgba(245, 103, 104, 0.05); 
   border: 1px solid rgb(245, 103, 104);
 }
 
 .sum-rollup {
   font-size: 3rem;
-  margin-bottom: -0.8rem;
+  margin: -0.8rem 0px;
 }
 
 .checklist {
@@ -385,6 +385,20 @@ footer {
   color: #333;
   text-decoration: none;
   font-weight: 500;
+}
+
+.pdfs-urls-container {
+  display: flex;
+  flex-wrap: wrap;
+}
+
+#pdfs,
+#urls {
+ width: calc(50% - 10px);
+}
+
+#pdfs {
+  margin-right: 20px;
 }
 
 #pdfs li,
@@ -574,6 +588,13 @@ footer {
 
   #summary ol {
     padding-left: 20px;
+  }
+}
+
+@media only screen and (max-width: 1444px) {
+  #pdfs,
+  #urls {
+    width: 100%;
   }
 }
 
