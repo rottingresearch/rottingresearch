@@ -35,6 +35,18 @@
           element.classList.add("mobile-navigation__open");
         }
       }
+      
+      function toggleAccordionContent(e) {
+        const { classList } = e.currentTarget.parentElement;
+        if (classList.contains("accordion-collapsed")) {
+          classList.remove("accordion-collapsed");
+          classList.add("accordion-expanded");
+        }
+        else if (classList.contains("accordion-expanded")) {
+          classList.remove("accordion-expanded");
+          classList.add("accordion-collapsed");
+        }
+      }
     </script>
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
   </head>
@@ -142,9 +154,19 @@
               <i class="fa fa-check-circle text-success"></i>
               {% endif %}
             </div>
-            <div class="fetch-response"><b>{{pdf[0]}}</b></div>
+            <div class="fetch-response">
+              <b>
+                {% if pdf[0] != 200 and pdf[0] != 403 and pdf[0] != 404 %}
+                  N/A
+                {% else %}
+                  {{pdf[0]}}
+                {% endif %}
+              </b>
+            </div>
             <div class="link-container">
-              <a class="pdf-link" target="_blank" href="{{pdf[1]}}">{{pdf[1]}}</a>
+              <a class="pdf-link" target="_blank" href="{{pdf[1]}}">
+                {{pdf[1]}}
+              </a>
             </div>
             </li>
           {% endfor %}
@@ -173,13 +195,29 @@
           </ul>
         </div>
       </div>
-        <div id="doc-info">
-          <h1 class="subhead">Document Information</h1>
-          <div class="meta-grid">
-            {% for i in meta_titles %}{% set item_1 = meta_titles[loop.index-1]
-            %} {% set item_2 = meta_values[loop.index-1] %}
-            <div class="meta-title"><b>{{item_1}}:</b></div>
-            <div class="meta-values">{{item_2}}</div>
+        <div id="doc-info" class="accordion-collapsed">
+          <div class="subhead-lockup accordion-title" onclick="toggleAccordionContent(event)">
+            <h1 class="subhead">Document Information</h1>
+            <div class="accordion-chevron">
+              <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" fill="currentColor" class="bi bi-chevron-down" viewBox="0 0 16 16">
+                <path fill-rule="evenodd" d="M1.646 4.646a.5.5 0 0 1 .708 0L8 10.293l5.646-5.647a.5.5 0 0 1 .708.708l-6 6a.5.5 0 0 1-.708 0l-6-6a.5.5 0 0 1 0-.708z"/>
+              </svg>
+            </div>
+          </div>
+          <div class="meta-grid accordion-content">
+            {% for i in meta_titles %}
+              {% set title = meta_titles[loop.index-1] %}
+              {% set value = meta_values[loop.index-1] %}
+              {% if "Date" in title %}
+                {% set value = '{y}-{mo}-{d} {h}:{m} UTC{th}:{tm}'.format(
+                  d=value[8:10], mo=value[6:8], y=value[2:6], h=value[10:12], m=value[12:14], s=value[14:16], th=value[16:19], tm=value[20:22]) %}
+              {% else %}
+                {% set value = value | replace("{", "") %} 
+                {% set value = value | replace("}", "") %} 
+                {% set value = value | replace("'", "") %} 
+              {% endif %}
+            <div class="meta-title"><b>{{title[0:1]|capitalize}}{{title[1:]}}:</b></div>
+            <div class="meta-values" style="white-space: pre-wrap">{{value | replace(", ", "\n")}}</div>
             {% endfor %}
           </div>
         </div>
