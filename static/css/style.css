@@ -505,6 +505,10 @@ footer {
   transition: 0.25s ease-out;
 }
 
+.accordion-collapsed .subhead {
+  border-bottom: none;
+}
+
 .accordion-collapsed .accordion-chevron svg {
   transform: rotate(0deg);
 }
