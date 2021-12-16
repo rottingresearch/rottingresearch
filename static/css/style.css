@@ -164,6 +164,10 @@ input[type="file"]::file-selector-button {
   color: #EF3B24;
 }
 
+.subhead-lockup {
+  position: relative;
+}
+
 .subhead {
   font-size: 2rem;
   font-weight: 600;
@@ -357,6 +361,7 @@ footer {
   column-gap: 10px;
   row-gap: 15px;
   margin: 15px 0px;
+  font-size: 0.9rem;
 }
 
 .meta-values {
@@ -488,6 +493,51 @@ footer {
 .download-pdf a:hover,
 .download-report a:hover {
   color: #fff;
+}
+
+/**
+* 
+* Styles related to accordion content
+*
+*/
+
+.accordion-content {
+  transition: 0.25s ease-out;
+}
+
+.accordion-collapsed .subhead {
+  border-bottom: none;
+}
+
+.accordion-collapsed .accordion-chevron svg {
+  transform: rotate(0deg);
+}
+
+.accordion-collapsed .accordion-content {
+  height: 0px;
+  opacity: 0;
+  overflow: hidden;
+}
+
+.accordion-expanded .accordion-chevron svg {
+  transform: rotate(45deg);
+}
+
+.accordion-expanded .accordion-content {
+  height: 100%;
+  opacity: 1;
+}
+
+.accordion-chevron {
+  position: absolute;
+  right: 0px;
+  bottom: 0px;
+  margin: 0.8rem;
+  cursor: pointer;
+}
+
+.accordion-chevron svg {
+  transition: transform 0.5s ease-out;
 }
 
 @media only screen and (max-width: 680px) {
