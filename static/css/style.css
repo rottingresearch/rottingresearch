@@ -505,7 +505,7 @@ footer {
   transition: 0.25s ease-out;
 }
 
-.accordion-collapsed .accordion-chevron {
+.accordion-collapsed .accordion-chevron svg {
   transform: rotate(0deg);
 }
 
@@ -515,8 +515,8 @@ footer {
   overflow: hidden;
 }
 
-.accordion-expanded .accordion-chevron {
-  transform: rotate(-180deg) translateY(25%);
+.accordion-expanded .accordion-chevron svg {
+  transform: rotate(45deg);
 }
 
 .accordion-expanded .accordion-content {
@@ -528,9 +528,12 @@ footer {
   position: absolute;
   right: 0px;
   bottom: 0px;
-  margin: 1rem;
-  transition: transform 0.5s ease-out;
+  margin: 0.8rem;
   cursor: pointer;
+}
+
+.accordion-chevron svg {
+  transition: transform 0.5s ease-out;
 }
 
 @media only screen and (max-width: 680px) {
