@@ -54,7 +54,7 @@ header img {
 input[type="file"]::file-selector-button {
   border: none;
   border-radius: 10px;
-  color: #333;
+  color: #ffffff;
   background-color: #bdbdbd;
   padding: 5px 10px;
   font-size: 15px;
