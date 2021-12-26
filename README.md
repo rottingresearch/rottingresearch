@@ -42,7 +42,7 @@ The mission of this project is to provide a place for researchers and scholars t
 
 # Demo Site
 
-The App is hosted at [https://linkrot-temp.herokuapp.com/](https://linkrot-temp.herokuapp.com/) during development.
+The App is hosted at [https://rottingresearch.org/](https://rottingresearch.org/) during development.
 
 # Code of Conduct
 For our code of conduct please visit our [Code of Conduct page](https://github.com/marshalmiller/rottingresearch/blob/main/code_of_conduct.md).
