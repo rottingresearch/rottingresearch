@@ -3,4 +3,4 @@ Flask==2.0.1
 Werkzeug==2.0.1
 gunicorn==20.1.0
 linkrot==3.4
-rq==1.10.0
+newrelic
