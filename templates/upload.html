@@ -24,7 +24,7 @@
       rel="stylesheet"
       href="{{ url_for('static', filename= 'css/style.css') }}"
     />
-
+    <link rel="stylesheet" href="assets/css/preloader.css">
     <title>Rotting Research</title>
     <script>
       function toggleMobileNavigation() {
@@ -45,7 +45,9 @@
         alert("Please upload a file or enter a URL");
     </script>
   </head>
-  <body>
+  <body class="no-scroll-preload">
+      <!-- loader -->
+      <div class="loader"></div>
     <div class="mobile-navigation" id="mobile-navigation">
       <div class="mobile-navigation--header">
 
