@@ -24,6 +24,7 @@
       rel="stylesheet"
       href="{{ url_for('static', filename= 'css/style.css') }}"
     />
+    <link rel="stylesheet" href="assets/css/preloader.css">
     <title>Linkrot</title>
     <script>
       function toggleMobileNavigation() {
@@ -35,7 +36,7 @@
           element.classList.add("mobile-navigation__open");
         }
       }
-      
+
       function toggleAccordionContent(e) {
         const { classList } = e.currentTarget.parentElement;
         if (classList.contains("accordion-collapsed")) {
@@ -50,7 +51,21 @@
     </script>
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
   </head>
-  <body>
+
+  <body class="no-scroll-preload">
+      <!-- loader -->
+      <div class="loader-container">
+          <div class="loading">
+              <span>L</span>
+              <span>o</span>
+              <span>a</span>
+              <span>d</span>
+              <span>i</span>
+              <span>n</span>
+              <span>g</span>
+          </div>
+      </div>
+
     <div class="mobile-navigation" id="mobile-navigation">
       <div class="mobile-navigation--header">
 
@@ -87,7 +102,7 @@
         <div class="file-grid">
           <div class="pdf-lockup">
             <div class="pdf-icon"><i class="fa fa-file-pdf-o"></i></div>
-            <div class="pdf-filename">{{filename}}</div>  
+            <div class="pdf-filename">{{filename}}</div>
           </div>
           <div class="downloads">
             <div class="download-pdf">
@@ -212,9 +227,9 @@
                 {% set value = '{y}-{mo}-{d} {h}:{m} UTC{th}:{tm}'.format(
                   d=value[8:10], mo=value[6:8], y=value[2:6], h=value[10:12], m=value[12:14], s=value[14:16], th=value[16:19], tm=value[20:22]) %}
               {% else %}
-                {% set value = value | replace("{", "") %} 
-                {% set value = value | replace("}", "") %} 
-                {% set value = value | replace("'", "") %} 
+                {% set value = value | replace("{", "") %}
+                {% set value = value | replace("}", "") %}
+                {% set value = value | replace("'", "") %}
               {% endif %}
             <div class="meta-title"><b>{{title[0:1]|capitalize}}{{title[1:]}}:</b></div>
             <div class="meta-values" style="white-space: pre-wrap">{{value | replace(", ", "\n")}}</div>
