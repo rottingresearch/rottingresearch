@@ -1,17 +1,13 @@
-import string
-import re
-import json
 import os
-from flask import Flask, flash, render_template, redirect, request, session, make_response, redirect, url_for, send_from_directory, after_this_request
-import requests
+from flask import Flask, render_template, request, session, send_from_directory, after_this_request
 from werkzeug.utils import secure_filename
 import subprocess as sp
 import linkrot
 from datetime import timedelta
 import shutil
-from urllib.request import Request, urlopen, HTTPError, URLError
 from linkrot.downloader import sanitize_url, get_status_code
 from collections import defaultdict
+import threadpool
 
 app = Flask(__name__)
 app.config['UPLOAD_FOLDER'] = '/tmp/'
@@ -19,6 +15,7 @@ app.secret_key = os.environ.get('APP_SECRET_KEY')
 app.config['PERMANENT_SESSION_LIFETIME'] = timedelta(minutes=60)
 
 ALLOWED_EXTENSIONS = set(['pdf'])
+MAX_THREADS_DEFAULT = 7
 
 
 def allowed_file(filename):
@@ -69,20 +66,40 @@ def pdfdata(path):
     pdf = linkrot.linkrot(path)
     session['path'] = path
     metadata = pdf.get_metadata()
-    refs_all = pdf.get_references()
-    refs = [ref for ref in refs_all if ref.reftype in ["url", "pdf"]]
+    refs = pdf.get_references()
+
+    codes, urls, pdfs = check_status_codes(refs, max_threads=MAX_THREADS_DEFAULT)
+
+    return metadata, dict(codes), pdfs, urls
+
+def check_status_codes(refs, max_threads=MAX_THREADS_DEFAULT):
     codes = defaultdict(list)
     pdfs = []
     urls = []
-    for r in refs:
-        url = sanitize_url(r.ref)
-        c = get_status_code(url)
-        codes[c].append([url, r.page])
-        if r.reftype == 'url':
-            urls.append([c, url])
-        else:
-            pdfs.append([c, url])
-    return metadata, dict(codes), pdfs, urls
+    
+    def check_url(ref):
+        url = sanitize_url(ref.ref)
+        if ref.reftype == 'url' or ref.reftype == 'pdf':
+            status_code = get_status_code(url)
+            codes[status_code].append([url, ref.page])
+
+        if ref.reftype == 'url':
+            urls.append([status_code, url])
+        elif ref.reftype == 'pdf':
+            pdfs.append([status_code, url])
+
+    # Start a threadpool and add the check-url tasks
+    try:
+        pool = threadpool.ThreadPool(max_threads)
+        pool.map(check_url, refs)
+        pool.wait_completion()
+
+    except Exception as e:
+        print(e)
+    except KeyboardInterrupt:
+        pass
+
+    return codes, urls, pdfs
 
 
 @ app.route('/downloadpdf', methods=['GET', 'POST'])
