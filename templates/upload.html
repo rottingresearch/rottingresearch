@@ -44,6 +44,9 @@
       else if(inv.localeCompare('none')==0)
         alert("Please upload a file or enter a URL");
     </script>
+    <script>function LoaderFunction(){
+       document.getElementsByClassName("preloader")[0].style.display = "block";
+    }</script>
     <script src='https://cdnjs.cloudflare.com/ajax/libs/jquery/3.3.1/jquery.min.js'></script>
   </head>
   <body class="no-scroll-preload">
@@ -116,9 +119,7 @@
 					</dl>
 				</form>
 				</div>
-        <div class="loader">
-          <div class="loading">
-          </div>
+        <div class="preloader">
         </div>
 			</main>
 
