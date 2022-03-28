@@ -702,7 +702,6 @@ footer {
           border-radius:8px;
           perspective: 1000px;
           text-align: center;
-          vertical-align: middle;
         }
 
         .loader:before{
@@ -768,4 +767,11 @@ footer {
   100% {
     transform: rotate(360deg);
   }
+}
+.vertical-center {
+  margin: 0;
+  position: absolute;
+  top: 50%;
+  -ms-transform: translateY(-50%);
+  transform: translateY(-50%);
 }
