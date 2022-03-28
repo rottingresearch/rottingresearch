@@ -31,6 +31,10 @@ def upload_form():
 def about():
     return render_template('about.html')
 
+@app.route('/loading')
+def about():
+    return render_template('loading.html')
+
 
 @app.route('/', methods=['POST'])
 def upload_pdf():
@@ -76,7 +80,7 @@ def check_status_codes(refs, max_threads=MAX_THREADS_DEFAULT):
     codes = defaultdict(list)
     pdfs = []
     urls = []
-    
+
     def check_url(ref):
         url = sanitize_url(ref.ref)
         if ref.reftype == 'url' or ref.reftype == 'pdf':
