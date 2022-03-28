@@ -698,10 +698,11 @@ footer {
           height: 140px;
           background: #000000;
           box-sizing: border-box;
-          position: absolute;
+          position: relative;
           border-radius:8px;
           perspective: 1000px;
           text-align: center;
+          vertical-align: middle;
         }
 
         .loader:before{
