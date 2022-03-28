@@ -32,7 +32,7 @@ def about():
     return render_template('about.html')
 
 @app.route('/loading')
-def about():
+def loading():
     return render_template('loading.html')
 
 
