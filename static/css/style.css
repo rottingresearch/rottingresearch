@@ -694,8 +694,8 @@ footer {
 }
 
 .loader {
-          width: 50%;
-          height: 30%;
+          width: 200px;
+          height: 140px;
           background: #000000;
           box-sizing: border-box;
           position: relative;
@@ -740,7 +740,7 @@ footer {
                     linear-gradient(#ddd 100px, transparent 0);
             background-position: 50% 30px ,50% 60px , 50%  90px;
             transform: rotateY(0deg );
-            transform-origin: left center;
+            transform-origin: center;
           animation: paging 1s linear infinite;
         }
 
