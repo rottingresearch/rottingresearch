@@ -701,6 +701,7 @@ footer {
           position: relative;
           border-radius:8px;
           perspective: 1000px;
+          text-align: center;
         }
 
         .loader:before{
