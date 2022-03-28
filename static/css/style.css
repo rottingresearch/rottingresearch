@@ -694,9 +694,9 @@ footer {
 }
 
 .loader {
-          width: 200px;
-          height: 140px;
-          background: #979794;
+          width: 50%;
+          height: 30%;
+          background: #000000;
           box-sizing: border-box;
           position: relative;
           border-radius:8px;
