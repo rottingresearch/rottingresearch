@@ -19,7 +19,7 @@ window.addEventListener('load', () => {
         icon.innerHTML = '<i class="fa fa-exclamation-circle text-failure"></i>';
         if (Number(response) == 403) error403 += 1;
         if (Number(response) == 404) error404 += 1;
-        if (Number(response) !== 403 & Number(response) !== 404) {
+        if (Number(response) !== 403 && Number(response) !== 404) {
           errorOther += 1;
           message.innerHTML = `<b>N/A</b>`;
         }
