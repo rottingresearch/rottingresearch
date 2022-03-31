@@ -44,8 +44,8 @@ def upload_pdf():
             website = sanitize_url(website)
             session['file'] = website.split('/')[-1].split('.')[0]
             session['type'] = 'url'
-            metadata, codes, pdfs, urls = pdfdata(website)
-            return render_template('analysis.html', meta_titles=list(metadata.keys()), meta_values=list(metadata.values()), codes=codes, pdfs=pdfs, urls=urls)
+            metadata, pdfs, urls = pdfdata(website)
+            return render_template('analysis.html', meta_titles=list(metadata.keys()), meta_values=list(metadata.values()), pdfs=pdfs, urls=urls)
         else:
             return render_template('upload.html', flash='pdf')
     else:
@@ -60,8 +60,8 @@ def upload_pdf():
             session['file'] = filename.split('.')[0]
             session['type'] = 'file'
             file.save(path)
-            metadata, codes, pdfs, urls = pdfdata(path)
-            return render_template('analysis.html', meta_titles=list(metadata.keys()), meta_values=list(metadata.values()), codes=codes, pdfs=pdfs, urls=urls, filename=filename)
+            metadata, pdfs, urls = pdfdata(path)
+            return render_template('analysis.html', meta_titles=list(metadata.keys()), meta_values=list(metadata.values()), pdfs=pdfs, urls=urls, filename=filename)
         else:
             return render_template('upload.html', flash='pdf')
 
@@ -72,30 +72,25 @@ def pdfdata(path):
     metadata = pdf.get_metadata()
     refs = pdf.get_references()
 
-    codes, urls, pdfs = check_status_codes(refs, max_threads=MAX_THREADS_DEFAULT)
+    urls, pdfs = sort_refs(refs, max_threads=MAX_THREADS_DEFAULT)
 
-    return metadata, dict(codes), pdfs, urls
+    return metadata, pdfs, urls
 
-def check_status_codes(refs, max_threads=MAX_THREADS_DEFAULT):
-    codes = defaultdict(list)
+def sort_refs(refs, max_threads=MAX_THREADS_DEFAULT):
     pdfs = []
     urls = []
 
-    def check_url(ref):
+    def sort_ref(ref):
         url = sanitize_url(ref.ref)
-        if ref.reftype == 'url' or ref.reftype == 'pdf':
-            status_code = get_status_code(url)
-            codes[status_code].append([url, ref.page])
-
         if ref.reftype == 'url':
-            urls.append([status_code, url])
+            urls.append(url)
         elif ref.reftype == 'pdf':
-            pdfs.append([status_code, url])
+            pdfs.append(url)
 
     # Start a threadpool and add the check-url tasks
     try:
         pool = threadpool.ThreadPool(max_threads)
-        pool.map(check_url, refs)
+        pool.map(sort_ref, refs)
         pool.wait_completion()
 
     except Exception as e:
@@ -103,7 +98,7 @@ def check_status_codes(refs, max_threads=MAX_THREADS_DEFAULT):
     except KeyboardInterrupt:
         pass
 
-    return codes, urls, pdfs
+    return urls, pdfs
 
 
 @ app.route('/downloadpdf', methods=['GET', 'POST'])
@@ -123,6 +118,12 @@ def downloadpdf():
     shutil.rmtree(download_folder_path)
     return send_from_directory(app.config['UPLOAD_FOLDER'], session['file']+'.zip', as_attachment=True)
 
+@ app.route('/check', methods=['GET'])
+def check():
+    args = request.args
+    url = sanitize_url(args['url'])
+    status = get_status_code(url)
+    return str(status)
 
 if __name__ == '__main__':
     app.run(port=5000)

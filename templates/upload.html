@@ -86,11 +86,11 @@
       <main class="home--main">
         <div class="main--content">
 								<div class="main--img" align="center">
-				<img src="../static/img/branding/app-logo/white/rotting-research-white@2x.png" alt="Rotting Research logo" id="image" style="max-width: 300px"/>
+				<img src="../static/img/branding/app-logo/white/rotting-research-white@2x.png" alt="Rotting Research logo" id="image" style="max-width: calc(min(300px, 100%))"/>
 				</div>
 
 				<p class="description" style="max-width: 750px">
-				&emsp;&emsp;Linkrot helps you scan pdfs for links written in plaintext and check if they are active. It then generates a report of its findings with references (pdf, url, doi, arxiv) and metadata from the PDF.
+				Linkrot helps you scan pdfs for links written in plaintext and check if they are active. It then generates a report of its findings with references (pdf, url, doi, arxiv) and metadata from the PDF.
 				</p>
 				{% if filename %}
 					<div>
@@ -98,22 +98,25 @@
 					</div>
 				{% endif %}
 
-				<form method="post" action="/" enctype="multipart/form-data" align="center" style="background-color: #ffffff; border-radius: 10px; padding: 10px; padding-left: 25px">
+				<form method="post" action="/" enctype="multipart/form-data" align="center" style="background-color: #ffffff; border-radius: 10px; padding: 0px 16px;" onsubmit="setLoading()">
         <h2>Upload or provide a link to your pdf.</h2>
 					<dl>
 						<p>
 							<input type="file" name="file" autocomplete="off">
               </br>
-              <label class="form-text" for="text"
-              >LINK: </label
-            >
-            <input
-              type="text"
-              class="link"
-              name="text"
+              <div style="display:flex; flex-wrap: nowrap; padding: 0px 5px; width: 100%; align-items: center;">
+                <label class="form-text" for="text" aria-label="link"
+                >LINK: </label
+              >
+              <input
+                type="text"
+                class="link"
+                name="text"
                 autocomplete="off"
-            /></br>
-              <input type="submit" value="Check for Rot">
+                aria-label="link input"
+              />
+              </div>
+              <button id="submit-button" type="submit">Check for Rot</button>
 						</p>
 					</dl>
 				</form>
@@ -132,9 +135,14 @@
         </div>
       </footer>
     </div>
-    <script>function LoaderFunction(){
+    <script>
+      function LoaderFunction(){
         document.getElementsByClassName("preloader")[0].style.display = "block";}
-      </script>
+
+      function setLoading() {
+        document.getElementById("submit-button").innerHTML = 'Processing <i class="fa fa-spinner fa-pulse"></i>'
+      }
+    </script>
 </body>
 
 </html>

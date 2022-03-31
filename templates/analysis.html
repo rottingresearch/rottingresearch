@@ -49,6 +49,7 @@
         }
       }
     </script>
+    <script src="{{ url_for('static', filename= 'scripts/analysis.js') }}"></script>
     <script src='https://cdnjs.cloudflare.com/ajax/libs/jquery/3.3.1/jquery.min.js'></script>
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
   </head>
@@ -108,31 +109,23 @@
           </div>
         </div>
         <div id="summary">
-          <h2 class="subhead">Linkrot Summary</h2>
+          <h2 class="subhead linkrot-summary">Linkrot Summary <i class="fa fa-spinner fa-pulse"></i></h2>
           <div class="sum-box-container">
-            <div class="sum-box success">
-              <div class="sum-rollup">{{codes[200]|length}}</div>
-              {% if codes[200]|length == 1 %}
-              <div>working link</div>
-              {% else %}
-              <div>working links</div>
-              {% endif %}
+            <div class="sum-box success success-200">
+              <div class="sum-rollup">0</div>
+              <div class="sum-label">working links</div>
             </div>
-            <div class="sum-box failure">
-              <div class="sum-rollup">{{codes[403]|length}}</div>
-              {% if codes[403]|length == 1 %}
-              <div>403 error</div>
-              {% else %}
-              <div>403 errors</div>
-              {% endif %}
+            <div class="sum-box failure error-403">
+              <div class="sum-rollup">0</div>
+              <div class="sum-label">403 errors</div>
             </div>
-            <div class="sum-box failure">
-              <div class="sum-rollup">{{codes[404]|length}}</div>
-              {% if codes[404]|length == 1 %}
-              <div>404 error</div>
-              {% else %}
-              <div>404 errors</div>
-              {% endif %}
+            <div class="sum-box failure error-404">
+              <div class="sum-rollup">0</div>
+              <div class="sum-label">404 errors</div>
+            </div>
+            <div class="sum-box failure error-other">
+              <div class="sum-rollup">0</div>
+              <div class="sum-label">other errors</div>
             </div>
           </div>
         </div>
@@ -141,26 +134,17 @@
           <h1 class="subhead">PDF References</h1>
           <ul class="checklist">
           {% for pdf in pdfs %}
-          <li>
-            <div class="check">
-              {% if pdf[0] != 200 %}
-              <i class="fa fa-exclamation-circle text-failure"></i>
-              {% else %}
-              <i class="fa fa-check-circle text-success"></i>
-              {% endif %}
+          <li class="analysis-ref">
+            <input type="hidden" value="{{pdf}}">
+            <div class="check analysis-icon">
+              <i class="fa fa-spinner fa-pulse"></i>
             </div>
             <div class="fetch-response">
-              <b>
-                {% if pdf[0] != 200 and pdf[0] != 403 and pdf[0] != 404 %}
-                  N/A
-                {% else %}
-                  {{pdf[0]}}
-                {% endif %}
-              </b>
+              <i class="fa fa-spinner fa-pulse"></i>
             </div>
             <div class="link-container">
-              <a class="pdf-link" target="_blank" href="{{pdf[1]}}">
-                {{pdf[1]}}
+              <a class="pdf-link" target="_blank" href="{{pdf}}">
+                {{pdf}}
               </a>
             </div>
             </li>
@@ -171,25 +155,22 @@
           <h1 class="subhead">URL References</h1>
           <ul class="checklist">
           {% for url in urls %}
-            <li>
-              <div class="check">
-                {% if url[0] != 200 %}
-                <i class="fa fa-exclamation-circle text-failure"></i>
-                {% else %}
-                <i class="fa fa-check-circle text-success"></i>
-                {% endif %}
+            <li class="analysis-ref">
+              <input type="hidden" value="{{url}}">
+              <div class="check analysis-icon">
+                <i class="fa fa-spinner fa-pulse"></i>
               </div>
-              <div class="fetch-response"><b>{{url[0]}}</b></div>
+              <div class="fetch-response"><i class="fa fa-spinner fa-pulse"></i></div>
               <div class="link-container">
-                <a class="url-link" target="_blank" href="{{url[1]}}">
-                  {{url[1]}}
+                <a class="url-link" target="_blank" href="{{url}}">
+                  {{url}}
                 </a>
               </div>
             </li>
           {% endfor %}
           </ul>
         </div>
-      </div>
+        </div>
         <div id="doc-info" class="accordion-collapsed">
           <div class="subhead-lockup accordion-title" onclick="toggleAccordionContent(event)">
             <h1 class="subhead">Document Information</h1>
