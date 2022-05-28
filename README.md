@@ -36,6 +36,11 @@ The mission of this project is to provide a place for researchers and scholars t
 
 - Open 127.0.0.1:5000 on your browser.
 
+# Docker Build Image Instructions
+- Clone repo `git clone https://github.com/marshalmiller/rottingresearch.git`  
+- Build the docker image `docker build --tag rottingresearch .`  
+- Run image `docker run -d -p 5000:5000 rottingresearch`  
+
 # Features
 
 - Coming Soon
