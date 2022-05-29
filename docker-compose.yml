@@ -1,0 +1,15 @@
+version: '3'
+
+services:
+  rottingresearch:
+    build: .
+    container_name: rottingresearch
+    restart: always
+    ports:
+      - "5000:5000"
+    environment:
+      APP_SECRET_KEY: change_me
+    volumes:
+      - .:/app
+
+# EOF

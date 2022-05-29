@@ -1,12 +1,10 @@
 import os
 from flask import Flask, render_template, request, session, send_from_directory, after_this_request
 from werkzeug.utils import secure_filename
-import subprocess as sp
 import linkrot
 from datetime import timedelta
 import shutil
 from linkrot.downloader import sanitize_url, get_status_code
-from collections import defaultdict
 import threadpool
 
 app = Flask(__name__)
@@ -126,4 +124,4 @@ def check():
     return str(status)
 
 if __name__ == '__main__':
-    app.run(port=443)
+    app.run(host='0.0.0.0', port=5000)

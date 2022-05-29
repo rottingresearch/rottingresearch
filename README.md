@@ -36,6 +36,19 @@ The mission of this project is to provide a place for researchers and scholars t
 
 - Open 127.0.0.1:5000 on your browser.
 
+# Docker Instructions
+## Local Development
+Docker-Compose is being used for local development mainly due to its ease of use and development. 
+- Set the `APP_SECRET_KEY`
+- `docker-compose up --build -d` to run the container in detached mode. 
+
+The application is running on port `5000`. Docker volume is used so whenever changes are made they are reflected immediately. To view the container logs you can use `docker logs -f rottingresearch`. The `f` flag is used for following the logs.  
+
+## Building Image
+- Clone repo `git clone https://github.com/marshalmiller/rottingresearch.git`  
+- Build the docker image `docker build --tag rottingresearch .`  
+- Run image `docker run -d -p 5000:5000 rottingresearch`  
+
 # Features
 
 - Coming Soon
