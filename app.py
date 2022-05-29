@@ -29,6 +29,10 @@ def upload_form():
 def about():
     return render_template('about.html')
 
+@app.route('/privacy')
+def about():
+    return render_template('privacy.html')
+
 @app.route('/loading')
 def loading():
     return render_template('loading.html')
