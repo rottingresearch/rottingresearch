@@ -31,7 +31,7 @@ def about():
 
 @app.route('/policies')
 def policies():
-    return render_template('privacy.html')
+    return render_template('policies.html')
 
 @app.route('/loading')
 def loading():
