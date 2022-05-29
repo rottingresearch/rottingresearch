@@ -116,7 +116,9 @@
                 aria-label="link input"
               />
               </div>
-              <button id="submit-button" type="submit">Check for Rot</button>
+              <input type="checkbox" id="policy_prompt" name="policy_prompt" onClick="privacyPolicyIsChecked(this)">
+              <label for="policy_prompt"> By uploading you agree to the <a href="https://rottingresearch.org/policies">Privacy Policies</a></label></br>
+              <button id="submit-button" type="submit" disabled="disabled">Check for Rot</button>
 						</p>
 					</dl>
 				</form>
@@ -141,6 +143,16 @@
 
       function setLoading() {
         document.getElementById("submit-button").innerHTML = 'Processing <i class="fa fa-spinner fa-pulse"></i>'
+      }
+
+      function privacyPolicyIsChecked(v) {
+        var submitBtn = document.getElementById("submit-button");
+
+        if (v.checked == true) {
+          submitBtn.removeAttribute('disabled');
+        } else if (v.checked == false) {
+          submitBtn.setAttribute('disabled', 'disabled');
+        }
       }
     </script>
 </body>
