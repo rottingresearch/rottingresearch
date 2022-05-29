@@ -30,7 +30,7 @@ def about():
     return render_template('about.html')
 
 @app.route('/privacy')
-def about():
+def privacy():
     return render_template('privacy.html')
 
 @app.route('/loading')
