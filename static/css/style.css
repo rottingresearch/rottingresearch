@@ -206,6 +206,12 @@ form button[type="submit"]:hover {
   cursor: pointer;
 }
 
+form button[type="submit"]:disabled, button:disabled {
+  border: 1px solid #999999;
+  background-color: #cccccc;
+  color: #666666;
+}
+
 .main--img {
   flex: 1;
   z-index: -5;
