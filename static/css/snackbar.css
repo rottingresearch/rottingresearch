@@ -1,0 +1,73 @@
+/* 
+Description: CSS Styles for Alert/Snackbar that shows up on the top right.
+Original Tutorial: https://www.w3schools.com/howto/howto_js_snackbar.asp
+*/
+
+#snackbar {
+    visibility: hidden;
+    /* min-width: 250px; */
+    margin-left: -125px;
+    background-color: #efefef;
+    text-align: center;
+    border-radius: 7px;
+    border: 2px solid #EF3B24;
+    padding: 16px;
+    position: fixed;
+    z-index: 0;
+    right: 30px;
+    /* font-size: 17px; */
+}
+
+#snackbar.show {
+    visibility: visible;
+    -webkit-animation: fadein 0.5s, fadeout 0.5s 2.5s;
+    animation: fadein 0.5s, fadeout 0.5s 2.5s;
+}
+
+@-webkit-keyframes fadein {
+    from {
+        right: 0;
+        opacity: 0;
+    }
+
+    to {
+        right: 30px;
+        opacity: 1;
+    }
+}
+
+@keyframes fadein {
+    from {
+        right: 0;
+        opacity: 0;
+    }
+
+    to {
+        right: 30px;
+        opacity: 1;
+    }
+}
+
+@-webkit-keyframes fadeout {
+    from {
+        right: 30px;
+        opacity: 1;
+    }
+
+    to {
+        right: 0;
+        opacity: 0;
+    }
+}
+
+@keyframes fadeout {
+    from {
+        right: 30px;
+        opacity: 1;
+    }
+
+    to {
+        right: 0;
+        opacity: 0;
+    }
+}
