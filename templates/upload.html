@@ -5,7 +5,7 @@
     <meta
       name="viewport"
       content="width=device-width, initial-scale=1, maximum-scale=12.0, minimum-scale=1, user-scalable=yes"
-    />
+/>
 
     <link rel="icon" href="../static/img/branding/social assets/twitter/profile image/rottingresearch-twitter-profile-image-red.jpg" />
 
@@ -25,6 +25,10 @@
       href="{{ url_for('static', filename= 'css/style.css') }}"
     />
 
+    <link
+    rel="stylesheet"
+    href="{{ url_for('static', filename= 'css/snackbar.css') }}"
+  />
     <title>Rotting Research</title>
     <script>
       function toggleMobileNavigation() {
@@ -37,19 +41,13 @@
         }
       }
     </script>
-    <script>
-      var inv = {{flash|tojson}};
-      if(inv.localeCompare('pdf')==0)
-        alert("The website or file can only be a pdf!");
-      else if(inv.localeCompare('none')==0)
-        alert("Please upload a file or enter a URL");
-    </script>
-    <script>function LoaderFunction(){
+
+  <script>function LoaderFunction(){
        document.getElementsByClassName("preloader")[0].style.display = "block";
     }</script>
     <script src='https://cdnjs.cloudflare.com/ajax/libs/jquery/3.3.1/jquery.min.js'></script>
   </head>
-  <body>
+  <body onload="showAlerts()">
 
     <div class="mobile-navigation" id="mobile-navigation">
       <div class="mobile-navigation--header">
@@ -82,8 +80,14 @@
             <i class="fa fa-reorder"></i>
           </button>
         </div>
+      <!-- Alert / Snackbar -->
+      <div id="snackbar">please upload a pdf</div>
+
       </header>
+      
+
       <main class="home--main">
+
         <div class="main--content">
 								<div class="main--img" align="center">
 				<img src="../static/img/branding/app-logo/white/rotting-research-white@2x.png" alt="Rotting Research logo" id="image" style="max-width: calc(min(300px, 100%))"/>
@@ -152,6 +156,21 @@
           submitBtn.removeAttribute('disabled');
         } else if (v.checked == false) {
           submitBtn.setAttribute('disabled', 'disabled');
+        }
+      }
+
+      function showSnackbar() {
+        var x = document.getElementById("snackbar");
+        x.className = "show";
+        setTimeout(function(){ x.className = x.className.replace("show", ""); }, 3000);
+      }
+
+      function showAlert() {
+        // Creates an alert if the uploaded file / url is not a PDF
+        var inv = {{ flash | tojson }};
+        if(inv.localeCompare('pdf')==0) {
+          document.getElementById("snackbar").innerHTML = "The link or file must be a PDF!";
+          showSnackbar();
         }
       }
     </script>
