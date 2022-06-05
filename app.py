@@ -1,11 +1,14 @@
 import os
-from flask import Flask, render_template, request, session, send_from_directory, after_this_request
-from werkzeug.utils import secure_filename
-import linkrot
-from datetime import timedelta
 import shutil
-from linkrot.downloader import sanitize_url, get_status_code
+from datetime import timedelta
+
 import threadpool
+
+from werkzeug.utils import secure_filename
+from flask import Flask, render_template, request, session, send_from_directory, after_this_request
+
+import linkrot
+from linkrot.downloader import sanitize_url, get_status_code
 
 app = Flask(__name__)
 app.config['UPLOAD_FOLDER'] = '/tmp/'
@@ -32,7 +35,7 @@ def about():
 @app.route('/policies')
 def policies():
     return render_template('policies.html')
-
+    
 @app.route('/loading')
 def loading():
     return render_template('loading.html')
