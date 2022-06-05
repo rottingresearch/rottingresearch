@@ -35,11 +35,6 @@ def about():
 @app.route('/policies')
 def policies():
     return render_template('policies.html')
-    
-@app.route('/loading')
-def loading():
-    return render_template('loading.html')
-
 
 @app.route('/', methods=['POST'])
 def upload_pdf():
