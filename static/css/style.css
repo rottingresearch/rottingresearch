@@ -11,7 +11,7 @@ body {
   margin-left: 0px;
   margin-right: 0px;
   color: black;
-  background-color: #EF3B24;
+  background-color: #ef3b24;
 }
 
 .logo {
@@ -149,7 +149,7 @@ input[type="file"]::file-selector-button {
   font-weight: 600;
   margin-top: 15px;
   padding: 0;
-  color: rgba(50,50,50,1);
+  color: rgba(50, 50, 50, 1);
 }
 
 .file-grid {
@@ -160,7 +160,7 @@ input[type="file"]::file-selector-button {
 
 .pdf-icon {
   font-size: 4rem;
-  color: #EF3B24;
+  color: #ef3b24;
 }
 
 .subhead-lockup {
@@ -174,21 +174,21 @@ input[type="file"]::file-selector-button {
   margin-bottom: 20px;
   margin-top: 40px;
   border-bottom: 1px solid #f2f2f3;
-  color: rgba(50,50,50,1);
+  color: rgba(50, 50, 50, 1);
 }
 
 form input[type="file"] {
   border: 1px solid #aaa;
   border-radius: 8px;
-  padding: 4px 8px 0px 8px; 
+  padding: 4px 8px 0px 8px;
   margin: 0px 5px;
 }
 
 form button[type="submit"] {
-  border: 2px solid #EF3B24;
+  border: 2px solid #ef3b24;
   border-radius: 10px;
   color: white;
-  background-color: #EF3B24;
+  background-color: #ef3b24;
   padding: 10px 20px;
   width: calc(100% - 10px);
   font-size: 15px;
@@ -202,11 +202,12 @@ form button[type="submit"] {
 form button[type="submit"]:hover {
   border: 2px solid #bdbdbd;
   background: transparent;
-  color: #EF3B24;
+  color: #ef3b24;
   cursor: pointer;
 }
 
-form button[type="submit"]:disabled, button:disabled {
+form button[type="submit"]:disabled,
+button:disabled {
   border: 1px solid #999999;
   background-color: #cccccc;
   color: #666666;
@@ -339,7 +340,7 @@ footer {
 }
 
 .sum-box {
-  display:flex;
+  display: flex;
   flex-direction: column;
   justify-content: center;
   margin: 0px 10px;
@@ -351,7 +352,7 @@ footer {
 
 .sum-box.success {
   background-color: rgba(76, 172, 71, 0.05);
-  border: 1px solid rgb(76, 172, 71)
+  border: 1px solid rgb(76, 172, 71);
 }
 
 .sum-box.failure {
@@ -407,30 +408,38 @@ footer {
   font-weight: 500;
 }
 
-.pdfs-urls-container {
+.pdfs-urls-container,
+.arxiv-doi-container {
   display: flex;
   flex-wrap: wrap;
 }
 
 #pdfs,
-#urls {
- width: calc(50% - 10px);
+#urls,
+#arxiv,
+#doi {
+  width: calc(50% - 10px);
 }
 
-#pdfs {
+#pdfs,
+#arxiv {
   margin-right: 20px;
 }
 
 #pdfs li,
-#urls li {
-  display:flex;
+#urls li,
+#arxiv li,
+#doi li {
+  display: flex;
   flex-wrap: nowrap;
   margin: 5px 0px;
   align-items: center;
 }
 
 #pdfs li .check,
-#urls li .check {
+#urls li .check,
+#arxiv li .check,
+#doi li .check {
   width: 50px;
   flex-shrink: 0;
   flex-grow: 0;
@@ -438,14 +447,18 @@ footer {
 }
 
 #pdfs li .fetch-response,
-#urls li .fetch-response {
+#urls li .fetch-response,
+#arxiv li .fetch-response,
+#doi li .fetch-response {
   width: 50px;
   flex-shrink: 0;
   flex-grow: 0;
 }
 
 #pdfs li .link-container,
-#urls li .link-container {
+#urls li .link-container,
+#arxiv li .link-container,
+#doi li .link-container {
   overflow: hidden;
 }
 
@@ -494,7 +507,7 @@ footer {
 .download-pdf a,
 .download-report a {
   text-decoration: underline;
-  text-decoration-color: #EF3B24;
+  text-decoration-color: #ef3b24;
   text-underline-offset: 4px;
   display: flex;
   flex-wrap: nowrap;
@@ -502,7 +515,7 @@ footer {
 
 .download-pdf:hover,
 .download-report:hover {
-  background-color: #EF3B24;
+  background-color: #ef3b24;
   color: #fff;
 }
 
@@ -697,76 +710,76 @@ footer {
     padding-left: 70px;
     margin-top: -15px;
   }
-
 }
 
 @media only screen and (max-width: 1444px) {
   #pdfs,
-  #urls {
+  #urls,
+  #arxiv,
+  #doi {
     width: 100%;
   }
 }
 
 .no-scroll-preload {
-    overflow: hidden;
+  overflow: hidden;
 }
 
 .loader {
-          width: 200px;
-          height: 140px;
-          background: #000000;
-          box-sizing: border-box;
-          position: relative;
-          border-radius:8px;
-          perspective: 1000px;
-        }
+  width: 200px;
+  height: 140px;
+  background: #000000;
+  box-sizing: border-box;
+  position: relative;
+  border-radius: 8px;
+  perspective: 1000px;
+}
 
-        .loader:before{
-          content: '';
-          position: absolute;
-          left: 10px;
-          right: 10px;
-          top: 10px;
-          bottom: 10px;
-          border-radius:8px;
-          background: #f5f5f5  no-repeat;
-          background-size: 60px 10px;
-          background-image: 	linear-gradient(#ddd 100px, transparent 0) ,
-                    linear-gradient(#ddd 100px, transparent 0),
-                    linear-gradient(#ddd 100px, transparent 0),
-                    linear-gradient(#ddd 100px, transparent 0),
-                    linear-gradient(#ddd 100px, transparent 0),
-                    linear-gradient(#ddd 100px, transparent 0);
+.loader:before {
+  content: "";
+  position: absolute;
+  left: 10px;
+  right: 10px;
+  top: 10px;
+  bottom: 10px;
+  border-radius: 8px;
+  background: #f5f5f5 no-repeat;
+  background-size: 60px 10px;
+  background-image: linear-gradient(#ddd 100px, transparent 0),
+    linear-gradient(#ddd 100px, transparent 0),
+    linear-gradient(#ddd 100px, transparent 0),
+    linear-gradient(#ddd 100px, transparent 0),
+    linear-gradient(#ddd 100px, transparent 0),
+    linear-gradient(#ddd 100px, transparent 0);
 
-          background-position: 15px 30px , 15px 60px , 15px 90px,
-                    105px 30px , 105px 60px , 105px 90px;
-          box-shadow: 0 0 10px rgba(0,0,0,0.25);
-        }
-        .loader:after {
-          content: '';
-            position: absolute;
-            width: calc(50% - 10px);
-            right: 10px;
-            top: 10px;
-            bottom: 10px;
-            border-radius: 8px;
-            background: #fff no-repeat;
-            background-size: 60px 10px;
-            background-image: linear-gradient(#ddd 100px, transparent 0),
-                    linear-gradient(#ddd 100px, transparent 0),
-                    linear-gradient(#ddd 100px, transparent 0);
-            background-position: 50% 30px ,50% 60px , 50%  90px;
-            transform: rotateY(0deg );
-            transform-origin: left center;
-          animation: paging 1s linear infinite;
-        }
+  background-position: 15px 30px, 15px 60px, 15px 90px, 105px 30px, 105px 60px,
+    105px 90px;
+  box-shadow: 0 0 10px rgba(0, 0, 0, 0.25);
+}
+.loader:after {
+  content: "";
+  position: absolute;
+  width: calc(50% - 10px);
+  right: 10px;
+  top: 10px;
+  bottom: 10px;
+  border-radius: 8px;
+  background: #fff no-repeat;
+  background-size: 60px 10px;
+  background-image: linear-gradient(#ddd 100px, transparent 0),
+    linear-gradient(#ddd 100px, transparent 0),
+    linear-gradient(#ddd 100px, transparent 0);
+  background-position: 50% 30px, 50% 60px, 50% 90px;
+  transform: rotateY(0deg);
+  transform-origin: left center;
+  animation: paging 1s linear infinite;
+}
 
-
-        @keyframes paging {
-          to {
-            transform: rotateY( -180deg );
-          }
-        }
+@keyframes paging {
+  to {
+    transform: rotateY(-180deg);
+  }
+}
 
 .text-success {
   color: rgba(71, 200, 92, 1);

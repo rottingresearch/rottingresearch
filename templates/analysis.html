@@ -115,6 +115,14 @@
               <div class="sum-rollup">0</div>
               <div class="sum-label">working links</div>
             </div>
+            <div class="sum-box success arxiv-num">
+              <div class="sum-rollup">{{arxiv|length}}</div>
+              <div class="sum-label">Arxiv References</div>
+            </div>
+            <div class="sum-box success doi-num">
+              <div class="sum-rollup">{{doi|length}}</div>
+              <div class="sum-label">DOI References</div>
+            </div>
             <div class="sum-box failure error-403">
               <div class="sum-rollup">0</div>
               <div class="sum-label">403 errors</div>
@@ -170,6 +178,46 @@
           {% endfor %}
           </ul>
         </div>
+        </div>
+        <div class="arxiv-doi-container">
+          <div id="arxiv">
+            <h1 class="subhead">Arxiv References</h1>
+            <ul class="checklist">
+            {% for a in arxiv %}
+              <li class="analysis-ref">
+                <input type="hidden" value="{{a}}">
+                <div class="check analysis-icon">
+                  <i class="fa fa-spinner fa-pulse"></i>
+                </div>
+                <div class="fetch-response"><i class="fa fa-spinner fa-pulse"></i></div>
+                <div class="link-container">
+                  <a class="url-link" target="_blank" href="{{a}}">
+                    {{a}}
+                  </a>
+                </div>
+              </li>
+            {% endfor %}
+            </ul>
+          </div>
+          <div id="doi">
+            <h1 class="subhead">DOI References</h1>
+            <ul class="checklist">
+            {% for d in doi %}
+              <li class="analysis-ref">
+                <input type="hidden" value="{{d}}">
+                <div class="check analysis-icon">
+                  <i class="fa fa-spinner fa-pulse"></i>
+                </div>
+                <div class="fetch-response"><i class="fa fa-spinner fa-pulse"></i></div>
+                <div class="link-container">
+                  <a class="url-link" target="_blank" href="{{d}}">
+                    {{d}}
+                  </a>
+                </div>
+              </li>
+            {% endfor %}
+            </ul>
+          </div>
         </div>
         <div id="doc-info" class="accordion-collapsed">
           <div class="subhead-lockup accordion-title" onclick="toggleAccordionContent(event)">
