@@ -32,9 +32,11 @@ def upload_form():
 def about():
     return render_template('about.html')
 
+
 @app.route('/policies')
 def policies():
     return render_template('policies.html')
+
 
 @app.route('/', methods=['POST'])
 def upload_pdf():
@@ -44,8 +46,8 @@ def upload_pdf():
             website = sanitize_url(website)
             session['file'] = website.split('/')[-1].split('.')[0]
             session['type'] = 'url'
-            metadata, pdfs, urls = pdfdata(website)
-            return render_template('analysis.html', meta_titles=list(metadata.keys()), meta_values=list(metadata.values()), pdfs=pdfs, urls=urls)
+            metadata, pdfs, urls, arxiv, doi = pdfdata(website)
+            return render_template('analysis.html', meta_titles=list(metadata.keys()), meta_values=list(metadata.values()), pdfs=pdfs, urls=urls, arxiv=arxiv, doi=doi)
         else:
             return render_template('upload.html', flash='pdf')
     else:
@@ -60,8 +62,8 @@ def upload_pdf():
             session['file'] = filename.split('.')[0]
             session['type'] = 'file'
             file.save(path)
-            metadata, pdfs, urls = pdfdata(path)
-            return render_template('analysis.html', meta_titles=list(metadata.keys()), meta_values=list(metadata.values()), pdfs=pdfs, urls=urls, filename=filename)
+            metadata, pdfs, urls, arxiv, doi = pdfdata(path)
+            return render_template('analysis.html', meta_titles=list(metadata.keys()), meta_values=list(metadata.values()), pdfs=pdfs, urls=urls, arxiv=arxiv, doi=doi, filename=filename)
         else:
             return render_template('upload.html', flash='pdf')
 
@@ -72,18 +74,34 @@ def pdfdata(path):
     metadata = pdf.get_metadata()
     refs = pdf.get_references()
 
-    urls, pdfs = sort_refs(refs, max_threads=MAX_THREADS_DEFAULT)
+    urls, pdfs, arxiv, doi = sort_refs(refs, max_threads=MAX_THREADS_DEFAULT)
 
-    return metadata, pdfs, urls
+    return metadata, pdfs, urls, arxiv, doi
+
 
 def sort_refs(refs, max_threads=MAX_THREADS_DEFAULT):
     pdfs = []
     urls = []
+    arxiv = []
+    doi = []
 
     def sort_ref(ref):
+        if ref.reftype == 'arxiv':
+            url = "http://arxiv.org/abs/"+ref.ref
+            url = sanitize_url(url)
+            arxiv.append(url)
+        elif ref.reftype == 'doi':
+            url = "http://doi.org/"+ref.ref
+            url = sanitize_url(url)
+            doi.append(url)
         url = sanitize_url(ref.ref)
         if ref.reftype == 'url':
-            urls.append(url)
+            if "doi.org" in url:
+                doi.append(url)
+            elif "arxiv.org" in url:
+                arxiv.append(url)
+            else:
+                urls.append(url)
         elif ref.reftype == 'pdf':
             pdfs.append(url)
 
@@ -98,7 +116,7 @@ def sort_refs(refs, max_threads=MAX_THREADS_DEFAULT):
     except KeyboardInterrupt:
         pass
 
-    return urls, pdfs
+    return urls, pdfs, arxiv, doi
 
 
 @ app.route('/downloadpdf', methods=['GET', 'POST'])
@@ -118,12 +136,14 @@ def downloadpdf():
     shutil.rmtree(download_folder_path)
     return send_from_directory(app.config['UPLOAD_FOLDER'], session['file']+'.zip', as_attachment=True)
 
+
 @ app.route('/check', methods=['GET'])
 def check():
     args = request.args
     url = sanitize_url(args['url'])
     status = get_status_code(url)
     return str(status)
+
 
 if __name__ == '__main__':
     app.run(host='0.0.0.0', port=5000)

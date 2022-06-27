@@ -1,4 +1,5 @@
 ![Rotting Research Logo](https://github.com/marshalmiller/rottingresearch/blob/a898614a4e933064a36478be259aee29b9f188fa/branding/project-banner/red/rottingresearch-github-project-banner-red.png)
+
 # Introduction
 
 This repository is for a Flask app that deliveries the [linkrot](https://github.com/marshalmiller/linkrot/) project.
@@ -26,7 +27,7 @@ The mission of this project is to provide a place for researchers and scholars t
 - If using Windows, open app.py and set app.config['UPLOAD_FOLDER'] to a valid temporary folder.
 - Set APP_SECRET_KEY environment variable before running the python script.
 
-  Linux: `export APP_SECRET_KEY = "random"`
+  Linux: `export APP_SECRET_KEY="random"`
 
   Windows: `setx APP_SECRET_KEY "random"`
 
@@ -37,17 +38,21 @@ The mission of this project is to provide a place for researchers and scholars t
 - Open 127.0.0.1:5000 on your browser.
 
 # Docker Instructions
-## Local Development
-Docker-Compose is being used for local development mainly due to its ease of use and development. 
-- Set the `APP_SECRET_KEY`
-- `docker-compose up --build -d` to run the container in detached mode. 
 
-The application is running on port `5000`. Docker volume is used so whenever changes are made they are reflected immediately. To view the container logs you can use `docker logs -f rottingresearch`. The `f` flag is used for following the logs.  
+## Local Development
+
+Docker-Compose is being used for local development mainly due to its ease of use and development.
+
+- Set the `APP_SECRET_KEY`
+- `docker-compose up --build -d` to run the container in detached mode.
+
+The application is running on port `5000`. Docker volume is used so whenever changes are made they are reflected immediately. To view the container logs you can use `docker logs -f rottingresearch`. The `f` flag is used for following the logs.
 
 ## Building Image
-- Clone repo `git clone https://github.com/marshalmiller/rottingresearch.git`  
-- Build the docker image `docker build --tag rottingresearch .`  
-- Run image `docker run -d -p 5000:5000 rottingresearch`  
+
+- Clone repo `git clone https://github.com/marshalmiller/rottingresearch.git`
+- Build the docker image `docker build --tag rottingresearch .`
+- Run image `docker run -d -p 5000:5000 rottingresearch`
 
 # Features
 
@@ -58,6 +63,7 @@ The application is running on port `5000`. Docker volume is used so whenever cha
 The App is hosted at [https://rottingresearch.org/](https://rottingresearch.org/) during development.
 
 # Code of Conduct
+
 For our code of conduct please visit our [Code of Conduct page](https://github.com/marshalmiller/rottingresearch/blob/main/code_of_conduct.md).
 
 # License
