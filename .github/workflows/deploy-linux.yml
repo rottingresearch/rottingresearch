@@ -1,0 +1,27 @@
+name: Deploy Linux
+
+on:
+  [push]
+  #workflow_dispatch:
+  #schedule:
+  #  - cron:  "0 */2 * * *"
+
+jobs:
+  scheduled:
+    runs-on: ubuntu-latest
+    steps:
+    - name: Setup Node.js environment
+      uses: actions/setup-node@v3.4.1
+    - name: Install dependencies
+      run: |
+        npm install -g nativefier
+    - name: Checkout
+      uses: actions/checkout@v2.4.2
+    - name: Build with Nativefier
+      run: |
+        nativefier $(cat config.json | jq -r ".url") --name $(cat config.json | jq -r ".name") --icon $(cat config.json | jq -r ".icon") $(cat config.json | jq -r ".args")
+        zip -r build.zip *-linux-x64
+    - uses: actions/upload-artifact@v2
+      with:
+        name: build.zip
+        path: build.zip
