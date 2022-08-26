@@ -1,262 +1,249 @@
 <!DOCTYPE html>
 <html lang="en">
-  <head>
-    <meta charset="utf-8" />
-    <meta
-      name="viewport"
-      content="width=device-width, initial-scale=1, maximum-scale=10.0, minimum-scale=1, user-scalable=yes"
-    />
 
-    <link rel="icon" href="../static/img/branding/social assets/twitter/profile image/rottingresearch-twitter-profile-image-red.jpg" />
+<head>
+    <meta charset="utf-8" />
+    <meta name="viewport"
+        content="width=device-width, initial-scale=1, maximum-scale=10.0, minimum-scale=1, user-scalable=yes" />
+
+    <link rel="icon"
+        href="../static/img/branding/social assets/twitter/profile image/rottingresearch-twitter-profile-image-red.jpg" />
 
     <link rel="preconnect" href="https://fonts.gstatic.com" />
-    <link
-      href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500&display=swap"
-      rel="stylesheet"
-    />
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500&display=swap" rel="stylesheet" />
 
-    <link
-      rel="stylesheet"
-      href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css"
-    />
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css" />
 
-    <link
-      rel="stylesheet"
-      href="{{ url_for('static', filename= 'css/style.css') }}"
-    />
+    <link rel="stylesheet" href="{{ url_for('static', filename= 'css/style.css') }}" />
 
     <title>Rotting Research</title>
     <script>
-      function toggleMobileNavigation() {
-        var element = document.getElementById("mobile-navigation");
+        function toggleMobileNavigation() {
+            var element = document.getElementById("mobile-navigation");
 
-        if (element.classList.contains("mobile-navigation__open")) {
-          element.classList.remove("mobile-navigation__open");
-        } else {
-          element.classList.add("mobile-navigation__open");
+            if (element.classList.contains("mobile-navigation__open")) {
+                element.classList.remove("mobile-navigation__open");
+            } else {
+                element.classList.add("mobile-navigation__open");
+            }
         }
-      }
 
-      function toggleAccordionContent(e) {
-        const { classList } = e.currentTarget.parentElement;
-        if (classList.contains("accordion-collapsed")) {
-          classList.remove("accordion-collapsed");
-          classList.add("accordion-expanded");
+        function toggleAccordionContent(e) {
+            const { classList } = e.currentTarget.parentElement;
+            if (classList.contains("accordion-collapsed")) {
+                classList.remove("accordion-collapsed");
+                classList.add("accordion-expanded");
+            }
+            else if (classList.contains("accordion-expanded")) {
+                classList.remove("accordion-expanded");
+                classList.add("accordion-collapsed");
+            }
         }
-        else if (classList.contains("accordion-expanded")) {
-          classList.remove("accordion-expanded");
-          classList.add("accordion-collapsed");
-        }
-      }
     </script>
     <script src="{{ url_for('static', filename= 'scripts/analysis.js') }}"></script>
     <script src='https://cdnjs.cloudflare.com/ajax/libs/jquery/3.3.1/jquery.min.js'></script>
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
-  </head>
+</head>
 
-  <body>
+<body>
     <div class="mobile-navigation" id="mobile-navigation">
-      <div class="mobile-navigation--header">
+        <div class="mobile-navigation--header">
 
-        <div class="close-button" onclick="toggleMobileNavigation()">
-          <button>
-            <i class="fa fa-close"></i>
-          </button>
+            <div class="close-button" onclick="toggleMobileNavigation()">
+                <button>
+                    <i class="fa fa-close"></i>
+                </button>
+            </div>
         </div>
-      </div>
 
-      <a href="{{ url_for('upload_form')}}" class="mobile-navigation--item"
-        >Home</a
-      >
-      <a href="{{ url_for('about')}}" class="mobile-navigation--item">About</a>
+        <a href="{{ url_for('upload_form')}}" class="mobile-navigation--item">Home</a>
+        <a href="{{ url_for('about')}}" class="mobile-navigation--item">About</a>
     </div>
     <div id="container">
-      <header>
-
-        <nav class="navigation">
-          <a href="{{ url_for('upload_form')}}" class="navigation--item"
-            >Home</a
-          >
-          <a href="{{ url_for('about')}}" class="navigation--item">About</a>
-        </nav>
-
-        <div class="menu--button" onclick="toggleMobileNavigation()">
-          <button>
-            <i class="fa fa-reorder"></i>
-          </button>
-        </div>
-      </header>
-      <main class="about--main">
-        <h1 class="important">PDF Analysis</h1>
-        <div class="file-grid">
-          <div class="pdf-lockup">
-            <div class="pdf-icon"><i class="fa fa-file-pdf-o"></i></div>
-            <div class="pdf-filename">{{filename}}</div>
-          </div>
-          <div class="downloads">
-            <div class="download-pdf">
-              <a href="{{url_for('downloadpdf')}}" onclick="LoaderFunction()">
-                <div><i class="fa fa-download"></i></div>
-                <div style="text-align:left;">Download Reference&nbsp;PDFs</div>
-              </a>
+        <header>
+            <nav class="navigation">
+                <a href="{{ url_for('upload_form')}}" class="navigation--item">Home</a>
+                <a href="{{ url_for('about')}}" class="navigation--item">About</a>
+            </nav>
+            <div class="menu--button" onclick="toggleMobileNavigation()">
+                <button>
+                    <i class="fa fa-reorder"></i>
+                </button>
             </div>
-            <div class="download-report">
-              <a onclick="this.href='data:text/html;charset=UTF-8,'+encodeURIComponent(document.documentElement.outerHTML)" href="#" download="report.html">
-                <div><i class="fa fa-download"></i></div>
-                <div style="text-align:left;">Download Report</div>
-              </a>
+        </header>
+        {% for _analysis in analysis %}
+        <main class="about--main">
+            <h1 class="important">PDF Analysis</h1>
+            <div class="file-grid">
+                <div class="pdf-lockup">
+                    <div class="pdf-icon"><i class="fa fa-file-pdf-o"></i></div>
+                    <div class="pdf-filename">{{ _analysis["fname"] }}</div>
+                </div>
+                <div class="downloads">
+                    <div class="download-pdf">
+                        <a href="{{url_for('downloadpdf')}}" onclick="LoaderFunction()">
+                            <div><i class="fa fa-download"></i></div>
+                            <div style="text-align:left;">Download Reference&nbsp;PDFs</div>
+                        </a>
+                    </div>
+                    <div class="download-report">
+                        <a onclick="this.href='data:text/html;charset=UTF-8,'+encodeURIComponent(document.documentElement.outerHTML)"
+                            href="#" download="report.html">
+                            <div><i class="fa fa-download"></i></div>
+                            <div style="text-align:left;">Download Report</div>
+                        </a>
+                    </div>
+                </div>
             </div>
-          </div>
-        </div>
-        <div id="summary">
-          <h2 class="subhead linkrot-summary">Linkrot Summary <i class="fa fa-spinner fa-pulse"></i></h2>
-          <div class="sum-box-container">
-            <div class="sum-box success success-200">
-              <div class="sum-rollup">0</div>
-              <div class="sum-label">working links</div>
+            <div id="summary">
+                <h2 class="subhead linkrot-summary">Linkrot Summary <i class="fa fa-spinner fa-pulse"></i></h2>
+                <div class="sum-box-container">
+                    <div class="sum-box success success-200">
+                        <div class="sum-rollup">0</div>
+                        <div class="sum-label">working links</div>
+                    </div>
+                    <div class="sum-box success arxiv-num">
+                        <div class="sum-rollup">{{ _analysis["arxiv"]|length }}</div>
+                        <div class="sum-label">Arxiv References</div>
+                    </div>
+                    <div class="sum-box success doi-num">
+                        <div class="sum-rollup">{{ _analysis["doi"]|length }}</div>
+                        <div class="sum-label">DOI References</div>
+                    </div>
+                    <div class="sum-box failure error-403">
+                        <div class="sum-rollup">0</div>
+                        <div class="sum-label">403 errors</div>
+                    </div>
+                    <div class="sum-box failure error-404">
+                        <div class="sum-rollup">0</div>
+                        <div class="sum-label">404 errors</div>
+                    </div>
+                    <div class="sum-box failure error-other">
+                        <div class="sum-rollup">0</div>
+                        <div class="sum-label">other errors</div>
+                    </div>
+                </div>
             </div>
-            <div class="sum-box success arxiv-num">
-              <div class="sum-rollup">{{arxiv|length}}</div>
-              <div class="sum-label">Arxiv References</div>
+            <div class="pdfs-urls-container">
+                <div id="pdfs">
+                    <h1 class="subhead">PDF References</h1>
+                    <ul class="checklist">
+                        {% for pdf in _analysis["pdfs"] %}
+                        <li class="analysis-ref">
+                            <input type="hidden" value="{{pdf}}">
+                            <div class="check analysis-icon">
+                                <i class="fa fa-spinner fa-pulse"></i>
+                            </div>
+                            <div class="fetch-response">
+                                <i class="fa fa-spinner fa-pulse"></i>
+                            </div>
+                            <div class="link-container">
+                                <a class="pdf-link" target="_blank" href="{{pdf}}">
+                                    {{pdf}}
+                                </a>
+                            </div>
+                        </li>
+                        {% endfor %}
+                    </ul>
+                </div>
+                <div id="urls">
+                    <h1 class="subhead">URL References</h1>
+                    <ul class="checklist">
+                        {% for url in _analysis["urls"] %}
+                        <li class="analysis-ref">
+                            <input type="hidden" value="{{url}}">
+                            <div class="check analysis-icon">
+                                <i class="fa fa-spinner fa-pulse"></i>
+                            </div>
+                            <div class="fetch-response"><i class="fa fa-spinner fa-pulse"></i></div>
+                            <div class="link-container">
+                                <a class="url-link" target="_blank" href="{{url}}">
+                                    {{url}}
+                                </a>
+                            </div>
+                        </li>
+                        {% endfor %}
+                    </ul>
+                </div>
             </div>
-            <div class="sum-box success doi-num">
-              <div class="sum-rollup">{{doi|length}}</div>
-              <div class="sum-label">DOI References</div>
+            <div class="arxiv-doi-container">
+                <div id="arxiv">
+                    <h1 class="subhead">Arxiv References</h1>
+                    <ul class="checklist">
+                        {% for a in _analysis["arxiv"] %}
+                        <li class="analysis-ref">
+                            <input type="hidden" value="{{a}}">
+                            <div class="check analysis-icon">
+                                <i class="fa fa-spinner fa-pulse"></i>
+                            </div>
+                            <div class="fetch-response"><i class="fa fa-spinner fa-pulse"></i></div>
+                            <div class="link-container">
+                                <a class="url-link" target="_blank" href="{{a}}">
+                                    {{a}}
+                                </a>
+                            </div>
+                        </li>
+                        {% endfor %}
+                    </ul>
+                </div>
+                <div id="doi">
+                    <h1 class="subhead">DOI References</h1>
+                    <ul class="checklist">
+                        {% for d in _analysis["doi"] %}
+                        <li class="analysis-ref">
+                            <input type="hidden" value="{{d}}">
+                            <div class="check analysis-icon">
+                                <i class="fa fa-spinner fa-pulse"></i>
+                            </div>
+                            <div class="fetch-response"><i class="fa fa-spinner fa-pulse"></i></div>
+                            <div class="link-container">
+                                <a class="url-link" target="_blank" href="{{d}}">
+                                    {{d}}
+                                </a>
+                            </div>
+                        </li>
+                        {% endfor %}
+                    </ul>
+                </div>
             </div>
-            <div class="sum-box failure error-403">
-              <div class="sum-rollup">0</div>
-              <div class="sum-label">403 errors</div>
+            <div id="doc-info" class="accordion-collapsed">
+                <div class="subhead-lockup accordion-title" onclick="toggleAccordionContent(event)">
+                    <h1 class="subhead">Document Information</h1>
+                    <div class="accordion-chevron">
+                        <svg xmlns="http://www.w3.org/2000/svg" width="30" height="30" fill="currentColor"
+                            class="bi bi-plus" viewBox="0 0 16 16">
+                            <path
+                                d="M8 4a.5.5 0 0 1 .5.5v3h3a.5.5 0 0 1 0 1h-3v3a.5.5 0 0 1-1 0v-3h-3a.5.5 0 0 1 0-1h3v-3A.5.5 0 0 1 8 4z" />
+                        </svg>
+                    </div>
+                </div>
+                <div class="meta-grid accordion-content">
+                    {% for title, value in _analysis["metadata"].items() %}
+                    {% if "Date" in title %}
+                    {% set value = '{y}-{mo}-{d} {h}:{m} UTC{th}:{tm}'.format(d=value[8:10], mo=value[6:8],
+                    y=value[2:6],
+                    h=value[10:12], m=value[12:14], s=value[14:16], th=value[16:19], tm=value[20:22]) %}
+                    {% else %}
+                    {% set value = value | replace("{", "") %}
+                    {% set value = value | replace("}", "") %}
+                    {% set value = value | replace("'", "") %}
+                    {% endif %}
+                    <div class="meta-title"><b>{{title[0:1]|capitalize}}{{title[1:]}}:</b></div>
+                    <div class="meta-values" style="white-space: pre-wrap">{{value | replace(", ", "\n")}}</div>
+                    {% endfor %}
+                </div>
             </div>
-            <div class="sum-box failure error-404">
-              <div class="sum-rollup">0</div>
-              <div class="sum-label">404 errors</div>
-            </div>
-            <div class="sum-box failure error-other">
-              <div class="sum-rollup">0</div>
-              <div class="sum-label">other errors</div>
-            </div>
-          </div>
-        </div>
-        <div class="pdfs-urls-container">
-        <div id="pdfs">
-          <h1 class="subhead">PDF References</h1>
-          <ul class="checklist">
-          {% for pdf in pdfs %}
-          <li class="analysis-ref">
-            <input type="hidden" value="{{pdf}}">
-            <div class="check analysis-icon">
-              <i class="fa fa-spinner fa-pulse"></i>
-            </div>
-            <div class="fetch-response">
-              <i class="fa fa-spinner fa-pulse"></i>
-            </div>
-            <div class="link-container">
-              <a class="pdf-link" target="_blank" href="{{pdf}}">
-                {{pdf}}
-              </a>
-            </div>
-            </li>
-          {% endfor %}
-          </ol>
-        </div>
-        <div id="urls">
-          <h1 class="subhead">URL References</h1>
-          <ul class="checklist">
-          {% for url in urls %}
-            <li class="analysis-ref">
-              <input type="hidden" value="{{url}}">
-              <div class="check analysis-icon">
-                <i class="fa fa-spinner fa-pulse"></i>
-              </div>
-              <div class="fetch-response"><i class="fa fa-spinner fa-pulse"></i></div>
-              <div class="link-container">
-                <a class="url-link" target="_blank" href="{{url}}">
-                  {{url}}
+        </main>
+        <br/>
+        {% endfor %}
+        <footer>
+            <div class="social">
+                <a href="https://github.com/marshalmiller/linkrot" target="_blank" class="socials--item">
+                    <i class="fa fa-github"></i>
                 </a>
-              </div>
-            </li>
-          {% endfor %}
-          </ul>
-        </div>
-        </div>
-        <div class="arxiv-doi-container">
-          <div id="arxiv">
-            <h1 class="subhead">Arxiv References</h1>
-            <ul class="checklist">
-            {% for a in arxiv %}
-              <li class="analysis-ref">
-                <input type="hidden" value="{{a}}">
-                <div class="check analysis-icon">
-                  <i class="fa fa-spinner fa-pulse"></i>
-                </div>
-                <div class="fetch-response"><i class="fa fa-spinner fa-pulse"></i></div>
-                <div class="link-container">
-                  <a class="url-link" target="_blank" href="{{a}}">
-                    {{a}}
-                  </a>
-                </div>
-              </li>
-            {% endfor %}
-            </ul>
-          </div>
-          <div id="doi">
-            <h1 class="subhead">DOI References</h1>
-            <ul class="checklist">
-            {% for d in doi %}
-              <li class="analysis-ref">
-                <input type="hidden" value="{{d}}">
-                <div class="check analysis-icon">
-                  <i class="fa fa-spinner fa-pulse"></i>
-                </div>
-                <div class="fetch-response"><i class="fa fa-spinner fa-pulse"></i></div>
-                <div class="link-container">
-                  <a class="url-link" target="_blank" href="{{d}}">
-                    {{d}}
-                  </a>
-                </div>
-              </li>
-            {% endfor %}
-            </ul>
-          </div>
-        </div>
-        <div id="doc-info" class="accordion-collapsed">
-          <div class="subhead-lockup accordion-title" onclick="toggleAccordionContent(event)">
-            <h1 class="subhead">Document Information</h1>
-            <div class="accordion-chevron">
-              <svg xmlns="http://www.w3.org/2000/svg" width="30" height="30" fill="currentColor" class="bi bi-plus" viewBox="0 0 16 16">
-                <path d="M8 4a.5.5 0 0 1 .5.5v3h3a.5.5 0 0 1 0 1h-3v3a.5.5 0 0 1-1 0v-3h-3a.5.5 0 0 1 0-1h3v-3A.5.5 0 0 1 8 4z"/>
-              </svg>
             </div>
-          </div>
-          <div class="meta-grid accordion-content">
-            {% for i in meta_titles %}
-              {% set title = meta_titles[loop.index-1] %}
-              {% set value = meta_values[loop.index-1] %}
-              {% if "Date" in title %}
-                {% set value = '{y}-{mo}-{d} {h}:{m} UTC{th}:{tm}'.format(
-                  d=value[8:10], mo=value[6:8], y=value[2:6], h=value[10:12], m=value[12:14], s=value[14:16], th=value[16:19], tm=value[20:22]) %}
-              {% else %}
-                {% set value = value | replace("{", "") %}
-                {% set value = value | replace("}", "") %}
-                {% set value = value | replace("'", "") %}
-              {% endif %}
-            <div class="meta-title"><b>{{title[0:1]|capitalize}}{{title[1:]}}:</b></div>
-            <div class="meta-values" style="white-space: pre-wrap">{{value | replace(", ", "\n")}}</div>
-            {% endfor %}
-          </div>
-        </div>
-      </main>
-      <footer>
-        <div class="social">
-          <a
-            href="https://github.com/marshalmiller/linkrot"
-            target="_blank"
-            class="socials--item"
-          >
-            <i class="fa fa-github"></i>
-          </a>
-        </div>
-      </footer>
+        </footer>
     </div>
-  </body>
+</body>
+
 </html>
