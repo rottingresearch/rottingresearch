@@ -56,7 +56,7 @@ The application is running on port `5000`. Docker volume is used so whenever cha
 
 # Features
 
-- Coming Soon
+- Upload one or more PDF
 
 # Demo Site
 
