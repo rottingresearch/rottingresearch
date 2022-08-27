@@ -51,21 +51,32 @@ def upload_pdf():
         else:
             return render_template('upload.html', flash='pdf')
     else:
-        if 'file' not in request.files:
-            return render_template('upload.html', flash='')
-        file = request.files['file']
-        if file.filename == '':
-            return render_template('upload.html', flash='none')
-        if file and allowed_file(file.filename):
-            filename = secure_filename(file.filename)
-            path = os.path.join(app.config['UPLOAD_FOLDER'], filename)
-            session['file'] = filename.split('.')[0]
-            session['type'] = 'file'
-            file.save(path)
-            metadata, pdfs, urls, arxiv, doi = pdfdata(path)
-            return render_template('analysis.html', meta_titles=list(metadata.keys()), meta_values=list(metadata.values()), pdfs=pdfs, urls=urls, arxiv=arxiv, doi=doi, filename=filename)
+        analysis = []
+        files = request.files.getlist("files")
+        if len(files) > 0:
+            for file in files:
+                fname = file.filename
+                print(fname)
+                if allowed_file(fname):
+                    fname = secure_filename(fname)
+                    path = os.path.join(app.config['UPLOAD_FOLDER'], fname)
+                    session['file'] = fname.split('.')[0]
+                    session['type'] = 'file'
+                    file.save(path)
+                    metadata, pdfs, urls, arxiv, doi = pdfdata(path)
+                    analysis.append({
+                        'fname': file.filename,
+                        'metadata': metadata,
+                        'pdfs': pdfs,
+                        'urls': urls,
+                        'arxiv': arxiv,
+                        'doi': doi
+                    })
+
+            return render_template('analysis.html', analysis=analysis)
+
         else:
-            return render_template('upload.html', flash='pdf')
+            return render_template('upload.html', flash='none')
 
 
 def pdfdata(path):
