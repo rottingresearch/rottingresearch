@@ -34,9 +34,9 @@
 <body onload="showAlert()">
 	<div class="mobile-navigation" id="mobile-navigation">
 		<div class="mobile-navigation--header">
-
+			<!-- Button during mobile view -->
 			<div class="close-button" onclick="toggleMobileNavigation()">
-				<button>
+                <button aria-label="toggle mobile navigation menu">
 					<i class="fa fa-close"></i>
 				</button>
 			</div>
@@ -52,7 +52,8 @@
 				<a href="{{ url_for('about')}}" class="navigation--item ">About</a>
 			</nav>
 			<div class="menu--button" onclick="toggleMobileNavigation()">
-				<button>
+				<!-- Button during big screen view -->
+                <button aria-label="toggle mobile navigation menu">
 					<i class="fa fa-reorder"></i>
 				</button>
 			</div>
