@@ -1,6 +1,6 @@
 - name: BrowserStack
   uses: browserstack/github-actions@v1.0.1
-  on: [push, pull_request]
+  on: pull_request
 jobs:
   ubuntu-job:
     name: 'BrowserStack Test on Ubuntu'
