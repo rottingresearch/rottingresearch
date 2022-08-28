@@ -1,4 +1,4 @@
-- name: BrowserStack
+name: BrowserStack
 on:
   push:
     branches: [ main ]
