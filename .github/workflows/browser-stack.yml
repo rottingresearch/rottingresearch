@@ -1,5 +1,4 @@
 - name: BrowserStack
-  uses: browserstack/github-actions@v1.0.1
 on:
   push:
     branches: [ main ]
