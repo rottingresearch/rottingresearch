@@ -6,6 +6,7 @@ import threadpool
 
 from werkzeug.utils import secure_filename
 from flask import Flask, render_template, request, session, send_from_directory, after_this_request
+from urllib.parse import urlparse
 
 import linkrot
 from linkrot.downloader import sanitize_url, get_status_code
@@ -96,9 +97,10 @@ def sort_refs(refs, max_threads=MAX_THREADS_DEFAULT):
             doi.append(url)
         url = sanitize_url(ref.ref)
         if ref.reftype == 'url':
-            if "doi.org" in url:
+            host = urlparse(url).hostname
+            if host and host.endswith(".doi.org"):
                 doi.append(url)
-            elif "arxiv.org" in url:
+            elif host and host.endswith(".arxiv.org"):
                 arxiv.append(url)
             else:
                 urls.append(url)
