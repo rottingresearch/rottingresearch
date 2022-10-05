@@ -6,8 +6,10 @@ on:
     branches: [ main ]
 jobs:
   ubuntu-job:
-    - name: BrowserStack Actions
-      uses: browserstack/github-actions@v1.0.1
+      runs-on: ubuntu-latest
+      steps:
+      - name: BrowserStack Actions
+        uses: browserstack/github-actions@v1.0.1
         with:
           username:  ${{ secrets.BROWSERSTACK_USERNAME }}
           access-key: ${{ secrets.BROWSERSTACK_ACCESS_KEY }}
