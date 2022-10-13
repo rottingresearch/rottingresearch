@@ -98,9 +98,9 @@ def sort_refs(refs, max_threads=MAX_THREADS_DEFAULT):
         url = sanitize_url(ref.ref)
         if ref.reftype == 'url':
             host = urlparse(url).hostname
-            if host and host.endswith("https://doi.org"):
+            if host and host.endswith("doi.org"):
                 doi.append(url)
-            elif host and host.endswith("https://arxiv.org"):
+            elif host and host.endswith("arxiv.org"):
                 arxiv.append(url)
             else:
                 urls.append(url)
