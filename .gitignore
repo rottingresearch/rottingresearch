@@ -1,5 +1,11 @@
 *.DS_Store
 *.env
 .vscode/
+.vscode/*
+!.vscode/settings.json
+!.vscode/tasks.json
+!.vscode/launch.json
+!.vscode/extensions.json
+!.vscode/*.code-snippets
 __pycache__
 *.pyc
