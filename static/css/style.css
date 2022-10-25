@@ -111,6 +111,14 @@ input[type="file"]::file-selector-button {
 	align-items: center;
 }
 
+.intro-content {
+  display: flex;
+  flex-direction: row;
+  align-items: start;
+  flex: 1;
+  padding: 25px 10px;
+}
+
 .headline {
 	font-size: 70px;
 	font-weight: 600;
@@ -125,8 +133,9 @@ input[type="file"]::file-selector-button {
 	font-size: 17px;
 	margin: 0;
 	padding: 0;
-	margin-top: 24px;
+	/*margin-top: 24px;*/
 	margin-bottom: 20px;
+	max-width:  400px;
 }
 
 .home--main h2 {
@@ -216,6 +225,8 @@ button:disabled {
 .main--img {
 	flex: 1;
 	z-index: -5;
+ 	max-width: 190px;
+ 	margin: 0 2rem;
 }
 
 .main--img img {

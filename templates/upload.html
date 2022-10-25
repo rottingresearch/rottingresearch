@@ -50,15 +50,16 @@
 
 
         <main class="home--main">
-
             <div class="main--content">
-                <div class="main--img" align="center">
-                    <img src="../static/img/branding/app-logo/white/rotting-research-white@2x.png" alt="Rotting Research logo" id="image" style="max-width: calc(min(300px, 100%))" />
-                </div>
+                <div class="intro--content">
+                    <div class="main--img" align="center">
+                        <img src="../static/img/branding/app-logo/white/rotting-research-white@2x.png" alt="Rotting Research logo" id="image" style="max-width: calc(min(300px, 100%))" />
+                    </div>
 
-                <p class="description" style="max-width: 750px">
-                    Linkrot helps you scan pdfs for links written in plaintext and check if they are active. It then generates a report of its findings with references (pdf, url, doi, arxiv) and metadata from the PDF.
-                </p>
+                    <p class="description" style="max-width: 750px">
+                        Linkrot helps you scan pdfs for links written in plaintext and check if they are active. It then generates a report of its findings with references (pdf, url, doi, arxiv) and metadata from the PDF.
+                    </p>
+                </div>
                 {% if filename %}
                 <div>
                     <img src="{{ url_for('display_image', filename=filename) }}">
