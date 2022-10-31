@@ -203,7 +203,8 @@ form input[type="file"] {
 	border: 1px solid #aaa;
 	border-radius: 8px;
 	padding: 4px 8px 0px 8px;
-	margin: 0px 5px;
+	/*margin: 0px 5px;*/
+	max-width: 100%;
 }
 
 form button[type="submit"] {
@@ -214,7 +215,7 @@ form button[type="submit"] {
 	padding: 10px 20px;
 	width: calc(100% - 10px);
 	font-size: 15px;
-	margin: 16px 5px 0px 5px;
+	margin: 16px 0px 0px 0px;
 	font-weight: 600;
 	text-decoration: none;
 	transition: all 200ms ease-in-out;
