@@ -28,6 +28,7 @@ def allowed_file(filename):
 def upload_form():
     return render_template('upload.html', flash='')
 
+
 @app.route('/projects')
 def projects():
     return render_template('projects.html')
@@ -40,13 +41,16 @@ def practices():
 def research():
     return render_template('research.html')
 
+
 @app.route('/about')
 def about():
     return render_template('about.html')
 
+
 @app.route('/story')
 def story():
     return render_template('story.html')
+
 
 @app.route('/policies')
 def policies():
