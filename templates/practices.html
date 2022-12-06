@@ -56,21 +56,23 @@
         </div>
       </div>
 
-      <a href="{{ url_for('upload_form')}}" class="mobile-navigation--item"
-        >Home</a
-      >
-      <a href="" class="mobile-navigation--item mobile-navigation--item__active"
-        >About</a
-      >
+      <a href="{{ url_for('upload')}}" class="mobile-navigation--item">Home</a>
+      <a href="{{ url_for('projects')}}" class="mobile-navigation--item">Projects</a>
+      <a href="{{ url_for('research')}}" class="mobile-navigation--item">Research</a>
+      <a href="{{ url_for('practices')}}" class="mobile-navigation--item mobile-navigation--item__active">Best Practices</a>
+      <a href="{{ url_for('story')}}" class="mobile-navigation--item">Our Story</a>
+      <a href="{{ url_for('about')}}" class="mobile-navigation--item">About</a>
     </div>
     <div id="container">
       <header>
 
         <nav class="navigation">
-          <a href="{{ url_for('upload_form')}}" class="navigation--item"
-            >Home</a
-          >
-          <a href="" class="navigation--item navigation--item__active">About</a>
+          <a href="{{ url_for('upload')}}" class="navigation--item">Home</a>
+          <a href="{{ url_for('projects')}}" class="navigation--item ">Projects</a>
+          <a href="{{ url_for('research')}}" class="navigation--item ">Research</a>
+          <a href="{{ url_for('practices')}}" class="navigation--item navigation--item__active">Best Practices</a>
+          <a href="{{ url_for('story')}}" class="navigation--item ">Our Story</a>
+          <a href="{{ url_for('about')}}" class="navigation--item ">About</a>
         </nav>
 
         <div class="menu--button" onclick="toggleMobileNavigation()">
