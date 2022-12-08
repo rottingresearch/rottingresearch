@@ -244,7 +244,8 @@ form button[type="submit"] {
 	color: white;
 	background-color: #ef3b24;
 	padding: 10px 20px;
-	width: calc(100% - 10px);
+	/* width: calc(100% - 10px); */
+	width: 100%;
 	font-size: 15px;
 	margin: 16px 0px 0px 0px;
 	font-weight: 600;
