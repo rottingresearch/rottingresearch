@@ -683,7 +683,7 @@ footer {
 
 	.description {
 		margin-top: 0px;
-		margin-left: 5%;
+		margin-left: 4%;
 		margin-right: 5%;
 		/*width: 85%; */
 	}
@@ -692,7 +692,7 @@ footer {
 		flex: 1;
 		z-index: -5;
  		max-width: 190px;
-		margin: 0 5%;
+		margin: 0 4%;
 	}
 
 	.main--img img {
