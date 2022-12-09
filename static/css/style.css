@@ -240,10 +240,10 @@ form input[type="file"] {
 }
 
 form button[type="submit"] {
-	border: 2px solid #323232;
+	border: 2px solid #ef3b24;
 	border-radius: 10px;
 	color: white;
-	background-color: #323232;
+	background-color: #ef3b24;
 	padding: 10px 20px;
 	/* width: calc(100% - 10px); */
 	width: 100%;
@@ -256,15 +256,15 @@ form button[type="submit"] {
 }
 
 form button[type="submit"]:hover {
-	border: 2px solid #000000;
-  filter: brightness(160%);
-  color: white;
+	border: 2px solid #bdbdbd;
+	background: transparent;
+	color: #ef3b24;
 	cursor: pointer;
 }
 
 form button[type="submit"]:disabled,
 button:disabled {
-	border: 2px solid #cccccc;
+	border: 1px solid #999999;
 	background-color: #cccccc;
 	color: #666666;
 }
