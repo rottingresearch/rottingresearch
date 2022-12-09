@@ -98,8 +98,8 @@ input[type="file"]::file-selector-button {
 .navigation--item {
 	text-decoration: none;
 	color: #ffffff;
-	font-size: 12px;
-	margin-left: 12px;
+	font-size: 14px;
+	margin-left: 14px;
 	text-transform: lowercase;
 }
 
