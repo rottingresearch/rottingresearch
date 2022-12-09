@@ -188,20 +188,21 @@ input[type="file"]::file-selector-button {
 }
 
 .about--main {
-	margin-left: 5vw;
-	width: 90vw;
+	width: 800px;
+	max-width: 90vw;
 	background-color: #ffffff;
-	border-radius: 25px;
-	padding-left: 25px;
-	padding-right: 25px;
+	border-radius: 8px 8px 0px 0px;
+	padding: 24px 40px 80px 40px;
+	margin: 0 auto;
 }
 
 .important {
-	font-size: 3rem;
+	font-size: 40px;
 	font-weight: 600;
-	margin-top: 15px;
+	/* margin-top: 15px; */
 	padding: 0;
 	color: rgba(50, 50, 50, 1);
+	margin-bottom: 16px;
 }
 
 .file-grid {
@@ -294,14 +295,14 @@ footer {
 }
 
 .social {
-	margin-right: 40px;
+	/* margin-right: 40px; */
 	display: block;
-	margin-left: 20px;
+	/* margin-left: 20px; */
 	z-index: 5;
 }
 
 .socials--item {
-	margin-right: 12px;
+	/* margin-right: 12px; */
 	text-decoration: none;
 }
 
@@ -751,9 +752,11 @@ footer {
 	}
 
 	.about--main .important {
-		margin-top: 25px;
-		font-size: 38px;
-		text-align: center;
+		/* margin-top: 25px; */
+		font-size: 32px;
+		text-align: left;
+		line-height: 120%;
+		margin-bottom:  8px;
 	}
 
 	.label-input-lockup {
@@ -773,9 +776,11 @@ footer {
 	}
 
 	.about--main {
-		width: 90vw;
+		width: 800px;
+		max-width: 90vw;
 		margin-left: 5vw;
-		margin-top: calc(100px + 5vw);
+		/* margin-top: calc(100px + 5vw); */
+		margin-top:80px;
 	}
 
 	#summary ol {
