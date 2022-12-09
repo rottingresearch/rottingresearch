@@ -66,14 +66,17 @@
                 </div>
                 {% endif %}
 
-                <form method="post" action="/" enctype="multipart/form-data" align="center" style="background-color: #ffffff; border-radius: 8px; padding: 0px 16px; width: 100%; max-width: 800px; margin-bottom: 2rem;" onsubmit="setLoading()">
+                <form method="post" action="/" enctype="multipart/form-data" align="center" class="rr-form" onsubmit="setLoading()">
                     <h2>Upload or provide a link to your pdf.</h2>
+                    <img class="beta-banner" src="../static/img/beta-banner.svg" alt="beta">
                     <dl>
                         <p>
-                            <input type="file" name="file" autocomplete="off">
-                            </br>
-                            <div style="display:flex; flex-wrap: nowrap; padding: 0px 0px; width: 100%; align-items: center;">
-                                <label class="form-text" for="text" aria-label="link">LINK: </label>
+                            <div class="label-input-lockup">
+                                <label class="form-text" for="text" aria-label="link">PDF Upload: </label>
+                                <input type="file" name="file" autocomplete="off" aria-label="file upload" >
+                            </div>
+                            <div class="label-input-lockup">
+                                <label class="form-text" for="text" aria-label="link">Link URL: </label>
                                 <input type="text" class="link" name="text" autocomplete="off" aria-label="link input" />
                             </div>
                             <input type="checkbox" id="policy_prompt" name="policy_prompt" onClick="privacyPolicyIsChecked(this)">
@@ -95,50 +98,50 @@
         </footer>
     </div>
     <script>
-        function toggleMobileNavigation() {
-            var element = document.getElementById("mobile-navigation");
+		function toggleMobileNavigation() {
+			var element = document.getElementById("mobile-navigation");
 
-            if (element.classList.contains("mobile-navigation__open")) {
-                element.classList.remove("mobile-navigation__open");
-            } else {
-                element.classList.add("mobile-navigation__open");
-            }
-        }
+			if (element.classList.contains("mobile-navigation__open")) {
+				element.classList.remove("mobile-navigation__open");
+			} else {
+				element.classList.add("mobile-navigation__open");
+			}
+		}
 
-        function LoaderFunction() {
-            document.getElementsByClassName("preloader")[0].style.display = "block";
-        }
+		function LoaderFunction() {
+			document.getElementsByClassName("preloader")[0].style.display = "block";
+		}
 
-        function setLoading() {
-            document.getElementById("submit-button").innerHTML = 'Processing <i class="fa fa-spinner fa-pulse"></i>'
-        }
+		function setLoading() {
+			document.getElementById("submit-button").innerHTML = 'Processing <i class="fa fa-spinner fa-pulse"></i>'
+		}
 
-        function privacyPolicyIsChecked(v) {
-            var submitBtn = document.getElementById("submit-button");
+		function privacyPolicyIsChecked(v) {
+			var submitBtn = document.getElementById("submit-button");
 
-            if (v.checked == true) {
-                submitBtn.removeAttribute('disabled');
-            } else if (v.checked == false) {
-                submitBtn.setAttribute('disabled', 'disabled');
-            }
-        }
+			if (v.checked == true) {
+				submitBtn.removeAttribute('disabled');
+			} else if (v.checked == false) {
+				submitBtn.setAttribute('disabled', 'disabled');
+			}
+		}
 
-        function showSnackbar() {
-            var x = document.getElementById("snackbar");
-            x.className = "show";
-            setTimeout(function() {
-                x.className = x.className.replace("show", "");
-            }, 3000);
-        }
+		function showSnackbar() {
+			var x = document.getElementById("snackbar");
+			x.className = "show";
+			setTimeout(function() {
+				x.className = x.className.replace("show", "");
+			}, 3000);
+		}
 
-        function showAlert() {
-            // Creates an alert if the uploaded file / url is not a PDF
-            var inv = {{flash | tojson}};
-            if (inv.localeCompare('pdf') == 0) {
-                document.getElementById("snackbar").innerHTML = "The link or file must be a PDF!";
-                showSnackbar();
-            }
-        }
+		function showAlert() {
+			// Creates an alert if the uploaded file / url is not a PDF
+			var inv = {{flash | tojson}};
+			if (inv.localeCompare('pdf') == 0) {
+				document.getElementById("snackbar").innerHTML = "The link or file must be a PDF!";
+				showSnackbar();
+			}
+		}
     </script>
 </body>
 
