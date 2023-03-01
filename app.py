@@ -1,20 +1,24 @@
 import os
 import shutil
 from datetime import timedelta
-
-import threadpool
-
+from urllib.parse import urlparse
+import linkrot
 from werkzeug.utils import secure_filename
 from flask import Flask, render_template, request, session, send_from_directory, after_this_request
-from urllib.parse import urlparse
-
-import linkrot
+import redis
 from linkrot.downloader import sanitize_url, get_status_code
+import threadpool
 
 app = Flask(__name__)
 app.config['UPLOAD_FOLDER'] = '/tmp/'
 app.secret_key = os.environ.get('APP_SECRET_KEY')
 app.config['PERMANENT_SESSION_LIFETIME'] = timedelta(minutes=60)
+
+r = redis.Redis(
+    host='${{REDISADDRESS}}',
+    port=11808,
+    password='${{REDISPASSWORD}}'
+)
 
 ALLOWED_EXTENSIONS = set(['pdf'])
 MAX_THREADS_DEFAULT = 7
