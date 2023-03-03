@@ -48,10 +48,11 @@
           classList.add("accordion-collapsed");
         }
       }
+
     </script>
-    <script src="{{ url_for('static', filename= 'scripts/analysis.js') }}"></script>
-    <script src='https://cdnjs.cloudflare.com/ajax/libs/jquery/3.3.1/jquery.min.js'></script>
+    <!--<script src='https://cdnjs.cloudflare.com/ajax/libs/jquery/3.3.1/jquery.min.js'></script>-->
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+    <script src="{{ url_for('static', filename= 'scripts/analysis.js') }}"></script>
   </head>
 
   <body>
@@ -92,6 +93,7 @@
           <div class="pdf-lockup">
             <div class="pdf-icon"><i class="fa fa-file-pdf-o"></i></div>
             <div class="pdf-filename">{{filename}}</div>
+            <div id='taskid' data-taskid="{{task_id}}"></div>
           </div>
           <div class="downloads">
             <div class="download-pdf">
