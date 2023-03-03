@@ -14,20 +14,16 @@ from celery.result import AsyncResult
 app = Flask(__name__)
 app.config['UPLOAD_FOLDER'] = '/tmp/'
 app.secret_key = os.environ.get('APP_SECRET_KEY')
+broker = os.environ['REDIS_URL'] # "redis://localhost"
+backend = os.environ['REDIS_URL']
 app.config['PERMANENT_SESSION_LIFETIME'] = timedelta(minutes=60)
 app.config['CELERY'] = dict(
-    broker_url="redis://localhost",
-    result_backend="redis://localhost",
+    broker_url=broker,
+    result_backend=backend,
     task_ignore_result=False,
     )
 celery_app = celery_init_app(app)
 app.extensions["celery"] = celery_app
-
-r = redis.Redis(
-    host='${{REDISADDRESS}}',
-    port=11808,
-    password='${{REDISPASSWORD}}'
-)
 
 ALLOWED_EXTENSIONS = set(['pdf'])
 MAX_THREADS_DEFAULT = 7
