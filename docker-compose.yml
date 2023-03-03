@@ -8,8 +8,21 @@ services:
     ports:
       - "5000:5000"
     environment:
-      APP_SECRET_KEY: change_me
+      - APP_SECRET_KEY = change_me
+      - REDIS_URL=redis://redis:6379
     volumes:
       - .:/app
 
-# EOF
+  redis:
+    image: "redis:6.0.5-buster"
+    volumes:
+      - "redis:/data"
+
+  worker:
+    build:
+      context: "."
+    command: celery -A app:celery_app worker -l info
+    depends_on:
+      - "redis"
+    environment:
+      - REDIS_URL=redis://redis:6379
