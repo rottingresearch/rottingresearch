@@ -10,6 +10,7 @@ from celery_init import celery_init_app
 from tasks import pdfdata_task
 from celery.result import AsyncResult
 import utilites
+from flask import current_app
 
 app = Flask(__name__)
 
@@ -17,8 +18,10 @@ app.config['UPLOAD_FOLDER'] = utilites.get_tmp_folder() #'/tmp/'
 app.secret_key = os.environ.get('APP_SECRET_KEY')
 if os.getenv("HEROKU_FLG", None):
     name_redis_env = "REDISCLOUD_URL"
+    app.config['HEROKU_FLG']=True
 else:
     name_redis_env = 'REDIS_URL'
+    app.config['HEROKU_FLG'] = False
 broker = os.environ[name_redis_env] # "redis://localhost"
 backend = os.environ[name_redis_env]
 app.config['PERMANENT_SESSION_LIFETIME'] = timedelta(minutes=60)
@@ -37,17 +40,19 @@ def allowed_file(filename):
     return '.' in filename and filename.rsplit('.', 1)[1].lower() in ALLOWED_EXTENSIONS
 
 
-@app.route('/')
+@app.route('/',methods=['GET'])
 def upload_form():
-    return render_template('upload.html', flash='')
+    heroku_flg = current_app.config["HEROKU_FLG"]
+    dd= 0
+    return render_template('upload.html', flash='', heroku_flg=heroku_flg)
 
 
-@app.route('/about')
+@app.route('/about',methods=['GET'])
 def about():
     return render_template('about.html')
 
 
-@app.route('/policies')
+@app.route('/policies',methods=['GET'])
 def policies():
     return render_template('policies.html')
 
@@ -106,7 +111,7 @@ def pdfdata(path):
     task_id = pdfdata_task.delay(path)
     return metadata, pdfs, urls, arxiv, doi, task_id
 
-@ app.route('/downloadpdf', methods=['GET', 'POST'])
+@app.route('/downloadpdf', methods=['GET', 'POST'])
 def downloadpdf():
     @ after_this_request
     def remove_file(response):
@@ -124,14 +129,14 @@ def downloadpdf():
     return send_from_directory(app.config['UPLOAD_FOLDER'], session['file']+'.zip', as_attachment=True)
 
 
-@ app.route('/check', methods=['GET'])
+@app.route('/check', methods=['GET'])
 def check():
     args = request.args
     url = sanitize_url(args['url'])
     status = get_status_code(url)
     return str(status)
 
-@app.get("/result/<id>")
+@app.route("/result/<id>",methods=['GET'])
 def task_result(id: str) -> dict[str, object]:
     result = AsyncResult(id)
     return {
