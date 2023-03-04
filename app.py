@@ -15,8 +15,12 @@ app = Flask(__name__)
 
 app.config['UPLOAD_FOLDER'] = utilites.get_tmp_folder() #'/tmp/'
 app.secret_key = os.environ.get('APP_SECRET_KEY')
-broker = os.environ['REDIS_URL'] # "redis://localhost"
-backend = os.environ['REDIS_URL']
+if os.getenv("HEROKU_FLG", None):
+    name_redis_env = "REDISCLOUD_URL"
+else:
+    name_redis_env = 'REDIS_URL'
+broker = os.environ[name_redis_env] # "redis://localhost"
+backend = os.environ[name_redis_env]
 app.config['PERMANENT_SESSION_LIFETIME'] = timedelta(minutes=60)
 app.config['CELERY'] = dict(
     broker_url=broker,
