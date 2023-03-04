@@ -5,9 +5,15 @@
   "keywords": ["python", "pdf", "static"],
   "addons": [ "rediscloud:30" ],
   "formation": {
-    "worker": {
+    "celery": {
       "quantity": 1,
       "size": "free"
     }
+  },
+  "env": {
+    "HEROKU_FLG": {
+      "description": "A key indicating work on the Neroku server.",
+      "value": "TRUE"
+    }
   }
-}
+  }
