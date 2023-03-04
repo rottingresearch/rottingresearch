@@ -5,14 +5,14 @@
   "keywords": ["python", "pdf", "static"],
   "addons": [ "rediscloud:30" ],
   "formation": {
-    "celery": {
+    "worker": {
       "quantity": 1,
-      "size": "free"
+      "size": "Free"
     }
   },
   "env": {
     "HEROKU_FLG": {
-      "description": "A key indicating work on the Neroku server.",
+      "description": "A key indicator work on the Heroku server. Do not change it",
       "value": "TRUE"
     }
   }
