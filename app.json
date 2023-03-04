@@ -4,12 +4,6 @@
   "repository": "https://github.com/VladimirSosnitskiy/rottingresearch",
   "keywords": ["python", "pdf", "static"],
   "addons": [ "rediscloud:30" ],
-  "formation": {
-    "worker": {
-      "quantity": 1,
-      "size": "Free"
-    }
-  },
   "env": {
     "HEROKU_FLG": {
       "description": "A key indicator work on the Heroku server. Do not change it",
