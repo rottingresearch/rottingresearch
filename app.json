@@ -4,10 +4,24 @@
   "repository": "https://github.com/VladimirSosnitskiy/rottingresearch",
   "keywords": ["python", "pdf", "static"],
   "addons": [ "rediscloud:30" ],
+  "formation": {
+    "web": {
+      "quantity": 1,
+      "size": "eco"
+    },
+    "worker": {
+      "quantity": 1,
+      "size": "eco"
+    }
+  },
   "env": {
     "HEROKU_FLG": {
       "description": "A key indicator work on the Heroku server. Do not change it",
       "value": "TRUE"
+    },
+    "APP_SECRET_KEY": {
+      "description": "A secret key for Flask Application",
+      "generator": "secret"
     }
   }
   }
