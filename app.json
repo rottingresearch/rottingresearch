@@ -7,11 +7,11 @@
   "formation": {
     "web": {
       "quantity": 1,
-      "size": "Basic"
+      "size": "eco"
     },
     "worker": {
       "quantity": 1,
-      "size": "Basic"
+      "size": "eco"
     }
   },
   "env": {
