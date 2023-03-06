@@ -35,6 +35,10 @@ The mission of this project is to provide a place for researchers and scholars t
 
   `python3 app.py`
 
+- Run Celery worker
+
+  `celery -A app:celery_app worker -B`
+
 - Open 127.0.0.1:5000 on your browser.
 
 # Docker Instructions
