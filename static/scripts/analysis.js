@@ -101,6 +101,8 @@ function updateCounts(success, error403, error404, errorOther) {
     });
   }
 }
+
+
 function get_status(task_id){
     var url = "/result/"+ task_id
     $.get( url)
