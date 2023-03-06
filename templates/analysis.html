@@ -50,9 +50,7 @@
       }
 
     </script>
-    <!--<script src='https://cdnjs.cloudflare.com/ajax/libs/jquery/3.3.1/jquery.min.js'></script>-->
-    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
-    <script src="{{ url_for('static', filename= 'scripts/analysis.js') }}"></script>
+
   </head>
 
   <body>
@@ -143,41 +141,11 @@
         <div id="pdfs">
           <h1 class="subhead">PDF References</h1>
           <ul class="checklist">
-          {% for pdf in pdfs %}
-          <li class="analysis-ref">
-            <input type="hidden" value="{{pdf}}">
-            <div class="check analysis-icon">
-              <i class="fa fa-spinner fa-pulse"></i>
-            </div>
-            <div class="fetch-response">
-              <i class="fa fa-spinner fa-pulse"></i>
-            </div>
-            <div class="link-container">
-              <a class="pdf-link" target="_blank" href="{{pdf}}">
-                {{pdf}}
-              </a>
-            </div>
-            </li>
-          {% endfor %}
-          </ol>
+          </ul>
         </div>
         <div id="urls">
           <h1 class="subhead">URL References</h1>
           <ul class="checklist">
-          {% for url in urls %}
-            <li class="analysis-ref">
-              <input type="hidden" value="{{url}}">
-              <div class="check analysis-icon">
-                <i class="fa fa-spinner fa-pulse"></i>
-              </div>
-              <div class="fetch-response"><i class="fa fa-spinner fa-pulse"></i></div>
-              <div class="link-container">
-                <a class="url-link" target="_blank" href="{{url}}">
-                  {{url}}
-                </a>
-              </div>
-            </li>
-          {% endfor %}
           </ul>
         </div>
         </div>
@@ -185,39 +153,11 @@
           <div id="arxiv">
             <h1 class="subhead">Arxiv References</h1>
             <ul class="checklist">
-            {% for a in arxiv %}
-              <li class="analysis-ref">
-                <input type="hidden" value="{{a}}">
-                <div class="check analysis-icon">
-                  <i class="fa fa-spinner fa-pulse"></i>
-                </div>
-                <div class="fetch-response"><i class="fa fa-spinner fa-pulse"></i></div>
-                <div class="link-container">
-                  <a class="url-link" target="_blank" href="{{a}}">
-                    {{a}}
-                  </a>
-                </div>
-              </li>
-            {% endfor %}
             </ul>
           </div>
           <div id="doi">
             <h1 class="subhead">DOI References</h1>
             <ul class="checklist">
-            {% for d in doi %}
-              <li class="analysis-ref">
-                <input type="hidden" value="{{d}}">
-                <div class="check analysis-icon">
-                  <i class="fa fa-spinner fa-pulse"></i>
-                </div>
-                <div class="fetch-response"><i class="fa fa-spinner fa-pulse"></i></div>
-                <div class="link-container">
-                  <a class="url-link" target="_blank" href="{{d}}">
-                    {{d}}
-                  </a>
-                </div>
-              </li>
-            {% endfor %}
             </ul>
           </div>
         </div>
@@ -231,20 +171,6 @@
             </div>
           </div>
           <div class="meta-grid accordion-content">
-            {% for i in meta_titles %}
-              {% set title = meta_titles[loop.index-1] %}
-              {% set value = meta_values[loop.index-1] %}
-              {% if "Date" in title %}
-                {% set value = '{y}-{mo}-{d} {h}:{m} UTC{th}:{tm}'.format(
-                  d=value[8:10], mo=value[6:8], y=value[2:6], h=value[10:12], m=value[12:14], s=value[14:16], th=value[16:19], tm=value[20:22]) %}
-              {% else %}
-                {% set value = value | replace("{", "") %}
-                {% set value = value | replace("}", "") %}
-                {% set value = value | replace("'", "") %}
-              {% endif %}
-            <div class="meta-title"><b>{{title[0:1]|capitalize}}{{title[1:]}}:</b></div>
-            <div class="meta-values" style="white-space: pre-wrap">{{value | replace(", ", "\n")}}</div>
-            {% endfor %}
           </div>
         </div>
       </main>
@@ -261,4 +187,6 @@
       </footer>
     </div>
   </body>
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+    <script src="{{ url_for('static', filename= 'scripts/analysis2.js') }}"></script>
 </html>
