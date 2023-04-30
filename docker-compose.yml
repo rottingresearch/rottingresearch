@@ -13,6 +13,7 @@ services:
       - FLASK_APP=app
       - APP_SECRET_KEY=change_me
       - REDIS_URL=redis://redis:6379
+      - REDISCLOUD_URL=
       - TMP_CUSTOM_DIR=/tmp_dir/
     volumes:
       - .:/app
@@ -30,6 +31,7 @@ services:
     depends_on:
       - "redis"
     environment:
+      - REDISCLOUD_URL=
       - REDIS_URL=redis://redis:6379
       - TMP_CUSTOM_DIR=/tmp_dir/
     volumes:
