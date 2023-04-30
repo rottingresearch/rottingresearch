@@ -23,14 +23,14 @@ jobs:
       uses: docker/login-action@v1
       with:
         registry: https://index.docker.io/v1/
-        username: ${{ secrets.AzureAppService_ContainerUsername_9e6c0665f15043b598b36ec888698e3a }}
-        password: ${{ secrets.AzureAppService_ContainerPassword_91e86f75efe640a8a4186540ead5add3 }}
+        username: ${{ secrets.AzureAppService_ContainerUsername_05462f27a69c425ab7f3766f1642dd12 }}
+        password: ${{ secrets.AzureAppService_ContainerPassword_e8a1076361724f99b12bdafcac5b141b }}
 
     - name: Build and push container image to registry
       uses: docker/build-push-action@v2
       with:
         push: true
-        tags: index.docker.io/${{ secrets.AzureAppService_ContainerUsername_9e6c0665f15043b598b36ec888698e3a }}/rottingresearch/rottingresearch:${{ github.sha }}
+        tags: index.docker.io/${{ secrets.AzureAppService_ContainerUsername_05462f27a69c425ab7f3766f1642dd12 }}/rottingresearch:${{ github.sha }}
         file: ./Dockerfile
 
   deploy:
@@ -47,5 +47,5 @@ jobs:
       with:
         app-name: 'RottingResearch'
         slot-name: 'production'
-        publish-profile: ${{ secrets.AzureAppService_PublishProfile_8d3765e8974e4b249cd96a96194484c7 }}
-        images: 'index.docker.io/${{ secrets.AzureAppService_ContainerUsername_9e6c0665f15043b598b36ec888698e3a }}/rottingresearch/rottingresearch:${{ github.sha }}'
+        publish-profile: ${{ secrets.AzureAppService_PublishProfile_1f9c0766f94c4c6999454c086aad4382 }}
+        images: 'index.docker.io/${{ secrets.AzureAppService_ContainerUsername_05462f27a69c425ab7f3766f1642dd12 }}/rottingresearch:${{ github.sha }}'
