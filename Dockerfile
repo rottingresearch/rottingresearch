@@ -7,3 +7,5 @@ COPY . .
 RUN pip install --upgrade pip
 RUN apt-get update && apt-get install -y build-essential libssl-dev libffi-dev python-dev 
 RUN pip install -r requirements.txt
+
+CMD celery -A app:celery_app worker -l info
