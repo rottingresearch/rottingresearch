@@ -19,12 +19,8 @@ services:
       - .:/app
       - cache_vol:/tmp_dir/
 
-  redis:
-    image: "redis:6.0.5-buster"
-    volumes:
-      - "redis:/data"
-
   worker:
+    container_name: rottingresearch-celery
     build:
       context: "."
     command: celery -A app:celery_app worker -l info
@@ -38,7 +34,6 @@ services:
       - cache_vol:/tmp_dir/
 
 volumes:
-  redis: {}
   cache_vol:
     driver_opts:
       type: tmpfs
