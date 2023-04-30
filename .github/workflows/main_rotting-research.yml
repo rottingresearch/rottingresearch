@@ -12,7 +12,7 @@ on:
 
 jobs:
   build:
-    runs-on: [self-hosted]
+    runs-on: ubuntu-latest
 
     steps:
       - uses: actions/checkout@v2
@@ -41,7 +41,7 @@ jobs:
             !venv/
 
   deploy:
-    runs-on: [self-hosted]
+    runs-on: ubuntu-latest
     needs: build
     environment:
       name: 'Production'
@@ -60,4 +60,4 @@ jobs:
         with:
           app-name: 'Rotting-Research'
           slot-name: 'Production'
-          publish-profile: ${{ secrets.AZUREAPPSERVICE_PUBLISHPROFILE_361E2BE115124B7EADDA26F7B9DBBBF3 }}
+          publish-profile: ${{ secrets.AZUREAPPSERVICE_PUBLISHPROFILE_C08139ED3F2F4ADDA8610726B661B0F1 }}
