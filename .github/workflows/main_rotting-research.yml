@@ -41,7 +41,7 @@ jobs:
             !venv/
 
   deploy:
-    runs-on: ubuntu-latest
+    runs-on: [self-hosted]
     needs: build
     environment:
       name: 'Production'
