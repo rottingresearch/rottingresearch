@@ -12,32 +12,26 @@ services:
     environment:
       - FLASK_APP=app
       - APP_SECRET_KEY=change_me
-      - REDIS_URL=redis://redis:6379
+      - REDISCLOUD_URL=
       - TMP_CUSTOM_DIR=/tmp_dir/
     volumes:
       - .:/app
       - cache_vol:/tmp_dir/
 
-  redis:
-    image: "redis:6.0.5-buster"
-    volumes:
-      - "redis:/data"
-
   worker:
-    container_name: rottingresearch_celery
+    container_name: rottingresearch-celery
     build:
       context: "."
     command: celery -A app:celery_app worker -l info
     depends_on:
       - "redis"
     environment:
-      - REDIS_URL=redis://redis:6379
+      - REDISCLOUD_URL=
       - TMP_CUSTOM_DIR=/tmp_dir/
     volumes:
       - cache_vol:/tmp_dir/
 
 volumes:
-  redis: {}
   cache_vol:
     driver_opts:
       type: tmpfs
