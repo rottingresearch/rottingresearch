@@ -2,7 +2,7 @@
 
 # Introduction
 
-This repository is for a Flask app that deliveries the [linkrot](https://github.com/marshalmiller/linkrot/) project.
+This repository is for a Flask app that deliveries the [linkrot](https://github.com/rottingresearch/linkrot/) project.
 
 # Mission
 
@@ -16,7 +16,7 @@ The mission of this project is to provide a place for researchers and scholars t
 
 - Download Project
 
-  `git clone https://github.com/marshalmiller/rottingresearch`
+  `git clone https://github.com/rottingresearch/rottingresearch`
 
 - Navigate to the root folder.
 
@@ -35,7 +35,11 @@ The mission of this project is to provide a place for researchers and scholars t
 
   `python3 app.py`
 
-- Open 127.0.0.1:5000 on your browser.
+- Run Celery worker
+
+  `celery -A app:celery_app worker -B`
+
+- Open 127.0.0.1:8080 on your browser.
 
 # Docker Instructions
 
@@ -46,13 +50,13 @@ Docker-Compose is being used for local development mainly due to its ease of use
 - Set the `APP_SECRET_KEY`
 - `docker-compose up --build -d` to run the container in detached mode.
 
-The application is running on port `5000`. Docker volume is used so whenever changes are made they are reflected immediately. To view the container logs you can use `docker logs -f rottingresearch`. The `f` flag is used for following the logs.
+The application is running on port `8080`. Docker volume is used so whenever changes are made they are reflected immediately. To view the container logs you can use `docker logs -f rottingresearch`. The `f` flag is used for following the logs.
 
 ## Building Image
 
-- Clone repo `git clone https://github.com/marshalmiller/rottingresearch.git`
+- Clone repo `git clone https://github.com/rottingresearch/rottingresearch.git`
 - Build the docker image `docker build --tag rottingresearch .`
-- Run image `docker run -d -p 5000:5000 rottingresearch`
+- Run image `docker run -d -p 8080:8080 rottingresearch`
 
 # Features
 
@@ -64,8 +68,8 @@ The App is hosted at [https://rottingresearch.org/](https://rottingresearch.org/
 
 # Code of Conduct
 
-For our code of conduct please visit our [Code of Conduct page](https://github.com/marshalmiller/rottingresearch/blob/main/code_of_conduct.md).
+For our code of conduct please visit our [Code of Conduct page](https://github.com/rottingresearch/rottingresearch/blob/main/code_of_conduct.md).
 
 # License
 
-This program is licensed with an [MIT License](https://github.com/marshalmiller/linkrot/blob/main/LICENSE).
+This program is licensed with an [MIT License](https://github.com/rottingresearch/linkrot/blob/main/LICENSE).

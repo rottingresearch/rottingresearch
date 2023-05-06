@@ -79,9 +79,18 @@
                     <img class="beta-banner" src="../static/img/beta-banner.svg" alt="beta">
                     <dl>
                         <p>
+                            {% if heroku_flg and heroku_flg==True%}
+                            <div class="label-input-lockup" style ="float:center;">
+                                <label class="form-text" style ="color:red;" for="text" aria-label="link">Heroku hosting not supported file storedge. <br>Please use Dropbox, Google Drive etc and 'Link URL' field</label>
+                            </div>
+                            {% endif %}
                             <div class="label-input-lockup">
                                 <label class="form-text" for="text" aria-label="link">PDF Upload: </label>
-                                <input type="file" name="file" autocomplete="off" aria-label="file upload" >
+                                <input type="file" name="file" autocomplete="off" aria-label="file upload"
+                                        {% if heroku_flg and heroku_flg==True%}
+                                       disabled
+                                       {% endif %}
+                                >
                             </div>
                             <div class="label-input-lockup">
                                 <label class="form-text" for="text" aria-label="link">Link URL: </label>

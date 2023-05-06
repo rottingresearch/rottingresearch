@@ -101,3 +101,22 @@ function updateCounts(success, error403, error404, errorOther) {
     });
   }
 }
+
+
+function get_status(task_id){
+    var url = "/result/"+ task_id
+    $.get( url)
+      .done(function( data ) {
+        console.log( data );
+        if (data.successful === true){
+            console.log("success");
+        } else {
+        console.log(" no success");
+        setTimeout(get_status, 2000, task_id);
+        }
+      });
+}
+$( document ).ready(function() {
+    var task_id = $("#taskid").data( "taskid" );
+    setTimeout(get_status, 2000, task_id);
+});
