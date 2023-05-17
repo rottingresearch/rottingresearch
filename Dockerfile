@@ -9,7 +9,6 @@ RUN apt-get update && apt-get install -y build-essential libssl-dev libffi-dev p
 RUN pip install -r requirements.txt
 
 
-CMD python app.py
+CMD ["python app.py", "celery -A app:celery_app worker -l info"]
 
-CMD celery -A app:celery_app worker -l info
 EXPOSE 8080
