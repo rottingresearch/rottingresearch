@@ -1,7 +1,7 @@
 version: '3'
 
 services:
-  :
+  rr:
     container_name: rottingresearch
     image: rottingresearch/rottingresearch
     command: python app.py && celery -A app:celery_app worker -l info
