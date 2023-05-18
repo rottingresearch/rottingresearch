@@ -4,16 +4,15 @@ services:
   rr:
     container_name: rottingresearch
     image: rottingresearch/rottingresearch
-    command: python app.py && celery -A app:celery_app worker -l info
+    command: python app.py
     depends_on:
-      - "redis"
+      - "celery"
     restart: unless-stopped
     ports:
       - "8080:8080"
     environment:
       - FLASK_APP=app
       - APP_SECRET_KEY=change_me
-      - REDIS_URL=redis://redis:6379
       - TMP_CUSTOM_DIR=/tmp_dir/
     volumes:
       - app:/app
@@ -21,8 +20,22 @@ services:
 
   redis:
     image: "redis:6.0.5-buster"
+    depends_on:
+      - "celery"
     volumes:
       - "redis:/data"
+      
+  worker:
+    container_name: rr-worker
+    image: rottingresearch/rottingresearch
+    command: celery -A app:celery_app worker -l info
+    restart: unless-stopped
+    environment:
+      - REDIS_URL=redis://redis:6379
+      - TMP_CUSTOM_DIR=/tmp_dir/
+    volumes:
+      - cache_vol:/tmp_dir/
+      
 
 volumes:
   redis: {}
