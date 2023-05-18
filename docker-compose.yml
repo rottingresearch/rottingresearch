@@ -6,7 +6,7 @@ services:
     image: rottingresearch/rottingresearch
     command: python app.py
     depends_on:
-      - "celery"
+      - "worker"
     restart: unless-stopped
     ports:
       - "8080:8080"
@@ -21,7 +21,7 @@ services:
   redis:
     image: "redis:6.0.5-buster"
     depends_on:
-      - "celery"
+      - "worker"
     volumes:
       - "redis:/data"
       
