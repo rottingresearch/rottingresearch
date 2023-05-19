@@ -2,6 +2,7 @@
 FROM python:3.11-slim
 
 # File Path
+COPY . /app
 WORKDIR /app
 
 # Installing packages
