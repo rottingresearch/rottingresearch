@@ -5,7 +5,7 @@ FROM python:3.11-slim
 WORKDIR /app
 
 # Copying Requirements
-COPY requirements.txt requirements.txt
+COPY /app/requirements.txt requirements.txt
 
 # Installing packages
 RUN pip install --upgrade pip
