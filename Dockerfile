@@ -2,8 +2,10 @@
 FROM python:3.11-slim
 
 # File Path
-COPY . /app
 WORKDIR /app
+
+# Copying Requirements
+COPY requirements.txt requirements.txt
 
 # Installing packages
 RUN pip install --upgrade pip
