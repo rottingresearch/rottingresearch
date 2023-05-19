@@ -15,7 +15,7 @@ services:
       - APP_SECRET_KEY=change_me
       - TMP_CUSTOM_DIR=/tmp_dir/
     volumes:
-      - app:/app
+      - app:/rr/
       - cache_vol:/tmp_dir/
 
   redis:
