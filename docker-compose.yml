@@ -4,7 +4,7 @@ services:
   rr:
     container_name: rottingresearch
     image: rottingresearch/rottingresearch
-    command: python /app/app.py
+    command: python /rr/app/app.py
     depends_on:
       - "worker"
     restart: unless-stopped
