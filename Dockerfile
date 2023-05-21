@@ -2,7 +2,7 @@
 FROM python:3.11-slim
 
 # File Path
-WORKDIR /rr/app
+WORKDIR /app
 
 # Copying Files
 COPY app/requirements.txt requirements.txt
@@ -14,7 +14,7 @@ RUN pip install -r requirements.txt
 COPY . .
 
 # Start Flask App
-CMD python app.py
+CMD /app/python app.py
 
 # Expose Port
 EXPOSE 8080
