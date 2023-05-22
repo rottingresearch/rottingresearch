@@ -1,38 +1,36 @@
 version: '3'
 
 services:
-  web:
+  rr:
     container_name: rottingresearch
-    build:
-      context: "."
-    command: python app.py
+    image: rottingresearch/rottingresearch
+    depends_on:
+      - "worker"
     restart: unless-stopped
     ports:
-      - "8080:8080"
+      - "80:8080"
     environment:
       - FLASK_APP=app
       - APP_SECRET_KEY=change_me
-      - REDISCLOUD_URL=
       - TMP_CUSTOM_DIR=/tmp_dir/
+      - REDIS_URL=
     volumes:
-      - .:/app
+      - app:/rr
       - cache_vol:/tmp_dir/
-
+      
   worker:
-    container_name: rottingresearch-celery
-    build:
-      context: "."
-    command: celery -A app:celery_app worker -l info
-    depends_on:
-      - "redis"
+    container_name: rr-worker
+    image: rottingresearch/rottingresearch_worker
+    restart: unless-stopped
     environment:
-      - REDISCLOUD_URL=
+      - REDIS_URL=
       - TMP_CUSTOM_DIR=/tmp_dir/
     volumes:
       - cache_vol:/tmp_dir/
-
+      
 volumes:
   cache_vol:
     driver_opts:
       type: tmpfs
       device: tmpfs
+  app:
