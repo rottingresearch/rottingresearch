@@ -10,10 +10,12 @@ COPY app/requirements.txt requirements.txt
 RUN pip install --upgrade pip
 RUN apt-get update && apt-get install -y build-essential libssl-dev libffi-dev python-dev
 RUN pip install -r requirements.txt
-RUN cd /app
 
 # Copying files
 COPY . .
+
+#Change Directory
+RUN cd /app
 
 # Start Flask App
 CMD python app.py
