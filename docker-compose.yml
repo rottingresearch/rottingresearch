@@ -27,8 +27,7 @@ services:
       
   worker:
     container_name: rr-worker
-    image: rottingresearch/rottingresearch
-    command: celery -A app:celery_app worker -l info
+    image: rottingresearch/rottingresearch_worker
     restart: unless-stopped
     environment:
       - REDIS_URL=redis://redis:6379
