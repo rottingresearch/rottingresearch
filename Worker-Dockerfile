@@ -4,7 +4,7 @@ FROM python:3.11-slim
 # File Path
 WORKDIR /rr
 
-COPY app/requirements.txt requirements.txt
+COPY requirements.txt requirements.txt
 
 # Installing packages
 RUN pip install --upgrade pip
