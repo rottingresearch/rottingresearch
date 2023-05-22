@@ -4,7 +4,7 @@ FROM python:3.11-slim
 # File Path
 WORKDIR /rr
 
-COPY requirements.txt requirements.txt
+COPY app/requirements.txt requirements.txt
 
 # Installing packages
 RUN pip install --upgrade pip
@@ -15,7 +15,7 @@ RUN pip install -r requirements.txt
 COPY . .
 
 # Start Flask App
-CMD python app.py
+CMD python app/app.py
 
 # Expose Port
 EXPOSE 8080

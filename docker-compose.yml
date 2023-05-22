@@ -4,7 +4,6 @@ services:
   rr:
     container_name: rottingresearch
     image: rottingresearch/rottingresearch
-    command: python /app/app.py
     depends_on:
       - "worker"
     restart: unless-stopped
@@ -14,6 +13,7 @@ services:
       - FLASK_APP=app
       - APP_SECRET_KEY=change_me
       - TMP_CUSTOM_DIR=/tmp_dir/
+      - REDIS_URL=redis://redis:6379
     volumes:
       - app:/rr
       - cache_vol:/tmp_dir/
@@ -43,6 +43,3 @@ volumes:
       type: tmpfs
       device: tmpfs
   app:
-    driver_opts:
-      type: tmpfs
-      device: tmpfs
