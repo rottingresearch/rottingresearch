@@ -2,7 +2,7 @@
 FROM python:3.11-slim
 
 # File Path
-WORKDIR /rr
+WORKDIR /app
 
 # Copying Files
 COPY requirements.txt requirements.txt
