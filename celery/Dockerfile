@@ -15,7 +15,4 @@ RUN pip install -r requirements.txt
 COPY . .
 
 # Start Flask App
-CMD python app.py
-
-# Expose Port
-EXPOSE 8080
+CMD celery -A app:celery_app worker -l info
