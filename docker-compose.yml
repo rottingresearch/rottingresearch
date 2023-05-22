@@ -19,6 +19,7 @@ services:
       - cache_vol:/tmp_dir/
 
   redis:
+    container_name: redis
     image: "redis:6.0.5-buster"
     depends_on:
       - "worker"
