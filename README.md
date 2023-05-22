@@ -2,11 +2,15 @@
 
 # Introduction
 
-This repository is for a Flask app that deliveries the [linkrot](https://github.com/rottingresearch/linkrot/) project.
+A project devoted to helping academics and researchers provide robust citations and mitigate link rot.
 
 # Mission
 
-The mission of this project is to provide a place for researchers and scholars to check the links cited in their works and the works of others. The goal is to make publications more accessible and replicatable. This tool will coincide with research into persistent links and preserving the Internet and Commons at large.
+Link rot is an established phenomenon that affects everyone who uses the internet. Researchers looking at individual subjects have recently addressed the extent of link rot’s influence on scholarly publications. One recent study found that 36% of all links in research articles were broken. 37% of DOIs, once seen as a tool to prevent link rot, were broken (Miller, 2022).
+
+Rotting Research allows academics and researchers to upload their work and check the reliability of their citations. It extracts all of the links from the document and then checks to see if the link is accessible to the public.
+
+Check out our website at https://rottingresearch.org.
 
 # Installation
 
