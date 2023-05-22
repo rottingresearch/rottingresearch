@@ -14,9 +14,6 @@ RUN pip install -r requirements.txt
 # Copying files
 COPY . .
 
-#Change Directory
-RUN cd /app
-
 # Start Flask App
 CMD python app.py
 
