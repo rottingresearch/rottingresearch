@@ -1,9 +1,6 @@
 # Base Image
 FROM python:3.11-slim
 
-# File Path
-WORKDIR /app
-
 # Copying Files
 COPY requirements.txt requirements.txt
 # Installing packages
