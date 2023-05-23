@@ -119,7 +119,7 @@ input[type="file"]::file-selector-button {
   text-decoration: underline;
   text-decoration-thickness: 1px;
   text-underline-offset: 4px;
-}}
+}
 
 .home--main {
 	display: flex;
@@ -314,7 +314,7 @@ footer {
 }
 
 .socials--item .fa:hover {
-	color: #cb236e;
+	color: #ef3b24;
 }
 
 .menu--button {
