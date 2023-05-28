@@ -4,7 +4,7 @@ on:
   workflow_dispatch:
 
 jobs:
-  demo:
+  unlighthouse:
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v2
@@ -12,7 +12,7 @@ jobs:
           fetch-depth: 0
 
       - name: Install Dependencies
-        run: npm install @unlighthouse/cli puppeteer
+        run: npm install -g @unlighthouse/cli puppeteer
 
       - name: Unlighthouse assertions and client
         run: unlighthouse-ci --site https://rottingresearch.org --budget 75 --build-static
