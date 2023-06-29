@@ -5,7 +5,7 @@ COPY requirements.txt requirements.txt
 
 # Installing packages
 RUN pip install --upgrade pip
-RUN apt-get update && apt-get install -y build-essential libssl-dev libffi-dev python-dev
+RUN apt-get update && apt-get install -y build-essential libssl-dev libffi-dev python-dev-is-python3
 RUN pip install -r requirements.txt
 
 # Copying files
