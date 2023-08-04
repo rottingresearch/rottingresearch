@@ -9,6 +9,10 @@ services:
     restart: unless-stopped
     ports:
       - "80:8080"
+    deploy:
+      constraints: 
+        - node.labels.rr == rr  
+        - node.labels.rr == rr
     environment:
       - FLASK_APP=app
       - APP_SECRET_KEY=change_me
@@ -22,6 +26,10 @@ services:
     container_name: rr-worker
     image: rottingresearch/rottingresearch_worker
     restart: unless-stopped
+    deploy:
+      constraints: 
+        - node.labels.rr == rr  
+        - node.labels.rr == rr
     environment:
       - REDIS_URL=
       - TMP_CUSTOM_DIR=/tmp_dir/
