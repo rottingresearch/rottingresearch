@@ -3,5 +3,5 @@ Flask==2.3.2
 Werkzeug==2.3.6
 gunicorn==21.2.0
 linkrot==3.9.9
-redis==4.6.0
+redis==5.0.0
 celery==5.3.1
