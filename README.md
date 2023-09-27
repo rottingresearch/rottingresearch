@@ -14,9 +14,11 @@ Check out our website at https://rottingresearch.org.
 
 # Installation
 
+- Local development works best with Python 3.11 version.
+
 - Make sure that you have python and the latest version of pip installed.
 
-  `python -m pip install --upgrade pip`
+  `python3 -m pip install --upgrade pip`
 
 - Download Project
 
@@ -26,7 +28,7 @@ Check out our website at https://rottingresearch.org.
 
 - Install Requirements
 
-  `pip install -r requirements.txt`
+  `pip3 install -r requirements.txt`
 
 - If using Windows, open app.py and set app.config['UPLOAD_FOLDER'] to a valid temporary folder.
 - Set APP_SECRET_KEY environment variable before running the python script.
@@ -34,6 +36,16 @@ Check out our website at https://rottingresearch.org.
   Linux: `export APP_SECRET_KEY="random"`
 
   Windows: `setx APP_SECRET_KEY "random"`
+
+- Run redis
+
+  `redis-server`
+
+- Set REDIS_URL environment variable before running the python script
+
+  Linux: `export REDIS_URL="redis://localhost:6379"`
+
+  Windows: `setx APP_SECRET_KEY "redis://localhost:6379"`
 
 - Run Flask App
 
