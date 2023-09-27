@@ -14,7 +14,7 @@ Check out our website at https://rottingresearch.org.
 
 # Installation
 
-- Local development works best with Python 3.11 version.
+- Local development works best with Python 3.9+ versions.
 
 - Make sure that you have python and the latest version of pip installed.
 
