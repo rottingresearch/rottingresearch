@@ -28,6 +28,8 @@
       href="{{ url_for('static', filename= 'css/style.css') }}"
     />
 
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/html2pdf.js/0.10.1/html2pdf.bundle.min.js"></script>
+
     <title>Rotting Research</title>
     <script>
       function toggleMobileNavigation() {
@@ -49,6 +51,30 @@
           classList.remove("accordion-expanded");
           classList.add("accordion-collapsed");
         }
+      }
+
+      function downloadReport() {
+        if (
+          document.getElementById("doc-info").className ===
+          "accordion-collapsed"
+        ) {
+          document.querySelector(".accordion-title").click();
+        }
+        let pdf = document.querySelector(".about--main");
+        const options = {
+          filename: "report.pdf",
+          image: { type: "jpeg", quality: 1.0 },
+          html2canvas: { scale: 2 },
+          pagebreak: {
+            before: ["#doc-info", ".arxiv-doi-container"],
+          },
+          jsPDF: {
+            unit: "in",
+            format: "letter",
+            orientation: "portrait",
+          },
+        };
+        html2pdf().set(options).from(pdf).save();
       }
     </script>
   </head>
@@ -99,11 +125,7 @@
               </a>
             </div>
             <div class="download-report">
-              <a
-                onclick="this.href='data:text/html;charset=UTF-8,'+encodeURIComponent(document.documentElement.outerHTML)"
-                href="#"
-                download="report.html"
-              >
+              <a onclick="downloadReport();">
                 <div><i class="fa fa-download"></i></div>
                 <div style="text-align: left">Download Report</div>
               </a>
