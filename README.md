@@ -45,7 +45,7 @@ Check out our website at https://rottingresearch.org.
 
   Linux: `export REDIS_URL="redis://localhost:6379"`
 
-  Windows: `setx APP_SECRET_KEY "redis://localhost:6379"`
+  Windows: `setx REDIS_URL "redis://localhost:6379"`
 
 - Run Flask App
 
