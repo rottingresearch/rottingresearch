@@ -1,0 +1,35 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: rr-deployment
+spec:
+  replicas: 3
+  selector:
+    matchLabels:
+      app: rottingresearch
+      tier: rr
+  template:
+    metadata:
+      labels:
+        app: rottingresearch
+        tier: rr
+    spec:
+      containers:
+      - name: rr
+        image: rottingresearch/rottingresearch
+        ports:
+        - containerPort: 8080
+        env:
+        - name: FLASK_APP
+          value: app
+        - name: APP_SECRET_KEY
+          value: change_me
+        - name: TMP_CUSTOM_DIR
+          value: /tmp_dir/
+        - name: REDIS_URL
+          value: redis://redis:6379
+        volumeMounts:
+        - name: app-volume
+          mountPath: /rr
+        - name: cache-volume
+          mountPath: /tmp_dir/
