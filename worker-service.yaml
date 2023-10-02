@@ -1,0 +1,9 @@
+apiVersion: v1
+kind: Service
+metadata:
+  name: worker-service
+spec:
+  selector:
+    app: rottingresearch
+    tier: worker
+  # Define the ports for the worker service here, if required.
