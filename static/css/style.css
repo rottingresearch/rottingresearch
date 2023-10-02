@@ -120,6 +120,7 @@ input[type="file"]::file-selector-button {
   text-decoration-thickness: 1px;
   text-underline-offset: 4px;
 }
+}
 
 .home--main {
 	display: flex;

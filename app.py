@@ -47,16 +47,29 @@ def upload_form():
     dd = 0
     return render_template('upload.html', flash='', heroku_flg=heroku_flg)
 
+@app.route('/projects')
+def projects():
+    return render_template('projects.html')
+
+@app.route('/best-practices')
+def practices():
+    return render_template('practices.html')
+
+@app.route('/research')
+def research():
+    return render_template('research.html')
 
 @app.route('/about', methods=['GET'])
 def about():
     return render_template('about.html')
 
+@app.route('/story')
+def story():
+    return render_template('story.html')
 
 @app.route('/policies', methods=['GET'])
 def policies():
     return render_template('policies.html')
-
 
 @app.route('/', methods=['POST'])
 def upload_pdf():
