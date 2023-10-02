@@ -56,23 +56,21 @@
         </div>
       </div>
 
-      <a href="{{ url_for('upload_form')}}" class="mobile-navigation--item">Home</a>
-      <a href="{{ url_for('projects')}}" class="mobile-navigation--item">Projects</a>
-      <a href="{{ url_for('research')}}" class="mobile-navigation--item mobile-navigation--item__active">Research</a>
-      <a href="{{ url_for('practices')}}" class="mobile-navigation--item">Best Practices</a>
-      <a href="{{ url_for('story')}}" class="mobile-navigation--item">Our Story</a>
-      <a href="{{ url_for('about')}}" class="mobile-navigation--item">About</a>
+      <a href="{{ url_for('upload_form')}}" class="mobile-navigation--item"
+        >Home</a
+      >
+      <a href="" class="mobile-navigation--item mobile-navigation--item__active"
+        >About</a
+      >
     </div>
     <div id="container">
       <header>
 
         <nav class="navigation">
-          <a href="{{ url_for('upload_form')}}" class="navigation--item">Home</a>
-          <a href="{{ url_for('projects')}}" class="navigation--item ">Projects</a>
-          <a href="{{ url_for('research')}}" class="navigation--item navigation--item__active">Research</a>
-          <a href="{{ url_for('practices')}}" class="navigation--item ">Best Practices</a>
-          <a href="{{ url_for('story')}}" class="navigation--item ">Our Story</a>
-          <a href="{{ url_for('about')}}" class="navigation--item ">About</a>
+          <a href="{{ url_for('upload_form')}}" class="navigation--item"
+            >Home</a
+          >
+          <a href="" class="navigation--item navigation--item__active">About</a>
         </nav>
 
         <div class="menu--button" onclick="toggleMobileNavigation()">
@@ -82,7 +80,7 @@
         </div>
       </header>
       <main class="about--main">
-        <h1 class="important">Research</h1>
+        <h1 class="important">About Rotting Research</h1>
       <div class="about--content">
 				  <p>Rotting Research was created as a result of a dissertation about the effects of link rot on scholarly publications.
             It began as a command-line tool called Linkrot, which still powers the backend of this project. Now, Rotting Research is a growing web
