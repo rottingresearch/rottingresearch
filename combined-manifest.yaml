@@ -1,0 +1,111 @@
+apiVersion: v1
+kind: PersistentVolume
+metadata:
+  name: app-pv
+spec:
+  capacity:
+    storage: 1Gi
+  accessModes:
+    - ReadWriteOnce
+  hostPath:
+    path: /your/host/path/app
+
+apiVersion: v1
+kind: PersistentVolume
+metadata:
+  name: cache-pv
+spec:
+  capacity:
+    storage: 1Gi
+  accessModes:
+    - ReadWriteOnce
+  hostPath:
+    path: /your/host/path/cache
+
+---
+apiVersion: v1
+kind: PersistentVolumeClaim
+metadata:
+  name: app-pvc
+spec:
+  accessModes:
+    - ReadWriteOnce
+  resources:
+    requests:
+      storage: 1Gi
+
+apiVersion: v1
+kind: PersistentVolumeClaim
+metadata:
+  name: cache-pvc
+spec:
+  accessModes:
+    - ReadWriteOnce
+  resources:
+    requests:
+      storage: 1Gi
+
+---
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: rottingresearch-deployment
+spec:
+  replicas: 3
+  selector:
+    matchLabels:
+      app: rottingresearch
+  template:
+    metadata:
+      labels:
+        app: rottingresearch
+    spec:
+      containers:
+      - name: rr
+        image: rottingresearch/rottingresearch
+        ports:
+        - containerPort: 8080
+        env:
+        - name: FLASK_APP
+          value: app
+        - name: APP_SECRET_KEY
+          value: change_me
+        - name: TMP_CUSTOM_DIR
+          value: /tmp_dir/
+        - name: REDIS_URL
+          value: redis://redis:6379
+        volumeMounts:
+        - name: app-volume
+          mountPath: /rr
+        - name: cache-volume
+          mountPath: /tmp_dir/
+      - name: worker
+        image: rottingresearch/rottingresearch_worker
+        env:
+        - name: REDIS_URL
+          value: redis://redis:6379
+        - name: TMP_CUSTOM_DIR
+          value: /tmp_dir/
+        volumeMounts:
+        - name: cache-volume
+          mountPath: /tmp_dir/
+      volumes:
+      - name: app-volume
+        persistentVolumeClaim:
+          claimName: app-pvc
+      - name: cache-volume
+        persistentVolumeClaim:
+          claimName: cache-pvc
+
+---
+apiVersion: v1
+kind: Service
+metadata:
+  name: rottingresearch-service
+spec:
+  selector:
+    app: rottingresearch
+  ports:
+  - protocol: TCP
+    port: 80
+    targetPort: 8080
