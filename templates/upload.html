@@ -7,11 +7,12 @@
     <link rel="icon" href="../static/img/branding/social assets/twitter/profile image/rottingresearch-twitter-profile-image-red.jpg" />
     <link rel="preconnect" href="https://fonts.gstatic.com" />
     <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500&display=swap" rel="stylesheet" />
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css" />
+    <!--<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css" />-->
+     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/fork-awesome@1.2.0/css/fork-awesome.min.css" integrity="sha256-XoaMnoYC5TH6/+ihMEnospgm0J1PM/nioxbOUdnM8HY=" crossorigin="anonymous">
     <link rel="stylesheet" href="{{ url_for('static', filename= 'css/style.css') }}" />
     <link rel="stylesheet" href="{{ url_for('static', filename= 'css/snackbar.css') }}" />
     <title>Rotting Research</title>
-    <script src='https://cdnjs.cloudflare.com/ajax/libs/jquery/3.3.1/jquery.min.js' integrity="sha384-tsQFqpEReu7ZLhBV2VZlAu7zcOV+rXbYlF2cqB8txI/8aZajjp4Bqd+V6D5IgvKT" crossorigin="anonymous"></script>
+    <script src='https://cdnjs.cloudflare.com/ajax/libs/jquery/3.3.1/jquery.min.js' integrity="sha384-tsQFqpEReu7ZLhBV2VZlAu7zcOV+rXbYlF2cqB8txI/8aZajjp4Bqd+V6D5IgvKT" crossorigin="anonymous"></script>   
 </head>
 
 <body onload="showAlert()">
@@ -38,6 +39,7 @@
         <header>
 
             <nav class="navigation">
+                <img src="../static/img/branding/app-logo/red/rotting-research-sans-powered-by-red.svg">
                 <a href="" class="navigation--item navigation--item__active">Home</a>
                 <a href="{{ url_for('projects')}}" class="navigation--item ">Projects</a>
                 <a href="{{ url_for('research')}}" class="navigation--item ">Research</a>
@@ -45,6 +47,14 @@
                 <a href="{{ url_for('story')}}" class="navigation--item ">Our Story</a>
                 <a href="{{ url_for('about')}}" class="navigation--item ">About</a>
             </nav>
+             <div class="social">
+                <a href="https://github.com/rottingresearch/linkrot" target="_blank" class="socials--item">
+                    <i class="fa fa-github"></i>
+                </a>
+                <a href="https://opencollective.com/rottingresearch" target="_blank" class="socials--item">
+                    <i class="fa fa-open-collective"></i>
+                </a>              
+            </div>
 
             <div class="menu--button" onclick="toggleMobileNavigation()">
                 <button>
@@ -61,7 +71,7 @@
             <div class="main--content">
                 <div class="intro--content">
                     <div class="main--img" align="center">
-                        <img src="../static/img/branding/app-logo/white/rotting-research-white@2x.png" alt="Rotting Research logo" id="image" style="max-width: calc(min(300px, 100%))" />
+                        <img src="../static/img/branding/app-logo/white/rotting-research-white.svg" alt="Rotting Research logo" id="image" style="max-width: calc(min(300px, 100%))" />
                     </div>
 
                     <p class="description" style="max-width: 448px">
@@ -101,13 +111,14 @@
             </div>
         </main>
 
-        <footer>
+        <!-- <footer>
             <div class="social">
                 <a href="https://github.com/rottingresearch/linkrot" target="_blank" class="socials--item">
                     <i class="fa fa-github"></i>
+                    <i class="fa fa-open-collective"></i>
                 </a>
             </div>
-        </footer>
+        </footer> -->
     </div>
     <script>
 		function toggleMobileNavigation() {

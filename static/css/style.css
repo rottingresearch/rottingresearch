@@ -41,13 +41,19 @@ a:hover {
 header {
 	width: 100vw;
 	display: flex;
+	flex-direction: row;
+	justify-content: space-between;
 	align-items: center;
 	background: inherit;
+	background-color: #ffffff;
 	padding: 15px;
 }
 
 header img {
-	width: 10%;
+	/* width: 10%; */
+	max-width: 5rem;
+	margin-top: -2px;
+  margin-right: 1rem;
 }
 
 .label-input-lockup {
@@ -90,22 +96,26 @@ input[type="file"]::file-selector-button {
 }
 
 .navigation {
-	flex-grow: 1;
-	margin-bottom: 25px;
-	margin-left: 15px;
+	/* flex-grow: 1; */
+	/* margin-bottom: 25px; */
+	/* margin-left: 15px; */
+	display: flex;
+  flex-direction: row;
+  gap: .8rem;
 }
 
 .navigation--item {
 	text-decoration: none;
-	color: #ffffff;
+	color: #000000;
 	font-size: 14px;
-	margin-left: 14px;
+	/* margin-left: 14px; */
 	text-transform: lowercase;
 }
 
 .navigation--item:hover {
-	color: #ffffff;
+	color: #000000;
 	text-decoration: underline;
+	text-decoration-color: #EF3B24;
   text-decoration-thickness: 2px;
   text-underline-offset: 4px;
 }
@@ -115,16 +125,22 @@ input[type="file"]::file-selector-button {
 }
 
 .navigation--item__active {
-  color: #ffffff;
+  color: #000000;
   text-decoration: underline;
-  text-decoration-thickness: 1px;
+	text-decoration-color: #EF3B24;
+  text-decoration-thickness: 2px;
   text-underline-offset: 4px;
 }
 
 .home--main {
-	display: flex;
+	/*display: flex;
 	align-items: center;
-	padding: 15px;
+	padding: 15px; */
+	display: flex;
+  align-items: flex-start;
+  padding: 15px;
+  margin-top: 3rem;
+  border-bottom: 0.5rem solid #323232;
 }
 
 .main--content {
@@ -233,6 +249,12 @@ input[type="file"]::file-selector-button {
 	color: rgba(50, 50, 50, 1);
 }
 
+#drop_zone {
+  border: 5px solid blue;
+  width: 200px;
+  height: 100px;
+}
+
 form input[type="file"] {
 	border: 1px solid #aaa;
 	border-radius: 8px;
@@ -299,9 +321,13 @@ footer {
 
 .social {
 	/* margin-right: 40px; */
-	display: block;
+	display: flex;
+	flex-direction: row;
+	gap: 0.5rem;
 	/* margin-left: 20px; */
 	z-index: 5;
+  position: relative;
+	top: 2px;
 }
 
 .socials--item {
@@ -310,8 +336,14 @@ footer {
 }
 
 .socials--item .fa {
-	font-size: 1.5rem;
+	font-size: 1.4rem;
 }
+
+.socials--item:first-of-type .fa {
+	font-size: 1.65rem;
+	margin-top: -1.8px;
+}
+
 
 .socials--item .fa:hover {
 	color: #ef3b24;
@@ -747,12 +779,15 @@ footer {
 
 	.menu--button {
 		display: block;
-		margin-left: 10px;
+		/* margin-left: 10px; */
 	}
 
 	header,
 	footer {
 		width: 100vw;
+		display: flex;
+    flex-direction: row-reverse;
+    padding: 0 1rem;
 	}
 
 	.about--main .important {
