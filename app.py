@@ -72,6 +72,13 @@ def story():
 def policies():
     return render_template('policies.html')
 
+@app.route('/contact', methods=['GET'])
+def contact():
+    return render_template('contact.html')
+
+@app.route('/contribute', methods=['GET'])
+def contribute():
+    return render_template('contribute.html')
 
 @app.route('/', methods=['POST'])
 def upload_pdf():

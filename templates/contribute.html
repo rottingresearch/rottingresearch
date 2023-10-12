@@ -2,15 +2,6 @@
 <html lang="en">
   <head>
     <meta charset="utf-8" />
-    <!-- Global site tag (gtag.js) - Google Analytics -->
-    <script async src="https://www.googletagmanager.com/gtag/js?id=G-KWDKD69VP4"></script>
-    <script>
-      window.dataLayer = window.dataLayer || [];
-      function gtag(){dataLayer.push(arguments);}
-      gtag('js', new Date());
-
-      gtag('config', 'G-KWDKD69VP4');
-    </script>
     <meta
       name="viewport"
       content="width=device-width, initial-scale=1, maximum-scale=10.0, minimum-scale=1, user-scalable=yes"
@@ -57,21 +48,22 @@
       </div>
 
       <a href="{{ url_for('upload_form')}}" class="mobile-navigation--item">Home</a>
-      <a href="{{ url_for('projects')}}" class="mobile-navigation--item mobile-navigation--item__active">Projects</a>
+      <a href="{{ url_for('projects')}}" class="mobile-navigation--item">Projects</a>
       <a href="{{ url_for('research')}}" class="mobile-navigation--item">Research</a>
       <a href="{{ url_for('practices')}}" class="mobile-navigation--item">Best Practices</a>
-      <a href="{{ url_for('contribute')}}" class="mobile-navigation--item">Contribute</a>
+      <a href="{{ url_for('contribute')}}" class="mobile-navigation--item mobile-navigation--item__active">Contribute</a>
       <a href="{{ url_for('about')}}" class="mobile-navigation--item">About</a>
+
     </div>
     <div id="container">
       <header>
 
         <nav class="navigation">
           <a href="{{ url_for('upload_form')}}" class="navigation--item">Home</a>
-          <a href="{{ url_for('projects')}}" class="navigation--item navigation--item__active">Projects</a>
+          <a href="{{ url_for('projects')}}" class="navigation--item ">Projects</a>
           <a href="{{ url_for('research')}}" class="navigation--item ">Research</a>
           <a href="{{ url_for('practices')}}" class="navigation--item ">Best Practices</a>
-          <a href="{{ url_for('contribute')}}" class="navigation--item ">Contribute</a>
+          <a href="{{ url_for('contribute')}}" class="navigation--item navigation--item__active">Contribute</a>
           <a href="{{ url_for('about')}}" class="navigation--item ">About</a>
         </nav>
 
@@ -82,22 +74,25 @@
         </div>
       </header>
       <main class="about--main">
-        <h1 class="important">Projects</h1>
       <div class="about--content">
-				  <p>Rotting Research was created as a result of a dissertation about the effects of link rot on scholarly publications.
-            It began as a command-line tool called Linkrot, which still powers the backend of this project. Now, Rotting Research is a growing web
-            app that allows users to upload PDFs and receive a report on the links contained within. The report includes the number of links, the links
-            that are still valid, as well as various commonly-used persistent links.
-          </p>
-          <p>The mission of Rotting Research is to help researchers and scholars check their publications for symptoms of link rot and 
-            educate them on ways to mitigate the problem.</p>
-
-		  </div>
+<!-- Privacy Policy -->
+  <h1 class="important">How to Contribute</h1>
+  <h2>Contribute  Code</h2>
+  <p>First and foremost, Rotting Research is an ope-source project. It was build and continues to be improved by the community. Any documentation or code that you can contribute is appriciated and will help keep our project growing, as well as stable. We hope to continue to add features and technologies for years to come. Check out our <a href="{{ url_for('projects')}}">projects</a> page to view our repositories and learn how you can help.</p>
+  <h2>Contribute Ideas</h2>
+  <p>We hope to keep Rotting Research relavant and cutting-edge. This means new ideas, new features, and new research. Please feel to submit your ideas or feedback using this form.&nbsp;<a href="https://github.com/rottingresearch/rottingresearch/issues/new/choose">https://github.com/rottingresearch/rottingresearch/issues/new/choose </a>.</p>
+  <h2>Contribute Financially</h2>
+  <p>Like any project, we do have expenses. There are regular expenses like hosting fees, Redis subscription, Cloudflare for security, and many others. We are members of the Open Source Collective, which allows us to accept donations, while remaining fully-transparent regarding our financials. Feel free to make a one-time donation or a reocurring one. Every bit helps keep us running. To make a donation, take a look at our funding page at <a href="https://opencollective.com/rottingresearch">https://opencollective.com/rottingresearch </a>.</p>
+  <h2>Contributors</h2>
+  <p><a href="https://github.com/rottingresearch/rottingresearch/graphs/contributors">
+  <img src="https://opencollective.com/rottingresearch/contributors.svg?width=890&button=false">
+</a></p>
+      </div>
       </main>
       <footer>
         <div class="social">
           <a
-            href="https://github.com/marshalmiller/rottingresearch"
+            href="https://github.com/marshalmiller/linkrot"
             target="_blank"
             class="socials--item"
           >
