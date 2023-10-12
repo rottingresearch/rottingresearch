@@ -14,7 +14,10 @@ from flask import current_app
 
 app = Flask(__name__)
 
-app.config['UPLOAD_FOLDER'] = utilites.get_tmp_folder()  # '/tmp/'
+with open("config.json") as config_file:
+  config = json.load(config_file)
+
+app.config['UPLOAD_FOLDER'] = '/tmp/'
 app.secret_key = os.environ.get('APP_SECRET_KEY')
 if os.getenv("HEROKU_FLG", None):
     name_redis_env = "REDISCLOUD_URL"
