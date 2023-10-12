@@ -13,7 +13,6 @@ import utilites
 from flask import current_app
 
 app = Flask(__name__)
-
 app.config['UPLOAD_FOLDER'] = utilites.get_tmp_folder()  # '/tmp/'
 app.secret_key = os.environ.get('APP_SECRET_KEY')
 if os.getenv("HEROKU_FLG", None):
