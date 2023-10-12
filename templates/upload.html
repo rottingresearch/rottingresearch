@@ -39,7 +39,7 @@
         <header>
 
             <nav class="navigation">
-                <img src="../static/img/branding/app-logo/red/rotting-research-sans-powered-by-red.svg">
+                <a href="{{ url_for('upload_form')}}" class="navigation--item--alt"><img src="../static/img/branding/app-logo/red/rotting-research-sans-powered-by-red.svg"></a>
                 <a href="" class="navigation--item navigation--item__active">Home</a>
                 <a href="{{ url_for('projects')}}" class="navigation--item ">Projects</a>
                 <a href="{{ url_for('research')}}" class="navigation--item ">Research</a>
