@@ -23,10 +23,12 @@
       rel="stylesheet"
     />
 
-    <link
+    <!--<link
       rel="stylesheet"
       href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css"
-    />
+    />-->
+
+     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/fork-awesome@1.2.0/css/fork-awesome.min.css" integrity="sha256-XoaMnoYC5TH6/+ihMEnospgm0J1PM/nioxbOUdnM8HY=" crossorigin="anonymous">
 
     <link
       rel="stylesheet"
@@ -45,7 +47,7 @@
       }
     </script>
   </head>
-  <body>
+  <body class='alt'>
     <div class="mobile-navigation" id="mobile-navigation">
       <div class="mobile-navigation--header">
 
@@ -64,18 +66,27 @@
       <a href="{{ url_for('about')}}" class="mobile-navigation--item">About</a>
     </div>
     <div id="container">
-      <header>
+      <header class="alt">
 
         <nav class="navigation">
-          <a href="{{ url_for('upload_form')}}" class="navigation--item">Home</a>
-          <a href="{{ url_for('projects')}}" class="navigation--item navigation--item__active">Projects</a>
-          <a href="{{ url_for('research')}}" class="navigation--item ">Research</a>
-          <a href="{{ url_for('practices')}}" class="navigation--item ">Best Practices</a>
-          <a href="{{ url_for('contribute')}}" class="navigation--item ">Contribute</a>
-          <a href="{{ url_for('about')}}" class="navigation--item ">About</a>
+          <a href="{{ url_for('upload_form')}}" class="navigation--item--alt"><img src="../static/img/branding/app-logo/white/rotting-research-sans-powered-by-white.svg"></a>
+          <a href="{{ url_for('upload_form')}}" class="navigation--item--alt">Home</a>
+          <a href="{{ url_for('projects')}}" class="navigation--item navigation--item--alt__active">Projects</a>
+          <a href="{{ url_for('research')}}" class="navigation--item--alt ">Research</a>
+          <a href="{{ url_for('practices')}}" class="navigation--item--alt ">Best Practices</a>
+          <a href="{{ url_for('contribute')}}" class="navigation--item--alt ">Contribute</a>
+          <a href="{{ url_for('about')}}" class="navigation--item--alt ">About</a>
         </nav>
+         <div class="social">
+            <a href="https://github.com/rottingresearch/linkrot" target="_blank" class="socials--item--alt">
+                <i class="fa fa-github"></i>
+            </a>
+            <a href="https://opencollective.com/rottingresearch" target="_blank" class="socials--item--alt">
+                <i class="fa fa-open-collective"></i>
+            </a>              
+        </div>
 
-        <div class="menu--button" onclick="toggleMobileNavigation()">
+        <div class="menu--button--alt" onclick="toggleMobileNavigation()">
           <button>
             <i class="fa fa-reorder"></i>
           </button>
@@ -94,7 +105,7 @@
 
 		  </div>
       </main>
-      <footer>
+      <!--<footer>
         <div class="social">
           <a
             href="https://github.com/marshalmiller/rottingresearch"
