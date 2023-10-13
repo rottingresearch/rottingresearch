@@ -90,7 +90,7 @@ header img {
 }
 
 .label-input-lockup {
-	display:flex;
+	display: flex;
 	flex-wrap: nowrap;
 	padding: 0px 0px 16px 0px;
 	width: 100%;
