@@ -46,7 +46,7 @@ a:hover {
 	margin: 0 auto;
 	display: grid;
 	grid-template-rows: auto 1fr auto;
-	height: 100vh;
+	min-height: 100vh;
 	width: 100vw;
 }
 
@@ -56,7 +56,7 @@ a:hover {
 	margin: 0 auto;
 	display: grid;
 	grid-template-rows: auto 1fr auto;
-	height: 100vh;
+	min-height: 100vh;
 	width: 100vw;
 }
 
@@ -149,7 +149,7 @@ input[type="file"]::file-selector-button {
 	color: #000000;
 	text-decoration: underline;
 	text-decoration-color: #EF3B24;
-  text-decoration-thickness: 2px;
+  text-decoration-thickness: 1.5px;
   text-underline-offset: 4px;
 }
 
@@ -162,7 +162,7 @@ input[type="file"]::file-selector-button {
   font-size: 14px;
   text-decoration: underline;
 	text-decoration-color: #EF3B24;
-  text-decoration-thickness: 2px;
+  text-decoration-thickness: 1.5px;
   text-underline-offset: 4px;
   text-transform: lowercase;
 }
@@ -195,25 +195,27 @@ input[type="file"]::file-selector-button {
 
 .navigation--item--alt__active:hover {
   color: #ffffff;
+  text-decoration: underline;
+  text-decoration-thickness: 1.5px;
   }
 
 
 .home--main {
-	/*display: flex;
-	align-items: center;
-	padding: 15px; */
 	display: flex;
+	justify-content: center;
   align-items: flex-start;
   padding: 15px;
   margin-top: 3rem;
   border-bottom: 0.25rem solid #323232;
+	height: 100%;
+	min-height: 100vh;
 }
 
 .main--content {
 	display: flex;
 	flex-direction: column;
-	flex: 1;
-	margin: 10px 25px;
+	/* flex: 1; */
+	/* margin: 10px 25px; */
 	align-items: center;
 }
 
@@ -224,13 +226,14 @@ input[type="file"]::file-selector-button {
   flex: 1;
   padding: 25px 10px;
 	margin-top: 32px;
+	gap: 2rem;
 }
 
 .rr-form {
 	position: relative;
 	background-color: #ffffff;
 	border-radius: 8px;
-	padding: 24px 40px;
+	padding: 3rem 3rem 2rem;
 	width: 100%;
 	max-width: 720px;
 	margin-bottom: 2rem;
@@ -263,7 +266,7 @@ input[type="file"]::file-selector-button {
 	max-width:  400px;
 }
 
-.home--main h2 {
+.home--main h2, h2 {
 	color: #323232;
 	width: 100%;
 	margin: 0.83em auto;
@@ -288,8 +291,13 @@ input[type="file"]::file-selector-button {
 }
 
 .about--main h1, .about--main .about--content {
+	width: 88%;
 	max-width: 40rem;
 	margin: 0 auto;
+}
+
+.about--content p:first-of-type, h2:first-of-type {
+	margin-top:0;
 }
 
 .important {
@@ -375,7 +383,8 @@ button:disabled {
 	flex: 1;
 	z-index: -5;
  	max-width: 190px;
- 	margin: 0 2rem;
+ 	/* margin: 0 2rem; */
+ 	margin: 0 0;
 }
 
 .main--img img {
@@ -440,7 +449,16 @@ footer {
 	transition: 100ms;
 }
 
+.oc_responsive {
+	width: 100%;
+}
+
 .menu--button {
+	flex-grow: 1;
+	display: none;
+}
+
+.menu--button--alt {
 	flex-grow: 1;
 	display: none;
 }
@@ -449,6 +467,13 @@ footer {
 	border: none;
 	background-color: transparent;
 	font-size: 1.5rem;
+}
+
+.menu--button--alt button {
+	border: none;
+	background-color: transparent;
+	font-size: 1.5rem;
+	color: white;
 }
 
 .mobile-navigation {
@@ -777,7 +802,7 @@ footer {
 	}
 
 	.home--main {
-		padding-top: 30px;
+		margin-top: 0px;
 	}
 
 	.main--content {
@@ -790,7 +815,8 @@ footer {
 		align-items: start;
 		flex: 1;
 		padding: 24px 0px 16px 0px;
-		margin-top: 32px;
+		margin-top: 0px;
+		gap: 0rem;
 	}
 
 	form {
@@ -873,20 +899,35 @@ footer {
 		/* margin-left: 10px; */
 	}
 
+	.menu--button--alt {
+		display: block;
+		/* margin-left: 10px; */
+		color: white;
+	}
+
 	header,
-	footer {
+	footer, header.alt {
 		width: 100vw;
 		display: flex;
     flex-direction: row-reverse;
     padding: 0 1rem;
 	}
 
+.about--main {
+	width: 100vw;
+	padding: 4rem 0 0;
+	margin: 0 auto;
+	border-bottom: 0.25rem solid #EF3B24;
+	height: 100%;
+	min-height: 100vh;
+}
+
 	.about--main .important {
 		/* margin-top: 25px; */
 		font-size: 32px;
 		text-align: left;
 		line-height: 120%;
-		margin-bottom:  8px;
+		margin-bottom: 1rem;
 	}
 
 	.label-input-lockup {
