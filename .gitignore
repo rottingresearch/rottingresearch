@@ -10,3 +10,4 @@
 __pycache__
 *.pyc
 local-test.yaml
+local-test.yml
