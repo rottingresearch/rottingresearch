@@ -310,6 +310,11 @@ input[type="file"]::file-selector-button {
 	border-bottom: 0.25rem solid #EF3B24;
 }
 
+.analysis--wrapper {
+	margin:0 auto;
+  padding: 0 2rem;
+}
+
 .analysis--main h1 {
 	width: 88%;
 	max-width: 60rem;
@@ -337,7 +342,7 @@ input[type="file"]::file-selector-button {
   max-width: 60rem;
   gap: 1rem;
   flex-wrap: wrap;
-  margin: 1rem;
+  margin: 1rem 1rem 1rem -0.5rem;
 }
 
 .subhead-lockup {
@@ -357,6 +362,7 @@ input[type="file"]::file-selector-button {
 #doc-info {
   width: 100%;
   max-width: 60rem;
+  margin-top: 1rem;
 }
 
 #summary {
@@ -591,10 +597,12 @@ footer {
 
 .sum-box-container {
 	display: flex;
+	flex-direction: row;
 	flex-wrap: nowrap;
-	justify-content: stretch;
-	margin: 0 -20px 1rem;
-	padding: 0 10px 10px;
+	/* justify-content: stretch; */
+	gap: 1rem;
+	/* margin: 0 -20px 1rem; */
+	/* padding: 0 10px 10px; */
 	width: 100%;
 	max-width: 60rem;
 }
@@ -603,12 +611,13 @@ footer {
 	display: flex;
 	flex-direction: column;
 	justify-content: flex-start;
-	margin: 0px 10px;
+	margin: 0px;
 	border-radius: 8px;
 	text-align: center;
-	flex-basis: 33%;
+	/* flex-basis: 33%; */
 	min-height: 150px;
   padding: 2rem 1rem;
+  width: calc(100%*0.6);
 }
 
 .sum-box.success {
@@ -676,7 +685,8 @@ footer {
 	flex-wrap: wrap;
 	width:100%;
 	max-width:60rem;
-	gap: 2rem;
+	gap: 1rem;
+  margin: 1rem 0 0 0;
 }
 
 #pdfs,
@@ -842,6 +852,112 @@ footer {
 	transition: transform 0.5s ease-out;
 }
 
+.no-scroll-preload {
+	overflow: hidden;
+}
+
+.loader {
+	width: 200px;
+	height: 140px;
+	background: #323232;
+	box-sizing: border-box;
+	position: relative;
+	border-radius: 8px;
+	perspective: 1000px;
+}
+
+.loader:before {
+	content: "";
+	position: absolute;
+	left: 10px;
+	right: 10px;
+	top: 10px;
+	bottom: 10px;
+	border-radius: 8px;
+	background: #f5f5f5 no-repeat;
+	background-size: 60px 10px;
+	background-image: linear-gradient(#ddd 100px, transparent 0),
+		linear-gradient(#ddd 100px, transparent 0),
+		linear-gradient(#ddd 100px, transparent 0),
+		linear-gradient(#ddd 100px, transparent 0),
+		linear-gradient(#ddd 100px, transparent 0),
+		linear-gradient(#ddd 100px, transparent 0);
+
+	background-position: 15px 30px, 15px 60px, 15px 90px, 105px 30px, 105px 60px,
+		105px 90px;
+	box-shadow: 0 0 10px rgba(0, 0, 0, 0.25);
+}
+.loader:after {
+	content: "";
+	position: absolute;
+	width: calc(50% - 10px);
+	right: 10px;
+	top: 10px;
+	bottom: 10px;
+	border-radius: 8px;
+	background: #fff no-repeat;
+	background-size: 60px 10px;
+	background-image: linear-gradient(#ddd 100px, transparent 0),
+		linear-gradient(#ddd 100px, transparent 0),
+		linear-gradient(#ddd 100px, transparent 0);
+	background-position: 50% 30px, 50% 60px, 50% 90px;
+	transform: rotateY(0deg);
+	transform-origin: left center;
+	animation: paging 1s linear infinite;
+}
+
+@keyframes paging {
+	to {
+		transform: rotateY(-180deg);
+	}
+}
+
+.text-success {
+	color: rgba(71, 200, 92, 1);
+}
+
+.text-failure {
+	color: rgba(245, 103, 104, 1);
+}
+
+@keyframes spin {
+	0% {
+		transform: rotate(0deg);
+	}
+
+	100% {
+		transform: rotate(360deg);
+	}
+}
+.vertical-center {
+	margin: 0 auto;
+	position: absolute;
+	top: 50%;
+	-ms-transform: translateY(-50%);
+	transform: translateY(-50%);
+	align-items: center;
+	align-content: center;
+	width: 100vw;
+}
+
+@media only screen and (max-width: 1444px) {
+	#pdfs,
+	#urls,
+	#arxiv,
+	#doi {
+		width: 100%;
+	}
+
+	.sum-box-container {
+	  display: flex;
+	  flex-wrap: wrap;
+	}
+
+	.sum-box {
+		width: calc(100%*0.3);
+	}
+}
+
 @media only screen and (max-width: 680px) {
 	main {
 		display: flex;
@@ -998,6 +1114,7 @@ footer {
 	#doc-info {
 	  width: 100%;
 	  max-width: 60rem;
+	  margin-top: 1rem;
 	}
 
 	#summary {
@@ -1016,14 +1133,15 @@ footer {
 	}
 
 	.sum-box {
-		width: 100%;
-		min-width: calc(100% - 20px);
+		width: calc(100%*0.48);
 		min-height: 100px;
-		margin: 5px 10px;
+		/* margin: 5px 10px; */
 	}
 
 	.file-grid {
-		grid-template-columns: 1fr;
+		/* grid-template-columns: 1fr; */
+		gap: 2rem;
+    margin-top: 2rem;
 	}
 
 	.pdf-lockup,
@@ -1036,104 +1154,20 @@ footer {
 	}
 
 	.downloads {
-		padding-left: 70px;
-		margin-top: -15px;
+		/* padding-left: 70px; */
+		/* margin-top: -15px; */
 	}
 }
 
-@media only screen and (max-width: 1444px) {
-	#pdfs,
-	#urls,
-	#arxiv,
-	#doi {
-		width: 100%;
-	}
-}
-
-.no-scroll-preload {
-	overflow: hidden;
-}
-
-.loader {
-	width: 200px;
-	height: 140px;
-	background: #323232;
-	box-sizing: border-box;
-	position: relative;
-	border-radius: 8px;
-	perspective: 1000px;
-}
-
-.loader:before {
-	content: "";
-	position: absolute;
-	left: 10px;
-	right: 10px;
-	top: 10px;
-	bottom: 10px;
-	border-radius: 8px;
-	background: #f5f5f5 no-repeat;
-	background-size: 60px 10px;
-	background-image: linear-gradient(#ddd 100px, transparent 0),
-		linear-gradient(#ddd 100px, transparent 0),
-		linear-gradient(#ddd 100px, transparent 0),
-		linear-gradient(#ddd 100px, transparent 0),
-		linear-gradient(#ddd 100px, transparent 0),
-		linear-gradient(#ddd 100px, transparent 0);
-
-	background-position: 15px 30px, 15px 60px, 15px 90px, 105px 30px, 105px 60px,
-		105px 90px;
-	box-shadow: 0 0 10px rgba(0, 0, 0, 0.25);
-}
-.loader:after {
-	content: "";
-	position: absolute;
-	width: calc(50% - 10px);
-	right: 10px;
-	top: 10px;
-	bottom: 10px;
-	border-radius: 8px;
-	background: #fff no-repeat;
-	background-size: 60px 10px;
-	background-image: linear-gradient(#ddd 100px, transparent 0),
-		linear-gradient(#ddd 100px, transparent 0),
-		linear-gradient(#ddd 100px, transparent 0);
-	background-position: 50% 30px, 50% 60px, 50% 90px;
-	transform: rotateY(0deg);
-	transform-origin: left center;
-	animation: paging 1s linear infinite;
-}
-
-@keyframes paging {
-	to {
-		transform: rotateY(-180deg);
-	}
-}
-
-.text-success {
-	color: rgba(71, 200, 92, 1);
-}
-
-.text-failure {
-	color: rgba(245, 103, 104, 1);
-}
-
-@keyframes spin {
-	0% {
-		transform: rotate(0deg);
+@media only screen and (max-width: 476px) {
+	.sum-box-container {
+	  display: flex;
+	  flex-wrap: wrap;
 	}
 
-	100% {
-		transform: rotate(360deg);
+	.sum-box {
+		width: 96%;
+		min-height: 100px;
+		/* margin: 5px 10px; */
 	}
-}
-.vertical-center {
-	margin: 0 auto;
-	position: absolute;
-	top: 50%;
-	-ms-transform: translateY(-50%);
-	transform: translateY(-50%);
-	align-items: center;
-	align-content: center;
-	width: 100vw;
 }
