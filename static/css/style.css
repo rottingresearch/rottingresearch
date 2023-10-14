@@ -297,6 +297,12 @@ input[type="file"]::file-selector-button {
 	margin: 0 auto;
 }
 
+.analysis--main h1 {
+	width: 88%;
+	max-width: 60rem;
+	margin: 0 auto;
+}
+
 .about--content p:first-of-type, h2:first-of-type {
 	margin-top:0;
 }
@@ -311,13 +317,13 @@ input[type="file"]::file-selector-button {
 }
 
 .file-grid {
-	display: grid;
-	grid-template-columns: max-content calc(min(45vw, max(50%, 430px)));
-	column-gap: 20px;
+  display: flex;
+  flex-direction: row;
+  justify-content: flex-start;
 }
 
 .pdf-icon {
-	font-size: 4rem;
+	font-size: 1.25rem;
 	color: #ef3b24;
 }
 
@@ -636,6 +642,7 @@ footer {
 .pdfs-urls-container,
 .arxiv-doi-container {
 	display: flex;
+	flex-direction: column;
 	flex-wrap: wrap;
 }
 
@@ -947,12 +954,18 @@ footer {
 		text-align: center;
 	}
 
+	#summary {
+	  max-width: 60rem;
+	}
+
 	#summary ol {
 		padding-left: 20px;
 	}
 
 	.sum-box-container {
 		flex-wrap: wrap;
+		max-width: 60rem;
+	  width: 100%;
 	}
 
 	.sum-box {
