@@ -69,7 +69,7 @@ header {
 	align-items: center;
 	background: inherit;
 	background-color: #ffffff;
-	padding: 15px;
+	padding: 1rem 2rem;
 }
 
 header.alt {
@@ -80,7 +80,7 @@ header.alt {
 	align-items: center;
 	background: inherit;
 	background-color: #EF3B24;
-	padding: 15px;
+	padding: 1rem 2rem;
 }
 
 header img {
@@ -297,10 +297,23 @@ input[type="file"]::file-selector-button {
 	margin: 0 auto;
 }
 
+.analysis--main {
+	display: flex;
+  flex-direction: column;
+  justify-content: flex-start;
+  align-content: flex-start;
+  align-items: center;
+  flex-wrap: nowrap;
+	width: 100vw;
+	padding: 3rem 0 0;
+	margin: 0 auto;
+	border-bottom: 0.25rem solid #EF3B24;
+}
+
 .analysis--main h1 {
 	width: 88%;
 	max-width: 60rem;
-	margin: 0 auto;
+	margin: 0;
 }
 
 .about--content p:first-of-type, h2:first-of-type {
@@ -317,9 +330,11 @@ input[type="file"]::file-selector-button {
 }
 
 .file-grid {
-  display: flex;
+	display: flex;
   flex-direction: row;
   justify-content: flex-start;
+  width: 100%;
+  max-width: 60rem;
 }
 
 .pdf-icon {
@@ -339,6 +354,16 @@ input[type="file"]::file-selector-button {
 	margin-top: 40px;
 	border-bottom: 1px solid #f2f2f3;
 	color: rgba(50, 50, 50, 1);
+}
+
+#doc-info {
+  width: 100%;
+  max-width: 60rem;
+}
+
+#summary {
+	width:100%;
+  max-width: 60rem;
 }
 
 #drop_zone {
@@ -561,24 +586,31 @@ footer {
 	margin-right: 10px;
 }
 
+.sum-label {
+  line-height: 120%;
+  margin-top: 0.25rem;
+}
+
 .sum-box-container {
 	display: flex;
 	flex-wrap: nowrap;
 	justify-content: stretch;
 	margin: 0px -20px;
 	padding: 10px;
-	max-width: 720px;
+	width: 100%;
+	max-width: 60rem;
 }
 
 .sum-box {
 	display: flex;
 	flex-direction: column;
-	justify-content: center;
+	justify-content: flex-start;
 	margin: 0px 10px;
 	border-radius: 8px;
 	text-align: center;
 	flex-basis: 33%;
 	min-height: 150px;
+  padding: 2rem 1rem;
 }
 
 .sum-box.success {
@@ -644,13 +676,17 @@ footer {
 	display: flex;
 	flex-direction: column;
 	flex-wrap: wrap;
+	width:100%;
+	max-width:60rem;
 }
 
 #pdfs,
 #urls,
 #arxiv,
 #doi {
-	width: calc(50% - 10px);
+	/* width: calc(50% - 10px); */
+	width: 100%;
+	max-width: 60rem;
 }
 
 #pdfs,
@@ -954,7 +990,13 @@ footer {
 		text-align: center;
 	}
 
+	#doc-info {
+	  width: 100%;
+	  max-width: 60rem;
+	}
+
 	#summary {
+		width:100%;
 	  max-width: 60rem;
 	}
 
