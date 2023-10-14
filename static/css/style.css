@@ -335,11 +335,9 @@ input[type="file"]::file-selector-button {
   justify-content: flex-start;
   width: 100%;
   max-width: 60rem;
-}
-
-.pdf-icon {
-	font-size: 1.25rem;
-	color: #ef3b24;
+  gap: 1rem;
+  flex-wrap: wrap;
+  margin: 1rem;
 }
 
 .subhead-lockup {
@@ -588,15 +586,15 @@ footer {
 
 .sum-label {
   line-height: 120%;
-  margin-top: 0.25rem;
+  margin-top: 0.5rem;
 }
 
 .sum-box-container {
 	display: flex;
 	flex-wrap: nowrap;
 	justify-content: stretch;
-	margin: 0px -20px;
-	padding: 10px;
+	margin: 0 -20px 1rem;
+	padding: 0 10px 10px;
 	width: 100%;
 	max-width: 60rem;
 }
@@ -662,7 +660,7 @@ footer {
 .pdf-link:hover,
 .url-link:hover,
 .sum-link:hover {
-	color: #3cb7d3;
+	color: #ef3b24;
 }
 
 .sum-link {
@@ -678,6 +676,7 @@ footer {
 	flex-wrap: wrap;
 	width:100%;
 	max-width:60rem;
+	gap: 2rem;
 }
 
 #pdfs,
@@ -742,12 +741,17 @@ footer {
 	flex-wrap: nowrap;
 	align-items: center;
 	max-width: calc(90vw - 300px);
+	align-items: flex-start;
 }
 
 .pdf-icon {
 	flex-grow: 0;
 	flex-shrink: 0;
 	padding: 10px;
+	padding: 0 10px;
+  margin-top: -0.25rem;
+  font-size: 1.25rem;
+	color: #ef3b24;
 }
 
 .pdf-lockup,
@@ -758,6 +762,7 @@ footer {
 .downloads {
 	display: flex;
 	flex-wrap: wrap;
+	gap: 1rem;
 }
 
 .fa-download {
