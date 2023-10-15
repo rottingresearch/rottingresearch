@@ -11,7 +11,7 @@ services:
       - "80:8080"
     deploy:
       mode: replicated
-        replicas: 1
+        replicas: 3
       constraints: 
         - node.labels.stack == rr  
         - node.labels.stack == rr
@@ -39,14 +39,6 @@ services:
       - TMP_CUSTOM_DIR=/tmp_dir/
     volumes:
       - cache_vol:/tmp_dir/
-  watchtower:
-    contrainer_name: watchtower
-    image: containrrr/watchtower
-    volumes:
-      - /var/run/docker.sock:/var/run/docker.sock
-    command: --interval 30
-    depends_on:
-      - my_service
       
 volumes:
   cache_vol:
