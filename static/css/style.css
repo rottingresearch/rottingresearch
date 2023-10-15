@@ -310,14 +310,11 @@ input[type="file"]::file-selector-button {
 	border-bottom: 0.25rem solid #EF3B24;
 }
 
-<<<<<<< HEAD
 .analysis--wrapper {
 	margin:0 auto;
   padding: 0 2rem;
 }
 
-=======
->>>>>>> 0342104b9c6c1181811bc69f851acbf85d4a66e1
 .analysis--main h1 {
 	width: 88%;
 	max-width: 60rem;
@@ -345,11 +342,7 @@ input[type="file"]::file-selector-button {
   max-width: 60rem;
   gap: 1rem;
   flex-wrap: wrap;
-<<<<<<< HEAD
   margin: 1rem 1rem 1rem -0.5rem;
-=======
-  margin: 1rem;
->>>>>>> 0342104b9c6c1181811bc69f851acbf85d4a66e1
 }
 
 .subhead-lockup {
@@ -369,10 +362,7 @@ input[type="file"]::file-selector-button {
 #doc-info {
   width: 100%;
   max-width: 60rem;
-<<<<<<< HEAD
   margin-top: 1rem;
-=======
->>>>>>> 0342104b9c6c1181811bc69f851acbf85d4a66e1
 }
 
 #summary {
@@ -609,16 +599,10 @@ footer {
 	display: flex;
 	flex-direction: row;
 	flex-wrap: nowrap;
-<<<<<<< HEAD
 	/* justify-content: stretch; */
 	gap: 1rem;
 	/* margin: 0 -20px 1rem; */
 	/* padding: 0 10px 10px; */
-=======
-	justify-content: stretch;
-	margin: 0 -20px 1rem;
-	padding: 0 10px 10px;
->>>>>>> 0342104b9c6c1181811bc69f851acbf85d4a66e1
 	width: 100%;
 	max-width: 60rem;
 }
@@ -627,20 +611,13 @@ footer {
 	display: flex;
 	flex-direction: column;
 	justify-content: flex-start;
-<<<<<<< HEAD
 	margin: 0px;
-=======
-	margin: 0px 10px;
->>>>>>> 0342104b9c6c1181811bc69f851acbf85d4a66e1
 	border-radius: 8px;
 	text-align: center;
 	/* flex-basis: 33%; */
 	min-height: 150px;
   padding: 2rem 1rem;
-<<<<<<< HEAD
   width: calc(100%*0.6);
-=======
->>>>>>> 0342104b9c6c1181811bc69f851acbf85d4a66e1
 }
 
 .sum-box.success {
@@ -708,12 +685,8 @@ footer {
 	flex-wrap: wrap;
 	width:100%;
 	max-width:60rem;
-<<<<<<< HEAD
 	gap: 1rem;
   margin: 1rem 0 0 0;
-=======
-	gap: 2rem;
->>>>>>> 0342104b9c6c1181811bc69f851acbf85d4a66e1
 }
 
 #pdfs,
@@ -1141,10 +1114,7 @@ footer {
 	#doc-info {
 	  width: 100%;
 	  max-width: 60rem;
-<<<<<<< HEAD
 	  margin-top: 1rem;
-=======
->>>>>>> 0342104b9c6c1181811bc69f851acbf85d4a66e1
 	}
 
 	#summary {
