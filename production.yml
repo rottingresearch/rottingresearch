@@ -4,43 +4,42 @@ services:
   rr:
     container_name: rottingresearch
     image: rottingresearch/rottingresearch
+
     depends_on:
       - "worker"
     restart: unless-stopped
     ports:
-      - "80:8080"
-    deploy:
-      mode: replicated
-        replicas: 3
-      constraints: 
-        - node.labels.stack == rr  
-        - node.labels.stack == rr
+      - "9000:8080"
     environment:
       - FLASK_APP=app
       - APP_SECRET_KEY=change_me
+      - REDIS_URL=redis://GitHub:T4Vj!J7*P3WBDdMYSoA*@redis-11808.c17.us-east-1-4.ec2.cloud.redislabs.com:11808
       - TMP_CUSTOM_DIR=/tmp_dir/
-      - REDIS_URL=
     volumes:
       - app:/rr
       - cache_vol:/tmp_dir/
-      
+  
   worker:
     container_name: rr-worker
     image: rottingresearch/rottingresearch_worker
     restart: unless-stopped
-    deploy:
-      mode: replicated
-        replicas: 3
-      constraints: 
-        - node.labels.stack == rr  
-        - node.labels.stack == rr
     environment:
-      - REDIS_URL=
+      - REDIS_URL=redis://GitHub:T4Vj!J7*P3WBDdMYSoA*@redis-11808.c17.us-east-1-4.ec2.cloud.redislabs.com:11808
       - TMP_CUSTOM_DIR=/tmp_dir/
     volumes:
       - cache_vol:/tmp_dir/
       
+  watchtower:
+    containter_name: watchtower
+    image: containrrr/watchtower
+    volumes:
+      - /var/run/docker.sock:/var/run/docker.sock
+    command: --interval 30
+    depends_on:
+      - "rr"     
+
 volumes:
+
   cache_vol:
     driver_opts:
       type: tmpfs
