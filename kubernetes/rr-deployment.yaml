@@ -1,18 +1,17 @@
+
 apiVersion: apps/v1
 kind: Deployment
 metadata:
-  name: rr-deployment
+  name: rottingresearch
 spec:
   replicas: 3
   selector:
     matchLabels:
       app: rottingresearch
-      tier: rr
   template:
     metadata:
       labels:
         app: rottingresearch
-        tier: rr
     spec:
       containers:
       - name: rr
@@ -33,3 +32,10 @@ spec:
           mountPath: /rr
         - name: cache-volume
           mountPath: /tmp_dir/
+        volumes:
+          - name: app-volume
+            persistentVolumeClaim:
+            claimName: app-pvc
+          - name: cache-volume
+            persistentVolumeClaim:
+            claimName: cache-pvc
