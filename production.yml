@@ -30,7 +30,7 @@ services:
       - cache_vol:/tmp_dir/
       
   watchtower:
-    containter_name: watchtower
+    container_name: watchtower
     image: containrrr/watchtower
     volumes:
       - /var/run/docker.sock:/var/run/docker.sock
