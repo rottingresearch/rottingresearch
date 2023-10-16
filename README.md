@@ -37,6 +37,12 @@ Check out our website at https://rottingresearch.org.
 
   Windows: `setx APP_SECRET_KEY "random"`
 
+- Set ENV environment variable
+
+  Linux: `export ENV="DEV"`
+
+  Windows: `setx ENV "DEV"`
+
 - Run redis
 
   `redis-server`

@@ -34,8 +34,11 @@ app.config['CELERY'] = dict(
 )
 app.config['CAPTCHA_KEY_ID'] = os.environ.get('CAPTCHA_KEY_ID')
 app.config['CAPTCHA_SECRET_KEY'] = os.environ.get('CAPTCHA_SECRET_KEY')
+app.config['ENV'] = os.environ.get('ENV')
 celery_app = celery_init_app(app)
 app.extensions["celery"] = celery_app
+
+app.config['CAPTCHA_DISPLAY'] = "block" if app.config['ENV'] == "PROD" else "none"
 
 ALLOWED_EXTENSIONS = set(['pdf'])
 MAX_THREADS_DEFAULT = 7
@@ -47,10 +50,11 @@ def allowed_file(filename):
 
 @app.route('/', methods=['GET'])
 def upload_form():
-    captcha_key = os.environ.get('CAPTCHA_KEY_ID')
+    captcha_key = app.config['CAPTCHA_KEY_ID']
+    captcha_display = app.config['CAPTCHA_DISPLAY']
     heroku_flg = current_app.config["HEROKU_FLG"]
     dd = 0
-    return render_template('upload.html', captcha=captcha_key, flash='', heroku_flg=heroku_flg)
+    return render_template('upload.html', captcha=captcha_key, captcha_display=captcha_display, flash='', heroku_flg=heroku_flg)
 
 
 @app.route('/about', methods=['GET'])
@@ -96,11 +100,12 @@ def contribute():
 @app.route('/', methods=['POST'])
 def upload_pdf():
     captcha_key = app.config['CAPTCHA_KEY_ID']
+    captcha_display = app.config['CAPTCHA_DISPLAY']
     if 'file' not in request.files:
-        return render_template('upload.html', captcha=captcha_key, flash='')
+        return render_template('upload.html', captcha=captcha_key, captcha_display=captcha_display, flash='')
     file = request.files['file']
     if file.filename == '':
-        return render_template('upload.html', captcha=captcha_key, flash='none')
+        return render_template('upload.html', captcha=captcha_key, captcha_display=captcha_display, flash='none')
     if file and allowed_file(file.filename):
         isCaptchaValid = validateCaptcha(request.form['g-recaptcha-response'])
         if isCaptchaValid:
@@ -120,9 +125,9 @@ def upload_pdf():
                                    filename=filename,
                                    task_id=task_id)
         else:
-            return render_template('upload.html', captcha=captcha_key, flash='captcha')
+            return render_template('upload.html', captcha=captcha_key, captcha_display=captcha_display, flash='captcha')
     else:
-        return render_template('upload.html', captcha=captcha_key, flash='pdf')
+        return render_template('upload.html', captcha=captcha_key, captcha_display=captcha_display, flash='pdf')
 
 
 def pdfdata(path):
@@ -171,6 +176,8 @@ def task_result(id: str) -> dict[str, object]:
 
 
 def validateCaptcha(response: str):
+    if app.config['ENV'] == "DEV":
+        return True
     res = requests.post(
         'https://www.google.com/recaptcha/api/siteverify?secret='+app.config['CAPTCHA_SECRET_KEY']+'&response='+response).json()
     return res['success']
