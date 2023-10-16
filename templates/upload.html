@@ -106,7 +106,7 @@
                             <button id="submit-button" type="submit" disabled="disabled">Check for Rot</button>
                         </p>
                     </dl>
-                    <div class="g-recaptcha" data-sitekey="{{ captcha }}" data-action="LOGIN"></div>
+                    <div style="display:{{captcha_display}};" class="g-recaptcha" data-sitekey="{{ captcha }}" data-action="LOGIN"></div>
                 </form>
             </div>
         </main>
@@ -163,7 +163,7 @@
 			if (inv.localeCompare('pdf') == 0) {
 				document.getElementById("snackbar").innerHTML = "The link or file must be a PDF!";
 				showSnackbar();
-			} elif(inv.localeCompare('captcha') == 0) {
+			} else if(inv.localeCompare('captcha') == 0) {
                 document.getElementById("snackbar").innerHTML = "reCAPTCHA verification failed! Please try again.";
 				showSnackbar();
             }   
