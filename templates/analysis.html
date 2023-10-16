@@ -36,10 +36,7 @@
     />
 
     <title>Rotting Research</title>
-<<<<<<< Updated upstream
-=======
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
->>>>>>> Stashed changes
     <script src="https://cdnjs.cloudflare.com/ajax/libs/html2pdf.js/0.10.1/html2pdf.bundle.min.js"></script>
     <script>
       function toggleMobileNavigation() {
@@ -71,10 +68,7 @@
           document.querySelector(".accordion-title").click();
         }
         let pdf = document.querySelector(".analysis--main");
-<<<<<<< Updated upstream
-=======
         $("#resourceDownload").removeAttr("href");
->>>>>>> Stashed changes
         const options = {
           filename: "report.pdf",
           image: { type: "jpeg", quality: 1.0 },
@@ -88,9 +82,6 @@
             orientation: "portrait",
           },
         };
-<<<<<<< Updated upstream
-        html2pdf().set(options).from(pdf).save();
-=======
         html2pdf()
           .set(options)
           .from(pdf)
@@ -103,7 +94,6 @@
               console.log("Download failed");
             }
           );
->>>>>>> Stashed changes
       }
     </script>
   </head>
@@ -193,12 +183,6 @@
               <div class="pdf-filename">{{filename}}</div>
               <div id="taskid" data-taskid="{{task_id}}"></div>
             </div>
-<<<<<<< Updated upstream
-            <div class="downloads">
-              <div class="download-pdf">
-                <a href="{{url_for('downloadpdf')}}" onclick="LoaderFunction()">
-                  <div><i class="fa fa-download"></i></div>
-=======
             <div
               data-html2canvas-ignore="true"
               id="downloadButtons"
@@ -213,7 +197,6 @@
                   <div>
                     <i class="fa fa-download"></i>
                   </div>
->>>>>>> Stashed changes
                   <div style="text-align: left">
                     Download Reference&nbsp;PDFs
                   </div>
@@ -221,13 +204,9 @@
               </div>
               <div class="download-report">
                 <a onclick="downloadReport();">
-<<<<<<< Updated upstream
-                  <div><i class="fa fa-download"></i></div>
-=======
                   <div>
                     <i class="fa fa-download"></i>
                   </div>
->>>>>>> Stashed changes
                   <div style="text-align: left">Download Report</div>
                 </a>
               </div>
@@ -322,9 +301,5 @@
       </footer>-->
     </div>
   </body>
-<<<<<<< Updated upstream
-  <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
-=======
->>>>>>> Stashed changes
   <script src="{{ url_for('static', filename= 'scripts/analysis2.js') }}"></script>
 </html>
