@@ -14,9 +14,9 @@ Check out our website at https://rottingresearch.org.
 
 # Installation
 
-- Local development works best with Python 3.9+ versions.
+- Local development works best with Python 3.10+ versions.
 
-- Make sure that you have python and the latest version of pip installed.
+- Make sure you have Python and the latest version of pip installed.
 
   `python3 -m pip install --upgrade pip`
 
@@ -90,8 +90,8 @@ The App is hosted at [https://rottingresearch.org/](https://rottingresearch.org/
 
 # Code of Conduct
 
-For our code of conduct please visit our [Code of Conduct page](https://github.com/rottingresearch/rottingresearch/blob/main/code_of_conduct.md).
+For our code of conduct, please visit our [Code of Conduct page](https://github.com/rottingresearch/rottingresearch/blob/main/code_of_conduct.md).
 
 # License
 
-This program is licensed with an [MIT License](https://github.com/rottingresearch/linkrot/blob/main/LICENSE).
+This program is licensed with a [GPLv3 License]([https://github.com/rottingresearch/rottingresearch/blob/main/LICENSE).
