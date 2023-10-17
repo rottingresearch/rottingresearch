@@ -94,4 +94,4 @@ For our code of conduct, please visit our [Code of Conduct page](https://github.
 
 # License
 
-This program is licensed with a [GPLv3 License]([https://github.com/rottingresearch/rottingresearch/blob/main/LICENSE).
+This program is licensed with a [GPLv3 License](https://github.com/rottingresearch/rottingresearch/blob/main/LICENSE).
