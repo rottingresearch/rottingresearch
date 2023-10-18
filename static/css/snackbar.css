@@ -14,7 +14,7 @@ Original Tutorial: https://www.w3schools.com/howto/howto_js_snackbar.asp
     padding: 16px;
     position: fixed;
     z-index: 0;
-    right: 30px;
+    right: 1rem;
     /* font-size: 17px; */
 }
 
@@ -22,6 +22,7 @@ Original Tutorial: https://www.w3schools.com/howto/howto_js_snackbar.asp
     visibility: visible;
     -webkit-animation: fadein 0.5s, fadeout 0.5s 2.5s;
     animation: fadein 0.5s, fadeout 0.5s 2.5s;
+    z-index: 100;
 }
 
 @-webkit-keyframes fadein {
