@@ -1,6 +1,6 @@
 requests==2.31.0
 Flask==3.0.0
-Werkzeug==3.0.0
+Werkzeug==3.0.1
 gunicorn==21.2.0
 linkrot==4.1
 redis==5.0.1
