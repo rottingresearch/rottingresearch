@@ -56,6 +56,13 @@ def upload_form():
     dd = 0
     return render_template('upload.html', captcha=captcha_key, captcha_display=captcha_display, flash='', heroku_flg=heroku_flg)
 
+@app.errorhandler(404) 
+  
+# inbuilt function which takes error as parameter 
+def not_found(e): 
+  
+# defining function 
+  return render_template("404.html") 
 
 @app.route('/about', methods=['GET'])
 def about():
