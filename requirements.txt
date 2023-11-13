@@ -4,5 +4,5 @@ Werkzeug==3.0.1
 gunicorn==21.2.0
 linkrot==4.1
 redis==5.0.1
-celery==5.3.4
+celery==5.3.5
 google-cloud-recaptcha-enterprise==1.13.0
