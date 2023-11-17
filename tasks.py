@@ -40,14 +40,12 @@ def sort_ref(ref_dict):
                   )
     if ref_dict['reftype'] == 'arxiv':
         url = "http://arxiv.org/abs/"+ref_dict['ref']
-        url = sanitize_url(url)
         result['arxiv'].append(url)
     elif ref_dict['reftype'] == 'doi':
         url = "http://doi.org/"+ref_dict['ref']
-        url = sanitize_url(url)
         result['doi'].append(url)
-
-    url = sanitize_url(ref_dict['ref'])
+    else:
+        url = ref_dict['ref']
     try:
         stat = str(get_status_code(url))
     except Exception as ex:
