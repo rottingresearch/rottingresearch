@@ -1173,7 +1173,9 @@ footer {
 }
  /* Tooltip container */
 .tooltip {
-  position: relative;
+	position: relative;
+	margin-left: auto;
+	margin-top: auto;
   display: inline-block;
   border-bottom: 1px dotted black; /* If you want dots under the hoverable text */
 }
@@ -1181,7 +1183,7 @@ footer {
 /* Tooltip text */
 .tooltip .tooltiptext {
   visibility: hidden;
-  width: 120px;
+
   background-color: #555;
   color: #fff;
   text-align: center;
