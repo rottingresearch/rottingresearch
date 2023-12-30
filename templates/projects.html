@@ -22,18 +22,9 @@
       href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500&display=swap"
       rel="stylesheet"
     />
-
-    <!--<link
-      rel="stylesheet"
-      href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css"
-    />-->
-
      <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/fork-awesome@1.2.0/css/fork-awesome.min.css" integrity="sha256-XoaMnoYC5TH6/+ihMEnospgm0J1PM/nioxbOUdnM8HY=" crossorigin="anonymous">
-
-    <link
-      rel="stylesheet"
-      href="{{ url_for('static', filename= 'css/style.css') }}"
-    />
+	<link rel="stylesheet" href="../static/css/style.css" />
+    <link rel="stylesheet" href="../static/css/snackbar.css" />
     <title>Rotting Research</title>
     <script>
       function toggleMobileNavigation() {
@@ -47,7 +38,7 @@
       }
     </script>
   </head>
-  <body class='alt'>
+  <body class="alt">
     <div class="mobile-navigation" id="mobile-navigation">
       <div class="mobile-navigation--header">
 
@@ -95,11 +86,12 @@
       <main class="about--main">
         <h1 class="important">Projects</h1>
       <div class="about--content">
-        <a href="https://github.com/rottingresearch"><img src="../static/img/branding/app-logo/red/rotting-research-sans-powered-by-red.svg"></a>
-				  <p>Rotting Research currently has two projects:</p>
+      		<p>Rotting Research currently has two projects:</p>
+		  <a href="https://github.com/rottingresearch/rottingresearch"><img src="../static/img/branding/app-logo/red/rotting-research-sans-powered-by-red.svg" alt="rottingresearch logo"></a>
           <p> The first project is Rotting Research itself. Rotting Research was created to help researchers and scholars check their publications for symptoms of link rot and 
             educate them on ways to mitigate the problem.</p>
-          </p>
+		  <br>
+		  <a href="https://github.com/rottingresearch/linkrot"><img src="../static/img/branding/linkrot/linkrot-red.png" alt="linkrot logo" width="300"></a>
           <p>The second project is linkrot. Linkrot is a Python library that allows us to mine PDFs for links, track the types of links, and check whether they are active. Linkrot is the launchpad for Rotting Research. </p>
 		  </div>
       </main>
@@ -113,7 +105,7 @@
             <i class="fa fa-github"></i>
           </a>
         </div>
-      </footer>
+      </footer>-->
     </div>
   </body>
 </html>

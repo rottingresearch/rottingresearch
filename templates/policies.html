@@ -13,18 +13,9 @@
       href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500&display=swap"
       rel="stylesheet"
     />
-
-    <!--<link
-      rel="stylesheet"
-      href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css"
-    />-->
-
      <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/fork-awesome@1.2.0/css/fork-awesome.min.css" integrity="sha256-XoaMnoYC5TH6/+ihMEnospgm0J1PM/nioxbOUdnM8HY=" crossorigin="anonymous">
-
-    <link
-      rel="stylesheet"
-      href="{{ url_for('static', filename= 'css/style.css') }}"
-    />
+	<link rel="stylesheet" href="../static/css/style.css" />
+    <link rel="stylesheet" href="../static/css/snackbar.css" />
     <title>Rotting Research</title>
     <script>
       function toggleMobileNavigation() {
@@ -60,7 +51,7 @@
     <div id="container">
       <header class="alt">
         <nav class="navigation">
-          <a href="{{ url_for('upload_form')}}" class="navigation--item--alt"><img src="../static/img/branding/app-logo/white/rotting-research-sans-powered-by-white.svg"></a>
+          <a href="{{ url_for('upload_form')}}" class="navigation--item--alt"><img src="../static/img/branding/app-logo/white/rotting-research-sans-powered-by-white.svg" alt="rottingresearch logo"></a>
           <a href="{{ url_for('upload_form')}}" class="navigation--item--alt">Home</a>
           <a href="{{ url_for('projects')}}" class="navigation--item--alt ">Projects</a>
           <a href="{{ url_for('research')}}" class="navigation--item--alt ">Research</a>
@@ -121,7 +112,7 @@
   
   <h2>Privacy Policies</h2>
   
-  <P>You may consult this list to find the Privacy Policy for each of the advertising partners of RottingResearch.</p>
+  <p>You may consult this list to find the Privacy Policy for each of the advertising partners of RottingResearch.</p>
   
   <p>Third-party ad servers or ad networks uses technologies like cookies, JavaScript, or Web Beacons that are used in their respective advertisements and links that appear on RottingResearch, which are sent directly to users' browser. They automatically receive your IP address when this occurs. These technologies are used to measure the effectiveness of their advertising campaigns and/or to personalize the advertising content that you see on websites that you visit.</p>
   

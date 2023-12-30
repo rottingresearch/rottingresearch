@@ -29,12 +29,8 @@
       integrity="sha256-XoaMnoYC5TH6/+ihMEnospgm0J1PM/nioxbOUdnM8HY="
       crossorigin="anonymous"
     />
-
-    <link
-      rel="stylesheet"
-      href="{{ url_for('static', filename= 'css/style.css') }}"
-    />
-
+	<link rel="stylesheet" href="../static/css/style.css" />
+    <link rel="stylesheet" href="../static/css/snackbar.css" />
     <title>Rotting Research</title>
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js" integrity="sha384-ZvpUoO/+PpLXR1lu4jmpXWu80pZlYUAfxl5NsBMWOEPSjUn/6Z/hRTt8+pR6L4N2" crossorigin="anonymous"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/html2pdf.js/0.10.1/html2pdf.bundle.min.js" integrity="sha384-Yv5O+t3uE3hunW8uyrbpPW3iw6/5/Y7HitWJBLgqfMoA36NogMmy+8wWZMpn3HWc" crossorigin="anonymous"></script>
@@ -130,8 +126,7 @@
         <nav class="navigation">
           <a href="{{ url_for('upload_form')}}" class="navigation--item--alt"
             ><img
-              src="../static/img/branding/app-logo/white/rotting-research-sans-powered-by-white.svg"
-          /></a>
+              src="../static/img/branding/app-logo/white/rotting-research-sans-powered-by-white.svg" alt="rottingresearch logo" /></a>
           <a href="{{ url_for('upload_form')}}" class="navigation--item--alt"
             >Home</a
           >
