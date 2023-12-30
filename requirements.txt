@@ -2,7 +2,7 @@ requests==2.31.0
 Flask==3.0.0
 Werkzeug==3.0.1
 gunicorn==21.2.0
-linkrot==4.1
+linkrot==4.2
 redis==5.0.1
 celery==5.3.6
 google-cloud-recaptcha-enterprise==1.16.0
