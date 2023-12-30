@@ -1216,4 +1216,6 @@ footer {
 .tooltip:hover .tooltiptext {
   visibility: visible;
   opacity: 1;
+  background-color: #ef3b24;
+  color: #fff;
 } 
