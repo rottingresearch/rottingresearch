@@ -2,8 +2,13 @@ version: '3'
 
 services:
   rr:
-    container_name: rottingresearch
-    image: rottingresearch/rottingresearch
+    build:
+      context: .
+      dockerfile: Dockerfile
+    develop:
+      watch:
+        - action: rebuild
+          path: .
     depends_on:
       - "worker"
     restart: unless-stopped
@@ -12,6 +17,7 @@ services:
     environment:
       - FLASK_APP=app
       - APP_SECRET_KEY=change_me
+      - ENV=DEV
       - TMP_CUSTOM_DIR=/tmp_dir/
       - REDIS_URL=redis://redis:6379
     volumes:
@@ -27,19 +33,19 @@ services:
       - "redis:/data"
       
   worker:
-    container_name: rr-worker
-    image: rottingresearch/rottingresearch_worker
+    build:
+      context: .
+      dockerfile: Worker-Dockerfile
+    develop:
+      watch:
+        - action: rebuild
+          path: .
     restart: unless-stopped
     environment:
       - REDIS_URL=redis://redis:6379
       - TMP_CUSTOM_DIR=/tmp_dir/
     volumes:
       - cache_vol:/tmp_dir/
-
-  NGINX:
-    container_name: nginx
-    image: rottingresearch/nginx:latest
-    restart: unless-stopped
 
 volumes:
   redis: {}

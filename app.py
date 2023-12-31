@@ -62,7 +62,7 @@ def upload_form():
 def not_found(e): 
   
 # defining function 
-  return render_template("404.html") 
+    return render_template("404.html") 
 
 @app.route('/about', methods=['GET'])
 def about():
