@@ -801,11 +801,13 @@ footer {
 .download-report:hover {
 	background-color: #ef3b24;
 	color: #fff;
+	cursor: pointer;
 }
 
 .download-pdf a:hover,
 .download-report a:hover {
 	color: #fff;
+	cursor: pointer;
 }
 
 /**
