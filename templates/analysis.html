@@ -68,9 +68,9 @@
         const options = {
           filename: "rot-report.pdf",
           image: { type: "jpeg", quality: 1.0 },
-          html2canvas: { scale: 2 },
+          html2canvas: { scale: window.devicePixelRatio },
           pagebreak: {
-            before: ["#doc-info", ".arxiv-doi-container"],
+            after: ["#summary", "#pdfs", "#urls", "#arxiv", "#doi", "#doc-info"],
           },
           jsPDF: {
             unit: "in",
