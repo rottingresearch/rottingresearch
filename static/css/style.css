@@ -608,6 +608,7 @@ footer {
 }
 
 .sum-box {
+	position: relative;
 	display: flex;
 	flex-direction: column;
 	justify-content: flex-start;
@@ -1171,13 +1172,12 @@ footer {
 		/* margin: 5px 10px; */
 	}
 }
- /* Tooltip container */
+/* Tooltip container */
 .tooltip {
-	position: relative;
-	margin-left: auto;
-	margin-top: auto;
-  display: inline-block;
-  border-bottom: 1px dotted black; /* If you want dots under the hoverable text */
+	position: absolute;
+	max-width: 1rem;
+	top: 0.25em;
+	right: 0.5em;  
 }
 
 /* Tooltip text */
@@ -1189,6 +1189,7 @@ footer {
   text-align: center;
   padding: 5px 0;
   border-radius: 6px;
+  min-width: 20rem;
 
   /* Position the tooltip text */
   position: absolute;
@@ -1208,10 +1209,9 @@ footer {
   position: absolute;
   top: 100%;
   left: 50%;
-  margin-left: -5px;
   border-width: 5px;
   border-style: solid;
-  border-color: #555 transparent transparent transparent;
+  border-color: #ef3b24 transparent transparent transparent;
 }
 
 /* Show the tooltip text when you mouse over the tooltip container */
@@ -1220,4 +1220,10 @@ footer {
   opacity: 1;
   background-color: #ef3b24;
   color: #fff;
-} 
+  margin-left: -10.3rem;
+  margin-bottom: 0.5rem;
+}
+
+.tooltip:hover, .tooltiptext:hover {
+	cursor: help;
+}
