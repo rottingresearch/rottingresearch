@@ -59,6 +59,8 @@ def sort_ref(ref_dict):
         elif host and host.endswith("arxiv.org"):
             result['arxiv'].append(url)
         else:
+            if not urlparse(url).scheme:
+                url = 'http://' + url
             result['urls'].append(url)
     elif ref_dict['reftype'] == 'pdf':
         result['pdfs'].append(url)
