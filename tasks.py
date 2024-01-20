@@ -39,10 +39,10 @@ def sort_ref(ref_dict):
                     check = []
                   )
     if ref_dict['reftype'] == 'arxiv':
-        url = "http://arxiv.org/abs/"+ref_dict['ref']
+        url = "https://arxiv.org/abs/"+ref_dict['ref']
         result['arxiv'].append(url)
     elif ref_dict['reftype'] == 'doi':
-        url = "http://doi.org/"+ref_dict['ref']
+        url = "https://doi.org/"+ref_dict['ref']
         result['doi'].append(url)
     else:
         url = ref_dict['ref']
@@ -60,7 +60,7 @@ def sort_ref(ref_dict):
             result['arxiv'].append(url)
         else:
             if not urlparse(url).scheme:
-                url = 'http://' + url
+                url = 'https://' + url
             result['urls'].append(url)
     elif ref_dict['reftype'] == 'pdf':
         result['pdfs'].append(url)
