@@ -22,16 +22,9 @@
       href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500&display=swap"
       rel="stylesheet"
     />
-
-    <link
-      rel="stylesheet"
-      href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css"
-    />
-
-    <link
-      rel="stylesheet"
-      href="{{ url_for('static', filename= 'css/style.css') }}"
-    />
+     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/fork-awesome@1.2.0/css/fork-awesome.min.css" integrity="sha256-XoaMnoYC5TH6/+ihMEnospgm0J1PM/nioxbOUdnM8HY=" crossorigin="anonymous">
+	<link rel="stylesheet" href="../static/css/style.css" />
+    <link rel="stylesheet" href="../static/css/snackbar.css" />
     <title>Rotting Research</title>
     <script>
       function toggleMobileNavigation() {
@@ -45,7 +38,7 @@
       }
     </script>
   </head>
-  <body>
+  <body class="alt">
     <div class="mobile-navigation" id="mobile-navigation">
       <div class="mobile-navigation--header">
 
@@ -60,22 +53,31 @@
       <a href="{{ url_for('projects')}}" class="mobile-navigation--item">Projects</a>
       <a href="{{ url_for('research')}}" class="mobile-navigation--item mobile-navigation--item__active">Research</a>
       <a href="{{ url_for('practices')}}" class="mobile-navigation--item">Best Practices</a>
-      <a href="{{ url_for('story')}}" class="mobile-navigation--item">Our Story</a>
+      <a href="{{ url_for('contribute')}}" class="mobile-navigation--item">Contribute</a>
       <a href="{{ url_for('about')}}" class="mobile-navigation--item">About</a>
     </div>
     <div id="container">
-      <header>
+      <header class="alt">
 
         <nav class="navigation">
-          <a href="{{ url_for('upload_form')}}" class="navigation--item">Home</a>
-          <a href="{{ url_for('projects')}}" class="navigation--item ">Projects</a>
-          <a href="{{ url_for('research')}}" class="navigation--item navigation--item__active">Research</a>
-          <a href="{{ url_for('practices')}}" class="navigation--item ">Best Practices</a>
-          <a href="{{ url_for('story')}}" class="navigation--item ">Our Story</a>
-          <a href="{{ url_for('about')}}" class="navigation--item ">About</a>
+          <a href="{{ url_for('upload_form')}}" class="navigation--item--alt"><img src="../static/img/branding/app-logo/white/rotting-research-sans-powered-by-white.svg"></a>
+          <a href="{{ url_for('upload_form')}}" class="navigation--item--alt">Home</a>
+          <a href="{{ url_for('projects')}}" class="navigation--item--alt ">Projects</a>
+          <a href="{{ url_for('research')}}" class="navigation--item--alt navigation--item--alt__active">Research</a>
+          <a href="{{ url_for('practices')}}" class="navigation--item--alt ">Best Practices</a>
+          <a href="{{ url_for('contribute')}}" class="navigation--item--alt ">Contribute</a>
+          <a href="{{ url_for('about')}}" class="navigation--item--alt ">About</a>
         </nav>
+         <div class="social">
+            <a href="https://github.com/rottingresearch/rottingresearch" target="_blank" class="socials--item--alt">
+                <i class="fa fa-github"></i>
+            </a>
+            <a href="https://opencollective.com/rottingresearch" target="_blank" class="socials--item--alt">
+                <i class="fa fa-open-collective"></i>
+            </a>              
+        </div>
 
-        <div class="menu--button" onclick="toggleMobileNavigation()">
+        <div class="menu--button--alt" onclick="toggleMobileNavigation()">
           <button>
             <i class="fa fa-reorder"></i>
           </button>
@@ -83,18 +85,28 @@
       </header>
       <main class="about--main">
         <h1 class="important">Research</h1>
-      <div class="about--content">
-				  <p>Rotting Research was created as a result of a dissertation about the effects of link rot on scholarly publications.
-            It began as a command-line tool called Linkrot, which still powers the backend of this project. Now, Rotting Research is a growing web
-            app that allows users to upload PDFs and receive a report on the links contained within. The report includes the number of links, the links
-            that are still valid, as well as various commonly-used persistent links.
-          </p>
-          <p>The mission of Rotting Research is to help researchers and scholars check their publications for symptoms of link rot and 
-            educate them on ways to mitigate the problem.</p>
+        <div class="about--content">
+        <h2>Rotting Research - The Study</h2>
+        <p>Miller, M. A. (2022). The Putrefaction of Digital Scholarship: How Link Rot Impacts the Integrity of Scholarly Publishing. https://perma.cc/VTG5-9KAH</p>
+ 
+<h2>Linkrot</h2>
+        <p>—&nbsp;Król, K., &amp; Zdonek, D. (2020). Peculiarity of the bit rot and link rot phenomena. Global Knowledge, Memory and Communication, 69(1/2), 20–37. http://dx.doi.org/10.1108/GKMC-06-2019-0067 </p>
+        <p>— Robinson, D. C., Hand, J. A., Madsen, M. B., &amp; Mckelvey, K. R. (2018). The Dat Project, an open and decentralized research data tool. Scientific Data, 5, 180221. http://dx.doi.org/10.1038/sdata.2018.221 &nbsp;</p>
+        <p>— Gerow, A., Hu, Y., Boyd-Graber, J., Blei, D. M., &amp; Evans, J. A. (2018). Measuring discursive influence across scholarship. Proceedings of the National Academy of Sciences of the United States of America, 115(13), 3308–3313. &nbsp;</p>
 
-		  </div>
+<h2>Persistent Identifiers</h2>
+<p>—&nbsp;Robinson, D. C., Hand, J. A., Madsen, M. B., &amp; Mckelvey, K. R. (2018). The Dat Project, an open and decentralized research data tool. Scientific Data, 5, 180221. http://dx.doi.org/10.1038/sdata.2018.221 </p>
+<p>—&nbsp;Klein, M., &amp; Balakireva, L. (2021). An extended analysis of the persistence of persistent identifiers of the scholarly web. International Journal on Digital Libraries. https://doi.org/10.1007/s00799-021-00315-w </p>
+<p>—&nbsp;Homenda, N. (2021). Persistent URLs and Citations Offered for Digital Objects by Digital Libraries. Information Technology and Libraries (Online), 40(2), 1–12. http://dx.doi.org/10.6017/ital.v40i2.12987 </p>
+<p>—&nbsp;Callister, P. D. (2021). Perma.cc and Web Archival Dissonance with Copyright Law. Legal Reference Services Quarterly, 40(1), 1–57. https://doi.org/10.1080/0270319X.2021.1886785</p>
+<h2>Citation Indexes</h2>
+<p>—&nbsp;Hassan, N. R., &amp; Serenko, A. (2019). Patterns of citations for the growth of knowledge: A Foucauldian perspective. Journal of Documentation, 75(3), 593–611. https://doi.org/10.1108/JD-08-2018-0125 </p>
+<p>—&nbsp;Rivkin, A. (2020). Manuscript Referencing Errors and Their Impact on Shaping Current Evidence. American Journal of Pharmaceutical Education, 84(7), 877–880. https://doi.org/10.5688/ajpe7846 </p>
+<p>—&nbsp;Aksnes, D. W., Langfeldt, L., &amp; Wouters, P. (2019). Citations, Citation Indicators, and Research Quality: An Overview of Basic Concepts and Theories. SAGE Open, 9(1), 2158244019829575. https://doi.org/10.1177/2158244019829575</p>
+  
+</div>
       </main>
-      <footer>
+      <!--<footer>
         <div class="social">
           <a
             href="https://github.com/marshalmiller/rottingresearch"
@@ -104,7 +116,7 @@
             <i class="fa fa-github"></i>
           </a>
         </div>
-      </footer>
+      </footer>-->
     </div>
   </body>
 </html>

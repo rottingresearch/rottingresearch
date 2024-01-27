@@ -1,0 +1,107 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8" />
+    <meta
+      name="viewport"
+      content="width=device-width, initial-scale=1, maximum-scale=10.0, minimum-scale=1, user-scalable=yes"
+    />
+    <link rel="icon" href="../static/img/branding/social assets/twitter/profile image/rottingresearch-twitter-profile-image-red.jpg" />
+
+    <link rel="preconnect" href="https://fonts.gstatic.com" />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500&display=swap"
+      rel="stylesheet"
+    />
+     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/fork-awesome@1.2.0/css/fork-awesome.min.css" integrity="sha256-XoaMnoYC5TH6/+ihMEnospgm0J1PM/nioxbOUdnM8HY=" crossorigin="anonymous">
+	<link rel="stylesheet" href="../static/css/style.css" />
+    <link rel="stylesheet" href="../static/css/snackbar.css" />
+    <title>Rotting Research</title>
+    <script>
+      function toggleMobileNavigation() {
+        var element = document.getElementById("mobile-navigation");
+
+        if (element.classList.contains("mobile-navigation__open")) {
+          element.classList.remove("mobile-navigation__open");
+        } else {
+          element.classList.add("mobile-navigation__open");
+        }
+      }
+    </script>
+  </head>
+  <body class="alt">
+    <div class="mobile-navigation" id="mobile-navigation">
+      <div class="mobile-navigation--header">
+
+        <div class="close-button" onclick="toggleMobileNavigation()">
+          <button>
+            <i class="fa fa-close"></i>
+          </button>
+        </div>
+      </div>
+
+      <a href="{{ url_for('upload_form')}}" class="mobile-navigation--item">Home</a>
+      <a href="{{ url_for('projects')}}" class="mobile-navigation--item">Projects</a>
+      <a href="{{ url_for('research')}}" class="mobile-navigation--item">Research</a>
+      <a href="{{ url_for('practices')}}" class="mobile-navigation--item">Best Practices</a>
+      <a href="{{ url_for('contribute')}}" class="mobile-navigation--item mobile-navigation--item__active">Contribute</a>
+      <a href="{{ url_for('about')}}" class="mobile-navigation--item">About</a>
+
+    </div>
+    <div id="container">
+      <header class="alt">
+
+        <nav class="navigation">
+          <a href="{{ url_for('upload_form')}}" class="navigation--item--alt"><img src="../static/img/branding/app-logo/white/rotting-research-sans-powered-by-white.svg" alt="rottingresearch logo"></a>
+          <a href="{{ url_for('upload_form')}}" class="navigation--item--alt">Home</a>
+          <a href="{{ url_for('projects')}}" class="navigation--item--alt ">Projects</a>
+          <a href="{{ url_for('research')}}" class="navigation--item--alt ">Research</a>
+          <a href="{{ url_for('practices')}}" class="navigation--item--alt ">Best Practices</a>
+          <a href="{{ url_for('contribute')}}" class="navigation--item--alt navigation--item--alt__active">Contribute</a>
+          <a href="{{ url_for('about')}}" class="navigation--item--alt ">About</a>
+        </nav>
+         <div class="social">
+            <a href="https://github.com/rottingresearch/rottingresearch" target="_blank" class="socials--item--alt">
+                <i class="fa fa-github"></i>
+            </a>
+            <a href="https://opencollective.com/rottingresearch" target="_blank" class="socials--item--alt">
+                <i class="fa fa-open-collective"></i>
+            </a>              
+        </div>
+
+        <div class="menu--button--alt" onclick="toggleMobileNavigation()">
+          <button>
+            <i class="fa fa-reorder"></i>
+          </button>
+        </div>
+      </header>
+      <main class="about--main">
+  <h1 class="important">How to Contribute</h1>
+      <div class="about--content">
+<!-- Privacy Policy -->
+  <h2>Contribute  Code</h2>
+  <p>Rotting Research thrives on community collaboration as an open-source initiative. Any contributions you make in terms of documentation or code are highly valued. Your input not only nurtures the growth of our project but also ensures its stability. We are committed to expanding features and incorporating new technologies for years to come. Explore our <a href="{{ url_for('projects')}}">projects</a> page to access our repositories and discover how you can play a vital role in our ongoing development.</p>
+  <h2>Contribute Ideas</h2>
+  <p>At Rotting Research, we are committed to maintaining relevance and staying at the forefront of innovation. This involves welcoming new ideas, introducing innovative features, and exploring cutting-edge research. Your valuable input matters, so please don't hesitate to share your ideas or provide feedback here: &nbsp;<a href="https://github.com/rottingresearch/rottingresearch/issues/new/choose">https://github.com/rottingresearch/rottingresearch/issues/new/choose </a>.</p>
+  <h2>Contribute Financially</h2>
+  <p>Like any project, we do have expenses. There are regular expenses like hosting fees, Redis subscription, Cloudflare for security, and many others. We are members of the Open Source Collective, which allows us to accept donations, while remaining fully-transparent regarding our financials. Feel free to make a one-time donation or a reocurring one. Every bit helps keep us running. To make a donation, take a look at our funding page at <a href="https://opencollective.com/rottingresearch">https://opencollective.com/rottingresearch </a>.</p>
+  <h2>Contributors</h2>
+  <p><a href="https://github.com/rottingresearch/rottingresearch/graphs/contributors">
+  <img class="oc_responsive" src="https://opencollective.com/rottingresearch/contributors.svg?width=640&button=false" alt="open collective logo">
+</a></p>
+      </div>
+      </main>
+      <!--<footer>
+        <div class="social">
+          <a
+            href="https://github.com/marshalmiller/linkrot"
+            target="_blank"
+            class="socials--item"
+          >
+            <i class="fa fa-github"></i>
+          </a>
+        </div>
+      </footer>-->
+    </div>
+  </body>
+</html>

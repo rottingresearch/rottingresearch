@@ -11,9 +11,11 @@ from tasks import pdfdata_task
 from celery.result import AsyncResult
 import utilites
 from flask import current_app
+import requests
+from google.cloud import recaptchaenterprise_v1
+from google.cloud.recaptchaenterprise_v1 import Assessment
 
 app = Flask(__name__)
-
 app.config['UPLOAD_FOLDER'] = utilites.get_tmp_folder()  # '/tmp/'
 app.secret_key = os.environ.get('APP_SECRET_KEY')
 if os.getenv("HEROKU_FLG", None):
@@ -30,8 +32,13 @@ app.config['CELERY'] = dict(
     result_backend=backend,
     task_ignore_result=False,
 )
+app.config['CAPTCHA_KEY_ID'] = os.environ.get('CAPTCHA_KEY_ID')
+app.config['CAPTCHA_SECRET_KEY'] = os.environ.get('CAPTCHA_SECRET_KEY')
+app.config['ENV'] = os.environ.get('ENV')
 celery_app = celery_init_app(app)
 app.extensions["celery"] = celery_app
+
+app.config['CAPTCHA_DISPLAY'] = "block" if app.config['ENV'] == "PROD" else "none"
 
 ALLOWED_EXTENSIONS = set(['pdf'])
 MAX_THREADS_DEFAULT = 7
@@ -43,61 +50,91 @@ def allowed_file(filename):
 
 @app.route('/', methods=['GET'])
 def upload_form():
+    captcha_key = app.config['CAPTCHA_KEY_ID']
+    captcha_display = app.config['CAPTCHA_DISPLAY']
     heroku_flg = current_app.config["HEROKU_FLG"]
     dd = 0
-    return render_template('upload.html', flash='', heroku_flg=heroku_flg)
+    return render_template('upload.html', captcha=captcha_key, captcha_display=captcha_display, flash='', heroku_flg=heroku_flg)
 
+@app.errorhandler(404) 
+  
+# inbuilt function which takes error as parameter 
+def not_found(e): 
+  
+# defining function 
+    return render_template("404.html") 
 
 @app.route('/about', methods=['GET'])
 def about():
     return render_template('about.html')
 
+
 @app.route('/projects')
 def projects():
     return render_template('projects.html')
+
 
 @app.route('/best-practices')
 def practices():
     return render_template('practices.html')
 
+
 @app.route('/research')
 def research():
     return render_template('research.html')
 
+
 @app.route('/story')
 def story():
     return render_template('story.html')
+
 
 @app.route('/policies', methods=['GET'])
 def policies():
     return render_template('policies.html')
 
 
+@app.route('/contact', methods=['GET'])
+def contact():
+    return render_template('contact.html')
+
+
+@app.route('/contribute', methods=['GET'])
+def contribute():
+    return render_template('contribute.html')
+
+
 @app.route('/', methods=['POST'])
 def upload_pdf():
+    captcha_key = app.config['CAPTCHA_KEY_ID']
+    captcha_display = app.config['CAPTCHA_DISPLAY']
     if 'file' not in request.files:
-        return render_template('upload.html', flash='')
+        return render_template('upload.html', captcha=captcha_key, captcha_display=captcha_display, flash='')
     file = request.files['file']
     if file.filename == '':
-        return render_template('upload.html', flash='none')
+        return render_template('upload.html', captcha=captcha_key, captcha_display=captcha_display, flash='none')
     if file and allowed_file(file.filename):
-        filename = secure_filename(file.filename)
-        path = os.path.join(app.config['UPLOAD_FOLDER'], filename)
-        session['file'] = filename.split('.')[0]
-        session['type'] = 'file'
-        file.save(path)
-        metadata, pdfs, urls, arxiv, doi, task_id = pdfdata(path)
-        return render_template('analysis.html',
-                               meta_titles=list(metadata.keys()),
-                               meta_values=list(metadata.values()),
-                               pdfs=pdfs,
-                               urls=urls,
-                               arxiv=arxiv,
-                               doi=doi,
-                               filename=filename,
-                               task_id=task_id)
+        isCaptchaValid = validateCaptcha(request.form['g-recaptcha-response'])
+        if isCaptchaValid:
+            filename = secure_filename(file.filename)
+            path = os.path.join(app.config['UPLOAD_FOLDER'], filename)
+            session['file'] = filename.split('.')[0]
+            session['type'] = 'file'
+            file.save(path)
+            metadata, pdfs, urls, arxiv, doi, task_id = pdfdata(path)
+            return render_template('analysis.html',
+                                   meta_titles=list(metadata.keys()),
+                                   meta_values=list(metadata.values()),
+                                   pdfs=pdfs,
+                                   urls=urls,
+                                   arxiv=arxiv,
+                                   doi=doi,
+                                   filename=filename,
+                                   task_id=task_id)
+        else:
+            return render_template('upload.html', captcha=captcha_key, captcha_display=captcha_display, flash='captcha')
     else:
-        return render_template('upload.html', flash='pdf')
+        return render_template('upload.html', captcha=captcha_key, captcha_display=captcha_display, flash='pdf')
 
 
 def pdfdata(path):
@@ -143,6 +180,14 @@ def task_result(id: str) -> dict[str, object]:
         "successful": result.successful(),
         "value": result.result if (result.ready() and result.result) else None,
     }
+
+
+def validateCaptcha(response: str):
+    if app.config['ENV'] == "DEV":
+        return True
+    res = requests.post(
+        'https://www.google.com/recaptcha/api/siteverify?secret='+app.config['CAPTCHA_SECRET_KEY']+'&response='+response).json()
+    return res['success']
 
 
 if __name__ == '__main__':

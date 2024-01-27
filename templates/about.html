@@ -22,16 +22,11 @@
       href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500&display=swap"
       rel="stylesheet"
     />
+     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/fork-awesome@1.2.0/css/fork-awesome.min.css" integrity="sha256-XoaMnoYC5TH6/+ihMEnospgm0J1PM/nioxbOUdnM8HY=" crossorigin="anonymous">
 
-    <link
-      rel="stylesheet"
-      href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css"
-    />
-
-    <link
-      rel="stylesheet"
-      href="{{ url_for('static', filename= 'css/style.css') }}"
-    />
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/fork-awesome@1.2.0/css/fork-awesome.min.css" integrity="sha256-XoaMnoYC5TH6/+ihMEnospgm0J1PM/nioxbOUdnM8HY=" crossorigin="anonymous">
+	<link rel="stylesheet" href="../static/css/style.css" />
+    <link rel="stylesheet" href="../static/css/snackbar.css" />
     <title>Rotting Research</title>
     <script>
       function toggleMobileNavigation() {
@@ -45,38 +40,42 @@
       }
     </script>
   </head>
-  <body>
+  <body class="alt">
     <div class="mobile-navigation" id="mobile-navigation">
       <div class="mobile-navigation--header">
-
         <div class="close-button" onclick="toggleMobileNavigation()">
           <button>
             <i class="fa fa-close"></i>
           </button>
         </div>
       </div>
-
       <a href="{{ url_for('upload_form')}}" class="mobile-navigation--item">Home</a>
       <a href="{{ url_for('projects')}}" class="mobile-navigation--item">Projects</a>
       <a href="{{ url_for('research')}}" class="mobile-navigation--item">Research</a>
       <a href="{{ url_for('practices')}}" class="mobile-navigation--item">Best Practices</a>
-      <a href="{{ url_for('story')}}" class="mobile-navigation--item">Our Story</a>
-      <a href="{{ url_for('about')}}" class="mobile-navigation--item__active mobile navigation--item">About</a>
-
+      <a href="{{ url_for('contribute')}}" class="mobile-navigation--item">Contribute</a>
+      <a href="{{ url_for('about')}}" class="mobile-navigation--item mobile-navigation--item__active">About</a>
     </div>
     <div id="container">
-      <header>
-
+      <header class="alt">
         <nav class="navigation">
-          <a href="{{ url_for('upload_form')}}" class="navigation--item">Home</a>
-          <a href="{{ url_for('projects')}}" class="navigation--item ">Projects</a>
-          <a href="{{ url_for('research')}}" class="navigation--item ">Research</a>
-          <a href="{{ url_for('practices')}}" class="navigation--item ">Best Practices</a>
-          <a href="{{ url_for('story')}}" class="navigation--item ">Our Story</a>
-          <a href="{{ url_for('about')}}" class="navigation--item__active navigation--item">About</a>
+	        <a href="{{ url_for('upload_form')}}" class="navigation--item--alt"><img src="../static/img/branding/app-logo/white/rotting-research-sans-powered-by-white.svg"></a>
+          <a href="{{ url_for('upload_form')}}" class="navigation--item--alt">Home</a>
+          <a href="{{ url_for('projects')}}" class="navigation--item--alt ">Projects</a>
+          <a href="{{ url_for('research')}}" class="navigation--item--alt ">Research</a>
+          <a href="{{ url_for('practices')}}" class="navigation--item--alt ">Best Practices</a>
+          <a href="{{ url_for('contribute')}}" class="navigation--item--alt ">Contribute</a>
+          <a href="{{ url_for('about')}}" class="navigation--item--alt__active navigation--item--alt">About</a>
         </nav>
-
-        <div class="menu--button" onclick="toggleMobileNavigation()">
+         <div class="social">
+              <a href="https://github.com/rottingresearch/rottingresearch" target="_blank" class="socials--item--alt">
+                  <i class="fa fa-github"></i>
+              </a>
+              <a href="https://opencollective.com/rottingresearch" target="_blank" class="socials--item--alt">
+                  <i class="fa fa-open-collective"></i>
+              </a>              
+          </div>
+        <div class="menu--button--alt" onclick="toggleMobileNavigation()">
           <button>
             <i class="fa fa-reorder"></i>
           </button>
@@ -92,20 +91,23 @@
           </p>
           <p>The mission of Rotting Research is to help researchers and scholars check their publications for symptoms of link rot and 
             educate them on ways to mitigate the problem.</p>
-
+		  <h2>Contributors</h2>
+  			<p><a href="https://github.com/rottingresearch/rottingresearch/graphs/contributors">
+  			<img class="oc_responsive" src="https://opencollective.com/rottingresearch/contributors.svg?width=640&button=false" alt="open collective logo">
+			</a></p>
 		  </div>
       </main>
-      <footer>
+      <!--<footer>
         <div class="social">
           <a
-            href="https://github.com/marshalmiller/rottingresearch"
+            href="https://github.com/rottingresearch/rottingresearch"
             target="_blank"
             class="socials--item"
           >
             <i class="fa fa-github"></i>
           </a>
         </div>
-      </footer>
+      </footer>-->
     </div>
   </body>
 </html>

@@ -18,7 +18,12 @@ function construct_block(url, status) {
   }
 
   var div3 = $("<div>", { class: "link-container" }).appendTo(res);
-  var link_a = $("<a>", { class: "pdf-link", target: "_blank" rel="noopener noreferrer", href: url })
+  var link_a = $("<a>", {
+    class: "pdf-link",
+    target: "_blank",
+    rel: "noopener noreferrer",
+    href: url,
+  })
     .text(url)
     .appendTo(div3);
 

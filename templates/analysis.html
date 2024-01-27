@@ -7,7 +7,10 @@
       content="width=device-width, initial-scale=1, maximum-scale=10.0, minimum-scale=1, user-scalable=yes"
     />
 
-    <link rel="icon" href="../static/img/branding/social assets/twitter/profile image/rottingresearch-twitter-profile-image-red.jpg" />
+    <link
+      rel="icon"
+      href="../static/img/branding/social assets/twitter/profile image/rottingresearch-twitter-profile-image-red.jpg"
+    />
 
     <link rel="preconnect" href="https://fonts.gstatic.com" />
     <link
@@ -15,17 +18,22 @@
       rel="stylesheet"
     />
 
-    <link
+    <!--<link
       rel="stylesheet"
       href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css"
-    />
+    />-->
 
     <link
       rel="stylesheet"
-      href="{{ url_for('static', filename= 'css/style.css') }}"
+      href="https://cdn.jsdelivr.net/npm/fork-awesome@1.2.0/css/fork-awesome.min.css"
+      integrity="sha256-XoaMnoYC5TH6/+ihMEnospgm0J1PM/nioxbOUdnM8HY="
+      crossorigin="anonymous"
     />
-
+	<link rel="stylesheet" href="../static/css/style.css" />
+    <link rel="stylesheet" href="../static/css/snackbar.css" />
     <title>Rotting Research</title>
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js" integrity="sha384-ZvpUoO/+PpLXR1lu4jmpXWu80pZlYUAfxl5NsBMWOEPSjUn/6Z/hRTt8+pR6L4N2" crossorigin="anonymous"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/html2pdf.js/0.10.1/html2pdf.bundle.min.js" integrity="sha384-Yv5O+t3uE3hunW8uyrbpPW3iw6/5/Y7HitWJBLgqfMoA36NogMmy+8wWZMpn3HWc" crossorigin="anonymous"></script>
     <script>
       function toggleMobileNavigation() {
         var element = document.getElementById("mobile-navigation");
@@ -42,21 +50,54 @@
         if (classList.contains("accordion-collapsed")) {
           classList.remove("accordion-collapsed");
           classList.add("accordion-expanded");
-        }
-        else if (classList.contains("accordion-expanded")) {
+        } else if (classList.contains("accordion-expanded")) {
           classList.remove("accordion-expanded");
           classList.add("accordion-collapsed");
         }
       }
 
+      function downloadReport() {
+        if (
+          document.getElementById("doc-info").className ===
+          "accordion-collapsed"
+        ) {
+          document.querySelector(".accordion-title").click();
+        }
+        let pdf = document.querySelector(".analysis--main");
+        $("#resourceDownload").removeAttr("href");
+        const options = {
+          filename: "rot-report.pdf",
+          image: { type: "jpeg", quality: 1.0 },
+          html2canvas: { scale: window.devicePixelRatio },
+          pagebreak: {
+            after: ["#summary", "#pdfs", "#urls", "#arxiv", "#doi", "#doc-info"],
+          },
+          jsPDF: {
+            unit: "in",
+            format: "letter",
+            orientation: "portrait",
+            autoPaging: 'text',
+          },
+        };
+        html2pdf()
+          .set(options)
+          .from(pdf)
+          .save()
+          .then(
+            function (value) {
+              $("#resourceDownload").attr("href", "{{url_for('downloadpdf')}}");
+            },
+            function (error) {
+              console.log("Download failed");
+            }
+          );
+      }
     </script>
-
   </head>
 
-  <body>
+  <body class="alt">
     <div class="mobile-navigation" id="mobile-navigation">
       <div class="mobile-navigation--header">
-
         <div class="close-button" onclick="toggleMobileNavigation()">
           <button>
             <i class="fa fa-close"></i>
@@ -64,121 +105,206 @@
         </div>
       </div>
 
-      <a href="{{ url_for('upload_form')}}" class="mobile-navigation--item ">Home</a>
-      <a href="{{ url_for('projects')}}" class="mobile-navigation--item">Projects</a>
-      <a href="{{ url_for('research')}}" class="mobile-navigation--item">Research</a>
-      <a href="{{ url_for('practices')}}" class="mobile-navigation--item">Best Practices</a>
-      <a href="{{ url_for('story')}}" class="mobile-navigation--item">Our Story</a>
+      <a href="{{ url_for('upload_form')}}" class="mobile-navigation--item"
+        >Home</a
+      >
+      <a href="{{ url_for('projects')}}" class="mobile-navigation--item"
+        >Projects</a
+      >
+      <a href="{{ url_for('research')}}" class="mobile-navigation--item"
+        >Research</a
+      >
+      <a href="{{ url_for('practices')}}" class="mobile-navigation--item"
+        >Best Practices</a
+      >
+      <a href="{{ url_for('contribute')}}" class="mobile-navigation--item"
+        >Contribute</a
+      >
       <a href="{{ url_for('about')}}" class="mobile-navigation--item">About</a>
     </div>
     <div id="container">
-      <header>
-
+      <header class="alt">
         <nav class="navigation">
-          <a href="{{ url_for('upload_form')}}" class="navigation--item">Home</a>
-          <a href="{{ url_for('projects')}}" class="navigation--item ">Projects</a>
-          <a href="{{ url_for('research')}}" class="navigation--item ">Research</a>
-          <a href="{{ url_for('practices')}}" class="navigation--item ">Best Practices</a>
-          <a href="{{ url_for('story')}}" class="navigation--item ">Our Story</a>
-          <a href="{{ url_for('about')}}" class="navigation--item ">About</a>
+          <a href="{{ url_for('upload_form')}}" class="navigation--item--alt"
+            ><img
+              src="../static/img/branding/app-logo/white/rotting-research-sans-powered-by-white.svg" alt="rottingresearch logo" /></a>
+          <a href="{{ url_for('upload_form')}}" class="navigation--item--alt"
+            >Home</a
+          >
+          <a href="{{ url_for('projects')}}" class="navigation--item--alt"
+            >Projects</a
+          >
+          <a href="{{ url_for('research')}}" class="navigation--item--alt"
+            >Research</a
+          >
+          <a href="{{ url_for('practices')}}" class="navigation--item--alt"
+            >Best Practices</a
+          >
+          <a href="{{ url_for('contribute')}}" class="navigation--item--alt"
+            >Contribute</a
+          >
+          <a href="{{ url_for('about')}}" class="navigation--item--alt"
+            >About</a
+          >
         </nav>
+        <div class="social">
+          <a
+            href="https://github.com/rottingresearch/rottingresearch"
+            target="_blank"
+            class="socials--item--alt"
+          >
+            <i class="fa fa-github"></i>
+          </a>
+          <a
+            href="https://opencollective.com/rottingresearch"
+            target="_blank"
+            class="socials--item--alt"
+          >
+            <i class="fa fa-open-collective"></i>
+          </a>
+        </div>
 
-        <div class="menu--button" onclick="toggleMobileNavigation()">
+        <div class="menu--button--alt" onclick="toggleMobileNavigation()">
           <button>
             <i class="fa fa-reorder"></i>
           </button>
         </div>
       </header>
-      <main class="about--main">
-        <h1 class="important">PDF Analysis</h1>
-        <div class="file-grid">
-          <div class="pdf-lockup">
-            <div class="pdf-icon"><i class="fa fa-file-pdf-o"></i></div>
-            <div class="pdf-filename">{{filename}}</div>
-            <div id='taskid' data-taskid="{{task_id}}"></div>
-          </div>
-          <div class="downloads">
-            <div class="download-pdf">
-              <a href="{{url_for('downloadpdf')}}" onclick="LoaderFunction()">
-                <div><i class="fa fa-download"></i></div>
-                <div style="text-align:left;">Download Reference&nbsp;PDFs</div>
-              </a>
+      <main class="analysis--main">
+        <div class="analysis--wrapper">
+          <h1 class="important">PDF Analysis</h1>
+          <div class="file-grid">
+            <div class="pdf-lockup">
+              <div class="pdf-icon"><i class="fa fa-file-pdf-o"></i></div>
+              <div class="pdf-filename">{{filename}}</div>
+              <div id="taskid" data-taskid="{{task_id}}"></div>
             </div>
-            <div class="download-report">
-              <a onclick="this.href='data:text/html;charset=UTF-8,'+encodeURIComponent(document.documentElement.outerHTML)" href="#" download="report.html">
-                <div><i class="fa fa-download"></i></div>
-                <div style="text-align:left;">Download Report</div>
-              </a>
-            </div>
-          </div>
-        </div>
-        <div id="summary">
-          <h2 class="subhead linkrot-summary">Linkrot Summary <i class="fa fa-spinner fa-pulse"></i></h2>
-          <div class="sum-box-container">
-            <div class="sum-box success success-200">
-              <div class="sum-rollup">0</div>
-              <div class="sum-label">working links</div>
-            </div>
-            <div class="sum-box success arxiv-num">
-              <div class="sum-rollup">{{arxiv|length}}</div>
-              <div class="sum-label">Arxiv References</div>
-            </div>
-            <div class="sum-box success doi-num">
-              <div class="sum-rollup">{{doi|length}}</div>
-              <div class="sum-label">DOI References</div>
-            </div>
-            <div class="sum-box failure error-403">
-              <div class="sum-rollup">0</div>
-              <div class="sum-label">403 errors</div>
-            </div>
-            <div class="sum-box failure error-404">
-              <div class="sum-rollup">0</div>
-              <div class="sum-label">404 errors</div>
-            </div>
-            <div class="sum-box failure error-other">
-              <div class="sum-rollup">0</div>
-              <div class="sum-label">other errors</div>
+            <div
+              data-html2canvas-ignore="true"
+              id="downloadButtons"
+              class="downloads"
+            >
+              <!-- <div class="download-pdf">
+                <a
+                  id="resourceDownload"
+                  href="{{url_for('downloadpdf')}}"
+                  onclick="LoaderFunction()"
+                >
+                  <div>
+                    <i class="fa fa-download"></i>
+                  </div>
+                  <div style="text-align: left">
+                    Download Reference&nbsp;PDFs
+                  </div>
+                </a>
+              </div> -->
+              <div class="download-report">
+                <a onclick="downloadReport();">
+                  <div>
+                    <i class="fa fa-download"></i>
+                  </div>
+                  <div style="text-align: left">Download Report</div>
+                </a>
+              </div>
             </div>
           </div>
-        </div>
-        <div class="pdfs-urls-container">
-        <div id="pdfs">
-          <h1 class="subhead">PDF References</h1>
-          <ul class="checklist">
-          </ul>
-        </div>
-        <div id="urls">
-          <h1 class="subhead">URL References</h1>
-          <ul class="checklist">
-          </ul>
-        </div>
-        </div>
-        <div class="arxiv-doi-container">
-          <div id="arxiv">
-            <h1 class="subhead">Arxiv References</h1>
-            <ul class="checklist">
-            </ul>
-          </div>
-          <div id="doi">
-            <h1 class="subhead">DOI References</h1>
-            <ul class="checklist">
-            </ul>
-          </div>
-        </div>
-        <div id="doc-info" class="accordion-collapsed">
-          <div class="subhead-lockup accordion-title" onclick="toggleAccordionContent(event)">
-            <h1 class="subhead">Document Information</h1>
-            <div class="accordion-chevron">
-              <svg xmlns="http://www.w3.org/2000/svg" width="30" height="30" fill="currentColor" class="bi bi-plus" viewBox="0 0 16 16">
-                <path d="M8 4a.5.5 0 0 1 .5.5v3h3a.5.5 0 0 1 0 1h-3v3a.5.5 0 0 1-1 0v-3h-3a.5.5 0 0 1 0-1h3v-3A.5.5 0 0 1 8 4z"/>
-              </svg>
+          <div id="summary">
+            <h2 class="subhead linkrot-summary">
+              Linkrot Summary <i class="fa fa-spinner fa-pulse"></i>
+            </h2>
+            <div class="sum-box-container">
+              <div class="sum-box success success-200">
+                <div class="sum-rollup">0</div>
+                <div class="sum-label">working links</div>
+              </div>
+              <div class="sum-box success arxiv-num">
+				<div class="tooltip">
+					<img src="../static/img/info.svg" width="15" alt="info button"/>
+					<span class="tooltiptext">arXiv is an open-access repository of electronic preprints approved for posting after moderation, but not full peer review.</span><br>
+				</div>
+                <div class="sum-rollup">{{arxiv|length}}</div>
+                <div class="sum-label">Arxiv References</div>
+              </div>
+              <div class="sum-box success doi-num">
+				<div class="tooltip">
+					<img src="../static/img/info.svg" width="15" alt="info button"/>
+					<span class="tooltiptext">A DOI (Digital Object Identifier) is a unique and never-changing string assigned to online works, such as articles, books, and other works.</span><br>
+				</div>
+                <div class="sum-rollup">{{doi|length}}</div>
+                <div class="sum-label">DOI References</div>
+              </div>
+              <div class="sum-box failure error-403">
+<!-- 				<div class="tooltip">
+					<img src="../static/img/info.svg" width="15" alt="info button"/>
+					<span class="tooltiptext">300s: Redirection codes returned when a new resource has been substituted for the requested resource.</span><br>
+				</div> -->
+                <div class="sum-rollup">0</div>
+                <div class="sum-label">403 errors</div>
+              </div>
+              <div class="sum-box failure error-404">
+<!-- 				<div class="tooltip">
+					<img src="../static/img/info.svg" width="15" alt="info button"/>
+					<span class="tooltiptext">400s: Client error codes indicating that there was a problem with the request.</span><br>
+				</div> -->
+                <div class="sum-rollup">0</div>
+                <div class="sum-label">404 errors</div>
+              </div>
+              <div class="sum-box failure error-other">
+<!-- 				<div class="tooltip">
+					<img src="../static/img/info.svg" width="15" alt="info button"/>
+					<span class="tooltiptext">500s: Server error codes indicating that the request was accepted, but that an error on the server prevented the fulfillment of the request.</span><br>
+				</div> -->
+                <div class="sum-rollup">0</div>
+                <div class="sum-label">Other errors</div>
+              </div>
             </div>
           </div>
-          <div class="meta-grid accordion-content">
+          <div class="pdfs-urls-container">
+            <div id="pdfs">
+              <h1 class="subhead">PDF References</h1>
+              <ul class="checklist"></ul>
+            </div>
+            <div id="urls">
+              <h1 class="subhead">URL References</h1>
+              <ul class="checklist"></ul>
+            </div>
+          </div>
+          <div class="arxiv-doi-container">
+            <div id="arxiv">
+              <h1 class="subhead">Arxiv References</h1>
+              <ul class="checklist"></ul>
+            </div>
+            <div id="doi">
+              <h1 class="subhead">DOI References</h1>
+              <ul class="checklist"></ul>
+            </div>
+          </div>
+          <div id="doc-info" class="accordion-collapsed">
+            <div
+              class="subhead-lockup accordion-title"
+              onclick="toggleAccordionContent(event)"
+            >
+              <h1 class="subhead">Document Information</h1>
+              <div class="accordion-chevron">
+                <svg
+                  xmlns="http://www.w3.org/2000/svg"
+                  width="30"
+                  height="30"
+                  fill="currentColor"
+                  class="bi bi-plus"
+                  viewBox="0 0 16 16"
+                >
+                  <path
+                    d="M8 4a.5.5 0 0 1 .5.5v3h3a.5.5 0 0 1 0 1h-3v3a.5.5 0 0 1-1 0v-3h-3a.5.5 0 0 1 0-1h3v-3A.5.5 0 0 1 8 4z"
+                  />
+                </svg>
+              </div>
+            </div>
+            <div class="meta-grid accordion-content"></div>
           </div>
         </div>
       </main>
-      <footer>
+      <!--<footer>
         <div class="social">
           <a
             href="https://github.com/marshalmiller/linkrot"
@@ -188,9 +314,8 @@
             <i class="fa fa-github"></i>
           </a>
         </div>
-      </footer>
+      </footer>-->
     </div>
   </body>
-    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
-    <script src="{{ url_for('static', filename= 'scripts/analysis2.js') }}"></script>
+  <script src="{{ url_for('static', filename= 'scripts/analysis2.js') }}"></script>
 </html>

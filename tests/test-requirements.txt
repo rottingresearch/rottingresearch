@@ -1,8 +1,8 @@
 pytest-flask
 requests==2.31.0
-Flask==3.0.0
-Werkzeug==3.0.0
+Flask==3.0.1
+Werkzeug==3.0.1
 gunicorn==21.2.0
-linkrot==4.0.6
+linkrot==5.0
 redis==5.0.1
-celery==5.3.4
+celery==5.3.6

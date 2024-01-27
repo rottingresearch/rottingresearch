@@ -7,11 +7,13 @@
     <link rel="icon" href="../static/img/branding/social assets/twitter/profile image/rottingresearch-twitter-profile-image-red.jpg" />
     <link rel="preconnect" href="https://fonts.gstatic.com" />
     <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500&display=swap" rel="stylesheet" />
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css" />
-    <link rel="stylesheet" href="{{ url_for('static', filename= 'css/style.css') }}" />
-    <link rel="stylesheet" href="{{ url_for('static', filename= 'css/snackbar.css') }}" />
+    <!--<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css" />-->
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/fork-awesome@1.2.0/css/fork-awesome.min.css" integrity="sha256-XoaMnoYC5TH6/+ihMEnospgm0J1PM/nioxbOUdnM8HY=" crossorigin="anonymous">
+	<link rel="stylesheet" href="../static/css/style.css" />
+    <link rel="stylesheet" href="../static/css/snackbar.css" />
     <title>Rotting Research</title>
-    <script src='https://cdnjs.cloudflare.com/ajax/libs/jquery/3.3.1/jquery.min.js' integrity="sha384-tsQFqpEReu7ZLhBV2VZlAu7zcOV+rXbYlF2cqB8txI/8aZajjp4Bqd+V6D5IgvKT" crossorigin="anonymous"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.3.1/jquery.min.js" integrity="sha384-tsQFqpEReu7ZLhBV2VZlAu7zcOV+rXbYlF2cqB8txI/8aZajjp4Bqd+V6D5IgvKT" crossorigin="anonymous"></script>
+    <script src="https://www.google.com/recaptcha/enterprise.js" async defer></script>
 </head>
 
 <body onload="showAlert()">
@@ -30,22 +32,29 @@
         <a href="{{ url_for('projects')}}" class="mobile-navigation--item">Projects</a>
         <a href="{{ url_for('research')}}" class="mobile-navigation--item">Research</a>
         <a href="{{ url_for('practices')}}" class="mobile-navigation--item">Best Practices</a>
-        <a href="{{ url_for('story')}}" class="mobile-navigation--item">Our Story</a>
+        <a href="{{ url_for('contribute')}}" class="mobile-navigation--item">Contribute</a>
         <a href="{{ url_for('about')}}" class="mobile-navigation--item">About</a>
     </div>
 
     <div id="container">
         <header>
-
-            <nav class="navigation">
+	<nav class="navigation">
+        	<a href="{{ url_for('upload_form')}}" class="navigation--item--alt"><img src="../static/img/branding/app-logo/red/rotting-research-sans-powered-by-red.svg"></a>
                 <a href="" class="navigation--item navigation--item__active">Home</a>
                 <a href="{{ url_for('projects')}}" class="navigation--item ">Projects</a>
                 <a href="{{ url_for('research')}}" class="navigation--item ">Research</a>
                 <a href="{{ url_for('practices')}}" class="navigation--item ">Best Practices</a>
-                <a href="{{ url_for('story')}}" class="navigation--item ">Our Story</a>
+                <a href="{{ url_for('contribute')}}" class="navigation--item ">Contribute</a>
                 <a href="{{ url_for('about')}}" class="navigation--item ">About</a>
             </nav>
-
+             <div class="social">
+                <a href="https://github.com/rottingresearch/rottingresearch" target="_blank" class="socials--item">
+                    <i class="fa fa-github"></i>
+                </a>
+                <a href="https://opencollective.com/rottingresearch" target="_blank" class="socials--item">
+                    <i class="fa fa-open-collective"></i>
+                </a>              
+            </div>
             <div class="menu--button" onclick="toggleMobileNavigation()">
                 <button>
           <i class="fa fa-reorder"></i>
@@ -61,16 +70,16 @@
             <div class="main--content">
                 <div class="intro--content">
                     <div class="main--img" align="center">
-                        <img src="../static/img/branding/app-logo/white/rotting-research-white@2x.png" alt="Rotting Research logo" id="image" style="max-width: calc(min(300px, 100%))" />
+                        <img src="../static/img/branding/app-logo/white/rotting-research-white.svg" alt="Rotting Research logo" id="image" style="max-width: calc(min(300px, 100%))" />
                     </div>
 
                     <p class="description" style="max-width: 448px">
-                        Linkrot helps you scan pdfs for links written in plaintext and check if they are active. It then generates a report of its findings with references (pdf, url, doi, arxiv) and metadata from the PDF.
+                        Rotting Research helps you scan pdfs for links and check if they are active. The mission is to identify and address the issue of linkrot in research. It then generates a report of its findings with references (pdf, url, doi, arxiv) and metadata from the PDF.
                     </p>
                 </div>
                 {% if filename %}
                 <div>
-                    <img src="{{ url_for('display_image', filename=filename) }}">
+                    <img src="{{ url_for('display_image', filename=filename) }}" alt="filename">
                 </div>
                 {% endif %}
 
@@ -85,29 +94,28 @@
                             {% endif %}
                             <div class="label-input-lockup">
                                 <label class="form-text" for="text" aria-label="link">PDF Upload: </label>
-                                <input type="file" name="file" autocomplete="off" aria-label="file upload"
-                                        {% if heroku_flg and heroku_flg==True%}
-                                       disabled
-                                       {% endif %}
-                                >
+                                <input type="file" name="file" autocomplete="off" aria-label="file upload">
                             </div>
                             <input type="checkbox" id="policy_prompt" name="policy_prompt" onClick="privacyPolicyIsChecked(this)">
-                            <label for="policy_prompt"> By uploading you agree to the <a
-                  href="https://rottingresearch.org/policies">Terms and Conditions</a></label></br>
+                            <label for="policy_prompt"> By uploading you agree to the 
+								<a href="https://rottingresearch.org/policies#terms">Terms and Conditions</a>.</label>
+						<br>
                             <button id="submit-button" type="submit" disabled="disabled">Check for Rot</button>
                         </p>
                     </dl>
+                    <div style="display:{{captcha_display}};" class="g-recaptcha" data-sitekey="{{ captcha }}" data-action="LOGIN"></div>
                 </form>
             </div>
         </main>
 
-        <footer>
+        <!--<footer>
             <div class="social">
-                <a href="https://github.com/rottingresearch/linkrot" target="_blank" class="socials--item">
+                <a href="https://github.com/rottingresearch/rottingresearch" target="_blank" class="socials--item">
                     <i class="fa fa-github"></i>
+		    <i class="fa fa-open-collective"></i>
                 </a>
             </div>
-        </footer>
+        </footer>-->
     </div>
     <script>
 		function toggleMobileNavigation() {
@@ -152,7 +160,10 @@
 			if (inv.localeCompare('pdf') == 0) {
 				document.getElementById("snackbar").innerHTML = "The link or file must be a PDF!";
 				showSnackbar();
-			}
+			} else if(inv.localeCompare('captcha') == 0) {
+                document.getElementById("snackbar").innerHTML = "reCAPTCHA verification failed! Please try again.";
+				showSnackbar();
+            }   
 		}
     </script>
 </body>

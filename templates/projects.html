@@ -22,16 +22,9 @@
       href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500&display=swap"
       rel="stylesheet"
     />
-
-    <link
-      rel="stylesheet"
-      href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css"
-    />
-
-    <link
-      rel="stylesheet"
-      href="{{ url_for('static', filename= 'css/style.css') }}"
-    />
+     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/fork-awesome@1.2.0/css/fork-awesome.min.css" integrity="sha256-XoaMnoYC5TH6/+ihMEnospgm0J1PM/nioxbOUdnM8HY=" crossorigin="anonymous">
+	<link rel="stylesheet" href="../static/css/style.css" />
+    <link rel="stylesheet" href="../static/css/snackbar.css" />
     <title>Rotting Research</title>
     <script>
       function toggleMobileNavigation() {
@@ -45,7 +38,7 @@
       }
     </script>
   </head>
-  <body>
+  <body class="alt">
     <div class="mobile-navigation" id="mobile-navigation">
       <div class="mobile-navigation--header">
 
@@ -60,22 +53,31 @@
       <a href="{{ url_for('projects')}}" class="mobile-navigation--item mobile-navigation--item__active">Projects</a>
       <a href="{{ url_for('research')}}" class="mobile-navigation--item">Research</a>
       <a href="{{ url_for('practices')}}" class="mobile-navigation--item">Best Practices</a>
-      <a href="{{ url_for('story')}}" class="mobile-navigation--item">Our Story</a>
+      <a href="{{ url_for('contribute')}}" class="mobile-navigation--item">Contribute</a>
       <a href="{{ url_for('about')}}" class="mobile-navigation--item">About</a>
     </div>
     <div id="container">
-      <header>
+      <header class="alt">
 
         <nav class="navigation">
-          <a href="{{ url_for('upload_form')}}" class="navigation--item">Home</a>
-          <a href="{{ url_for('projects')}}" class="navigation--item navigation--item__active">Projects</a>
-          <a href="{{ url_for('research')}}" class="navigation--item ">Research</a>
-          <a href="{{ url_for('practices')}}" class="navigation--item ">Best Practices</a>
-          <a href="{{ url_for('story')}}" class="navigation--item ">Our Story</a>
-          <a href="{{ url_for('about')}}" class="navigation--item ">About</a>
+          <a href="{{ url_for('upload_form')}}" class="navigation--item--alt"><img src="../static/img/branding/app-logo/white/rotting-research-sans-powered-by-white.svg"></a>
+          <a href="{{ url_for('upload_form')}}" class="navigation--item--alt">Home</a>
+          <a href="{{ url_for('projects')}}" class="navigation--item navigation--item--alt__active">Projects</a>
+          <a href="{{ url_for('research')}}" class="navigation--item--alt ">Research</a>
+          <a href="{{ url_for('practices')}}" class="navigation--item--alt ">Best Practices</a>
+          <a href="{{ url_for('contribute')}}" class="navigation--item--alt ">Contribute</a>
+          <a href="{{ url_for('about')}}" class="navigation--item--alt ">About</a>
         </nav>
+         <div class="social">
+            <a href="https://github.com/rottingresearch" target="_blank" class="socials--item--alt">
+                <i class="fa fa-github"></i>
+            </a>
+            <a href="https://opencollective.com/rottingresearch" target="_blank" class="socials--item--alt">
+                <i class="fa fa-open-collective"></i>
+            </a>              
+        </div>
 
-        <div class="menu--button" onclick="toggleMobileNavigation()">
+        <div class="menu--button--alt" onclick="toggleMobileNavigation()">
           <button>
             <i class="fa fa-reorder"></i>
           </button>
@@ -84,27 +86,26 @@
       <main class="about--main">
         <h1 class="important">Projects</h1>
       <div class="about--content">
-				  <p>Rotting Research was created as a result of a dissertation about the effects of link rot on scholarly publications.
-            It began as a command-line tool called Linkrot, which still powers the backend of this project. Now, Rotting Research is a growing web
-            app that allows users to upload PDFs and receive a report on the links contained within. The report includes the number of links, the links
-            that are still valid, as well as various commonly-used persistent links.
-          </p>
-          <p>The mission of Rotting Research is to help researchers and scholars check their publications for symptoms of link rot and 
+      		<p>Rotting Research currently has two projects:</p>
+		  <a href="https://github.com/rottingresearch/rottingresearch"><img src="../static/img/branding/app-logo/red/rotting-research-sans-powered-by-red.svg" alt="rottingresearch logo"></a>
+          <p> The first project is <a href="https://github.com/rottingresearch/rottingresearch">Rotting Research</a> itself. Rotting Research was created to help researchers and scholars check their publications for symptoms of link rot and 
             educate them on ways to mitigate the problem.</p>
-
-		  </div>
+        <br>
+		  <a href="https://github.com/rottingresearch/linkrot"><img src="../static/img/branding/linkrot/linkrot-red.png" alt="linkrot logo" width="300"></a>
+          <p>The second project is <a href="https://github.com/rottingresearch/linkrot">linkrot</a>. Linkrot is a Python library that allows us to mine PDFs for links, track the types of links, and check whether they are active. Linkrot is the launchpad for Rotting Research. </p>
+      </div>
       </main>
-      <footer>
+      <!--<footer>
         <div class="social">
           <a
-            href="https://github.com/marshalmiller/rottingresearch"
+            href="https://github.com/rottingresearch/rottingresearch"
             target="_blank"
             class="socials--item"
           >
             <i class="fa fa-github"></i>
           </a>
         </div>
-      </footer>
+      </footer>-->
     </div>
   </body>
 </html>
