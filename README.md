@@ -12,6 +12,8 @@ Rotting Research allows academics and researchers to upload their work and check
 
 Check out our website at https://rottingresearch.org.
 
+The status of our services can be observed at https://status.rottingresearch.org/status/rr.
+
 # Installation
 
 - Local development works best with Python 3.10+ versions.
