@@ -41,7 +41,7 @@ app.extensions["celery"] = celery_app
 app.config['CAPTCHA_DISPLAY'] = "block" if app.config['ENV'] == "PROD" else "none"
 
 ALLOWED_EXTENSIONS = set(['pdf'])
-MAX_THREADS_DEFAULT = 7
+MAX_THREADS_DEFAULT = 30
 
 
 def allowed_file(filename):
