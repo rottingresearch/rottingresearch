@@ -12,7 +12,7 @@ RUN pip install -r requirements.txt
 COPY . .
 
 # Start Flask App
-CMD ["python", "app.py"]
-
+# CMD ["python", "app.py"]
+CMD ["gunicorn", "--config", "gunicorn_config.py", "app:app"]
 # Expose Port
 EXPOSE 8080
