@@ -13,7 +13,7 @@ services:
       - "worker"
     restart: unless-stopped
     ports:
-      - "8080:8080"
+      - "8000:8000"
     environment:
       - FLASK_APP=app
       - APP_SECRET_KEY=change_me

@@ -15,4 +15,4 @@ COPY . .
 # CMD ["python", "app.py"]
 CMD ["gunicorn", "--config", "gunicorn_config.py", "app:app"]
 # Expose Port
-EXPOSE 8080
+EXPOSE 8000
