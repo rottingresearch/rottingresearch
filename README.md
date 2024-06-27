@@ -16,13 +16,35 @@ Check out our website at [rottingresearch.org](https://rottingresearch.org/).
 The status of our services can be observed at [status.rottingresearch.org/status/rr](https://status.rottingresearch.org/status/rr).
 
 # Installation  
-### Linux/Mac  
+## Requirements
+- Python3 (3.10+)
+- Pip3
+- Redis
+
+## Docker Instructions  
+### Local Development  
+To setup the application for local developer:  
+- Set the `APP_SECRET_KEY`  
+- Run the docker container using `docker-compose up --build`. You can use the
+`-d` flag to run the containers in 'detached' mode.  
+- Open [127.0.0.1:8080](http://127.0.0.1:8080) on your browser.  
+
+As docker volume is used any changes made are reflected immediately. To view 
+the container logs you can use `docker logs -f rottingresearch`. The `-f` flag 
+is used for following the logs.
+
+### Building Image  
+- Build the docker image `docker build --tag rottingresearch .`
+- Run image `docker run -d -p 8080:8080 rottingresearch`
+
+
+## Linux/Mac  
 - Clone Repository: `git clone https://github.com/rottingresearch/rottingresearch`  
 - Change directory to `rottingresearch` - `cd rottingresearch`
 - Run `source setup.sh` - the script will automatically install the packages 
 and setup the environment variables
 
-### Windows  
+## Windows  
 - Clone Repository: `git clone https://github.com/rottingresearch/rottingresearch`   
 - Change directory to `rottingresearch` - `cd rottingresearch`  
 - Install Python Packages: `pip3 install -r requirements.txt`  
@@ -35,21 +57,6 @@ and setup the environment variables
 - Run Celery worker `celery -A app:celery_app worker -B`  
 - Open [127.0.0.1:8080](http://127.0.0.1:8080) on your browser.  
 
-# Docker Instructions  
-## Local Development  
-To setup the application for local developer:  
-- Set the `APP_SECRET_KEY`  
-- Run the docker container using `docker-compose up --build`. You can use the
-`-d` flag to run the containers in 'detached' mode.  
-- Open [127.0.0.1:8080](http://127.0.0.1:8080) on your browser.  
-
-As docker volume is used any changes made are reflected immediately. To view 
-the container logs you can use `docker logs -f rottingresearch`. The `-f` flag 
-is used for following the logs.
-
-## Building Image  
-- Build the docker image `docker build --tag rottingresearch .`
-- Run image `docker run -d -p 8080:8080 rottingresearch`
 
 # Code of Conduct  
 For our code of conduct, please visit our [Code of Conduct page](https://github.com/rottingresearch/rottingresearch/blob/main/code_of_conduct.md).
