@@ -22,14 +22,13 @@ The status of our services can be observed at [status.rottingresearch.org/status
 - Redis
 
 ## Docker Instructions  
-### Local Development  
-To setup the application for local developer:  
-- Set the `APP_SECRET_KEY`  
+### Local Development    
+- Set the `APP_SECRET_KEY="RANDOM_SECRET_KEY"`  
 - Run the docker container using `docker-compose up --build`. You can use the
 `-d` flag to run the containers in 'detached' mode.  
-- Open [127.0.0.1:8080](http://127.0.0.1:8080) on your browser.  
+- Open [127.0.0.1:8080](http://127.0.0.1:8080) in your browser.  
 
-As docker volume is used any changes made are reflected immediately. To view 
+As docker volume is used, any changes made are reflected immediately. To view 
 the container logs you can use `docker logs -f rottingresearch`. The `-f` flag 
 is used for following the logs.
 
