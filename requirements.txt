@@ -3,6 +3,6 @@ Flask==3.0.3
 Werkzeug==3.0.3
 gunicorn==22.0.0
 linkrot==5.0
-redis==5.0.6
+redis==5.0.7
 celery==5.4.0
 google-cloud-recaptcha-enterprise==1.20.0
