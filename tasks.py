@@ -56,9 +56,9 @@ def sort_ref(ref_dict):
 
     if ref_dict['reftype'] == 'url':
         host = urlparse(url).hostname
-        if host and host.endswith("doi.org"):
+        if host and host.endswith(".doi.org"):
             result['doi'].append(url)
-        elif host and host.endswith("arxiv.org"):
+        elif host and host.endswith(".arxiv.org"):
             result['arxiv'].append(url)
         else:
             if not urlparse(url).scheme:
