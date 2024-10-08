@@ -1,5 +1,5 @@
 # Base Image
-FROM python:3.12.7-slim
+FROM python:3.13.0-slim
 
 COPY requirements.txt requirements.txt
 
