@@ -5,27 +5,18 @@ import linkrot
 from werkzeug.utils import secure_filename
 from flask import Flask, render_template, request, session, send_from_directory, after_this_request
 from linkrot.downloader import sanitize_url, get_status_code
-from urllib.parse import urlparse
 from celery_init import celery_init_app
 from tasks import pdfdata_task
 from celery.result import AsyncResult
 import utilites
-from flask import current_app
 import requests
-from google.cloud import recaptchaenterprise_v1
-from google.cloud.recaptchaenterprise_v1 import Assessment
 
 app = Flask(__name__)
 app.config['UPLOAD_FOLDER'] = utilites.get_tmp_folder()  # '/tmp/'
 app.secret_key = os.environ.get('APP_SECRET_KEY')
-if os.getenv("HEROKU_FLG", None):
-    name_redis_env = "REDISCLOUD_URL"
-    app.config['HEROKU_FLG'] = True
-else:
-    name_redis_env = 'REDIS_URL'
-    app.config['HEROKU_FLG'] = False
-broker = os.environ[name_redis_env]  # "redis://localhost"
-backend = os.environ[name_redis_env]
+
+broker = os.environ['REDIS_URL']  # "redis://localhost"
+backend = os.environ['REDIS_URL']
 app.config['PERMANENT_SESSION_LIFETIME'] = timedelta(minutes=60)
 app.config['CELERY'] = dict(
     broker_url=broker,
@@ -41,7 +32,7 @@ app.extensions["celery"] = celery_app
 app.config['CAPTCHA_DISPLAY'] = "block" if app.config['ENV'] == "PROD" else "none"
 
 ALLOWED_EXTENSIONS = set(['pdf'])
-MAX_THREADS_DEFAULT = 7
+MAX_THREADS_DEFAULT = 30
 
 
 def allowed_file(filename):
@@ -52,9 +43,7 @@ def allowed_file(filename):
 def upload_form():
     captcha_key = app.config['CAPTCHA_KEY_ID']
     captcha_display = app.config['CAPTCHA_DISPLAY']
-    heroku_flg = current_app.config["HEROKU_FLG"]
-    dd = 0
-    return render_template('upload.html', captcha=captcha_key, captcha_display=captcha_display, flash='', heroku_flg=heroku_flg)
+    return render_template('upload.html', captcha=captcha_key, captcha_display=captcha_display, flash='')
 
 @app.errorhandler(404) 
   
@@ -89,17 +78,17 @@ def story():
     return render_template('story.html')
 
 
-@app.route('/policies', methods=['GET'])
+@app.route('/policies')
 def policies():
     return render_template('policies.html')
 
 
-@app.route('/contact', methods=['GET'])
+@app.route('/contact')
 def contact():
     return render_template('contact.html')
 
 
-@app.route('/contribute', methods=['GET'])
+@app.route('/contribute')
 def contribute():
     return render_template('contribute.html')
 
@@ -108,11 +97,14 @@ def contribute():
 def upload_pdf():
     captcha_key = app.config['CAPTCHA_KEY_ID']
     captcha_display = app.config['CAPTCHA_DISPLAY']
+
     if 'file' not in request.files:
         return render_template('upload.html', captcha=captcha_key, captcha_display=captcha_display, flash='')
+    
     file = request.files['file']
     if file.filename == '':
         return render_template('upload.html', captcha=captcha_key, captcha_display=captcha_display, flash='none')
+    
     if file and allowed_file(file.filename):
         isCaptchaValid = validateCaptcha(request.form['g-recaptcha-response'])
         if isCaptchaValid:
@@ -152,6 +144,7 @@ def downloadpdf():
         os.remove(os.path.join(
             app.config['UPLOAD_FOLDER'], session['file']+'.zip'))
         return response
+        
     download_folder_path = os.path.join(
         app.config['UPLOAD_FOLDER'], session['file'])
     os.mkdir(download_folder_path)
@@ -164,7 +157,7 @@ def downloadpdf():
     return send_from_directory(app.config['UPLOAD_FOLDER'], session['file']+'.zip', as_attachment=True)
 
 
-@app.route('/check', methods=['GET'])
+@app.route('/check')
 def check():
     args = request.args
     url = sanitize_url(args['url'])
@@ -172,7 +165,7 @@ def check():
     return str(status)
 
 
-@app.route("/result/<id>", methods=['GET'])
+@app.route("/result/<id>")
 def task_result(id: str) -> dict[str, object]:
     result = AsyncResult(id)
     return {
@@ -185,8 +178,10 @@ def task_result(id: str) -> dict[str, object]:
 def validateCaptcha(response: str):
     if app.config['ENV'] == "DEV":
         return True
+    
     res = requests.post(
         'https://www.google.com/recaptcha/api/siteverify?secret='+app.config['CAPTCHA_SECRET_KEY']+'&response='+response).json()
+    
     return res['success']
 
 

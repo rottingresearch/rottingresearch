@@ -1,5 +1,5 @@
 # Base Image
-FROM python:3.12.1-slim
+FROM python:3.13.0-slim
 
 COPY requirements.txt requirements.txt
 
@@ -12,7 +12,7 @@ RUN pip install -r requirements.txt
 COPY . .
 
 # Start Flask App
-CMD ["python", "app.py"]
-
+# CMD ["python", "app.py"]
+CMD ["gunicorn", "--config", "gunicorn_config.py", "app:app"]
 # Expose Port
-EXPOSE 8080
+EXPOSE 8000

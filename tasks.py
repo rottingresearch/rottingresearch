@@ -1,7 +1,7 @@
 from celery import shared_task
 from celery import group
 import linkrot
-from linkrot.downloader import sanitize_url, get_status_code
+from linkrot.downloader import get_status_code
 from urllib.parse import urlparse
 from time import sleep
 
@@ -46,17 +46,19 @@ def sort_ref(ref_dict):
         result['doi'].append(url)
     else:
         url = ref_dict['ref']
+    
     try:
         stat = str(get_status_code(url))
-    except Exception as ex:
+    except:
         stat = 0
+    
     result["check"].append(stat)
 
     if ref_dict['reftype'] == 'url':
         host = urlparse(url).hostname
-        if host and host.endswith("doi.org"):
+        if host and host.endswith(".doi.org"):
             result['doi'].append(url)
-        elif host and host.endswith("arxiv.org"):
+        elif host and host.endswith(".arxiv.org"):
             result['arxiv'].append(url)
         else:
             if not urlparse(url).scheme:
