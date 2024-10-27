@@ -12,3 +12,4 @@ __pycache__
 local-test.yaml
 local-test.yml
 .venv/
+.idea/
