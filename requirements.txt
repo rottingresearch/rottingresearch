@@ -5,4 +5,4 @@ gunicorn==23.0.0
 linkrot==5.0
 redis==5.2.1
 celery==5.4.0
-google-cloud-recaptcha-enterprise==1.25.0
+google-cloud-recaptcha-enterprise==1.26.0
