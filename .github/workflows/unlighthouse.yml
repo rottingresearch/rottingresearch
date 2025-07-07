@@ -3,6 +3,9 @@ name: Unlighthouse
 on:
   workflow_dispatch:
 
+permissions:
+  contents: write
+
 jobs:
   unlighthouse:
     runs-on: ubuntu-latest
