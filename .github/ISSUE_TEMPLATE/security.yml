@@ -1,0 +1,67 @@
+name: 🔐 Security Vulnerability Report
+description: Report a security vulnerability responsibly
+title: "[SECURITY] <short description>"
+labels: ["security"]
+assignees: []
+
+body:
+  - type: markdown
+    attributes:
+      value: |
+        ⚠️ **Do NOT report security vulnerabilities publicly unless instructed.**
+        If the issue is critical, please follow the instructions in SECURITY.md.
+
+  - type: input
+    id: summary
+    attributes:
+      label: Summary
+      description: Brief description of the vulnerability
+      placeholder: e.g. Unauthenticated access to link scan results
+    validations:
+      required: true
+
+  - type: dropdown
+    id: severity
+    attributes:
+      label: Severity
+      options:
+        - Low
+        - Medium
+        - High
+        - Critical
+    validations:
+      required: true
+
+  - type: textarea
+    id: affected
+    attributes:
+      label: Affected Components
+      description: Which parts of the application are impacted?
+      placeholder: e.g. Flask API, Celery worker, Redis queue
+    validations:
+      required: true
+
+  - type: textarea
+    id: reproduction
+    attributes:
+      label: Steps to Reproduce
+      description: Clear steps to reproduce the vulnerability
+    validations:
+      required: true
+
+  - type: textarea
+    id: impact
+    attributes:
+      label: Impact
+      description: What could an attacker achieve?
+    validations:
+      required: true
+
+  - type: input
+    id: contact
+    attributes:
+      label: Contact Information
+      description: How can we reach you privately?
+      placeholder: email or GitHub handle
+    validations:
+      required: true
