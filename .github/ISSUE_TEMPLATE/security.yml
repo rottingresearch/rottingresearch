@@ -8,8 +8,10 @@ body:
   - type: markdown
     attributes:
       value: |
-        ⚠️ **Do NOT report security vulnerabilities publicly unless instructed.**
-        If the issue is critical, please follow the instructions in SECURITY.md.
+        ⚠️ **Important: Issues created with this form are public.**
+        Use this template only for non-critical vulnerabilities that are safe to discuss publicly.
+        For critical, actively exploitable, or otherwise sensitive vulnerabilities, **do NOT use this form**.
+        Instead, follow the private reporting process described in `SECURITY.md` and/or use GitHub's private vulnerability reporting ("Report a vulnerability") feature on this repository.
 
   - type: input
     id: summary
