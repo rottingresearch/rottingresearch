@@ -8,11 +8,13 @@ No Official Releases Yet
 
 The rottingresearch project takes security seriously.
 
-To report a security vulnerability, please use the **Security Vulnerability Report** issue template.
+To report a security vulnerability, please use one of the following methods:
 
-➡️ GitHub → New Issue → 🔐 Security Vulnerability Report
+- For sensitive or not-yet-disclosed vulnerabilities, please submit a private report via **GitHub Security Advisories** (Security → Report a vulnerability) so details are not publicly visible.
+- For low-risk issues or hardening suggestions that are safe to discuss publicly, you may use the **Security Vulnerability Report** issue template:
+  ➡️ GitHub → New Issue → 🔐 Security Vulnerability Report
 
-This ensures we receive all necessary information to assess and address the issue quickly.
+Using these channels ensures we receive all necessary information to assess and address issues quickly while avoiding premature public disclosure.
 
 ## Responsible Disclosure
 
