@@ -8,11 +8,14 @@ from linkrot.downloader import sanitize_url, get_status_code
 from celery_init import celery_init_app
 from tasks import pdfdata_task
 from celery.result import AsyncResult
+from flask import Response, request
+from datetime import datetime
+from urllib.parse import urljoin
 import utilites
 import requests
 
 app = Flask(__name__)
-app.config['UPLOAD_FOLDER'] = utilites.get_tmp_folder()  # '/tmp/'
+-app.config['UPLOAD_FOLDER'] = utilites.get_tmp_folder()  # '/tmp/'
 app.secret_key = os.environ.get('APP_SECRET_KEY')
 
 broker = os.environ['REDIS_URL']  # "redis://localhost"
@@ -45,13 +48,42 @@ def upload_form():
     captcha_display = app.config['CAPTCHA_DISPLAY']
     return render_template('upload.html', captcha=captcha_key, captcha_display=captcha_display, flash='')
 
+@app.route('/sitemap.xml', methods=['GET'])
+def sitemap_xml():
+    #app.logger.debug("↳ sitemap_xml() fired")    # Debug log
+    """
+    Generates an XML sitemap dynamically based on all accessible GET routes.
+    Only includes routes that do not require parameters.
+    """
+    pages = []
+    lastmod = datetime.now().date().isoformat()
+    base_url = request.host_url.rstrip('/')
+    # Loop through all routes in the app
+    for rule in app.url_map.iter_rules():
+        # Include only GET routes without arguments (i.e., static routes)
+        if "GET" in rule.methods and len(rule.arguments) == 0:
+            url = urljoin(base_url, rule.rule)
+            pages.append(f"""
+  <url>
+    <loc>{url}</loc>
+    <lastmod>{lastmod}</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.8</priority>
+  </url>""")
+    # Wrap all collected URLs in the <urlset> tag
+    xml = f"""<?xml version="1.0" encoding="UTF-8"?>   
+<urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
+{''.join(pages)}
+</urlset>"""
+
+    return Response(xml, mimetype='application/xml')
+
 @app.errorhandler(404) 
-  
 # inbuilt function which takes error as parameter 
 def not_found(e): 
   
 # defining function 
-    return render_template("404.html") 
+    return render_template("404.html"),404 
 
 @app.route('/about', methods=['GET'])
 def about():
@@ -174,7 +206,6 @@ def task_result(id: str) -> dict[str, object]:
         "value": result.result if (result.ready() and result.result) else None,
     }
 
-
 def validateCaptcha(response: str):
     if app.config['ENV'] == "DEV":
         return True
@@ -187,3 +218,4 @@ def validateCaptcha(response: str):
 
 if __name__ == '__main__':
     app.run(host='0.0.0.0', port=8080)
+
