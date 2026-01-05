@@ -57,11 +57,13 @@ body:
     validations:
       required: true
 
-  - type: input
-    id: contact
+  - type: markdown
     attributes:
-      label: Contact Information
-      description: How can we reach you privately?
-      placeholder: email or GitHub handle
-    validations:
-      required: true
+      value: |
+        🔒 **Contact and privacy**
+
+        This issue will be created in a **public** repository. Please do **not** include sensitive personal contact details (such as a private email address, phone number, or other confidential information) in this form.
+
+        If you want us to be able to follow up with you, you may rely on your GitHub account notifications or optionally mention a **public** contact method that you are comfortable sharing publicly in the issue body.
+
+        For private or embargoed security reports, please follow the process described in `SECURITY.md` (for example, using GitHub Security Advisories or any other private channel documented there).
