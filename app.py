@@ -18,6 +18,7 @@ app = Flask(__name__)
 app.config['UPLOAD_FOLDER'] = utilites.get_tmp_folder()  # '/tmp/'
 app.secret_key = os.environ.get('APP_SECRET_KEY')
 
+BASE_DIR = os.path.dirname(os.path.abspath(__file__))
 broker = os.environ['REDIS_URL']  # "redis://localhost"
 backend = os.environ['REDIS_URL']
 app.config['PERMANENT_SESSION_LIFETIME'] = timedelta(minutes=60)
@@ -77,6 +78,22 @@ def sitemap_xml():
 </urlset>"""
 
     return Response(xml, mimetype='application/xml')
+    
+@app.route("/security.txt")
+def security_txt():
+    return send_from_directory(
+        os.path.join(BASE_DIR, "public_txt"),
+        "security.txt",
+        mimetype="text/plain"
+    )
+
+@app.route("/robots.txt")
+def robots_txt():
+    return send_from_directory(
+        os.path.join(BASE_DIR, "static"),
+        "robots.txt",
+        mimetype="text/plain"
+    )
 
 @app.errorhandler(404) 
 # inbuilt function which takes error as parameter 
