@@ -1,0 +1,71 @@
+name: 🔐 Security Vulnerability Report
+description: Report a security vulnerability responsibly
+title: "[SECURITY] <short description>"
+labels: ["security"]
+assignees: []
+
+body:
+  - type: markdown
+    attributes:
+      value: |
+        ⚠️ **Important: Issues created with this form are public.**
+        Use this template only for non-critical vulnerabilities that are safe to discuss publicly.
+        For critical, actively exploitable, or otherwise sensitive vulnerabilities, **do NOT use this form**.
+        Instead, follow the private reporting process described in `SECURITY.md` and/or use GitHub's private vulnerability reporting ("Report a vulnerability") feature on this repository.
+
+  - type: input
+    id: summary
+    attributes:
+      label: Summary
+      description: Brief description of the vulnerability
+      placeholder: e.g. Unauthenticated access to link scan results
+    validations:
+      required: true
+
+  - type: dropdown
+    id: severity
+    attributes:
+      label: Severity
+      options:
+        - Low
+        - Medium
+        - High
+        - Critical
+    validations:
+      required: true
+
+  - type: textarea
+    id: affected
+    attributes:
+      label: Affected Components
+      description: Which parts of the application are impacted?
+      placeholder: e.g. Flask API, Celery worker, Redis queue
+    validations:
+      required: true
+
+  - type: textarea
+    id: reproduction
+    attributes:
+      label: Steps to Reproduce
+      description: Clear steps to reproduce the vulnerability
+    validations:
+      required: true
+
+  - type: textarea
+    id: impact
+    attributes:
+      label: Impact
+      description: What could an attacker achieve?
+    validations:
+      required: true
+
+  - type: markdown
+    attributes:
+      value: |
+        🔒 **Contact and privacy**
+
+        This issue will be created in a **public** repository. Please do **not** include sensitive personal contact details (such as a private email address, phone number, or other confidential information) in this form.
+
+        If you want us to be able to follow up with you, you may rely on your GitHub account notifications or optionally mention a **public** contact method that you are comfortable sharing publicly in the issue body.
+
+        For private or embargoed security reports, please follow the process described in `SECURITY.md` (for example, using GitHub Security Advisories or any other private channel documented there).
