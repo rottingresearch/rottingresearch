@@ -94,6 +94,29 @@ def robots_txt():
         mimetype="text/plain"
     )
 
+
+def test_security_txt_route():
+    """
+    Integration test for the /security.txt endpoint.
+    Ensures it returns HTTP 200 and a text/plain content type.
+    """
+    with app.test_client() as client:
+        response = client.get("/security.txt")
+        assert response.status_code == 200
+        content_type = response.headers.get("Content-Type", "")
+        assert content_type.startswith("text/plain")
+
+
+def test_robots_txt_route():
+    """
+    Integration test for the /robots.txt endpoint.
+    Ensures it returns HTTP 200 and a text/plain content type.
+    """
+    with app.test_client() as client:
+        response = client.get("/robots.txt")
+        assert response.status_code == 200
+        content_type = response.headers.get("Content-Type", "")
+        assert content_type.startswith("text/plain")
 @app.errorhandler(404) 
 # inbuilt function which takes error as parameter 
 def not_found(e): 
