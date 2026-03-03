@@ -78,7 +78,6 @@ def sitemap_xml():
 </urlset>"""
 
     return Response(xml, mimetype='application/xml')
-    
 @app.route("/security.txt")
 def security_txt():
     return send_from_directory(
