@@ -88,11 +88,14 @@ def security_txt():
 
 @app.route("/robots.txt")
 def robots_txt():
-    return send_from_directory(
-        os.path.join(BASE_DIR, "static"),
-        "robots.txt",
-        mimetype="text/plain"
+    robots_path = os.path.join(BASE_DIR, "static", "robots.txt")
+    with open(robots_path, "r", encoding="utf-8") as f:
+        content = f.read()
+    content = content.replace(
+        "https://rottingresearch.org//sitemap.xml",
+        "https://rottingresearch.org/sitemap.xml",
     )
+    return Response(content, mimetype="text/plain")
 
 
 def test_security_txt_route():
