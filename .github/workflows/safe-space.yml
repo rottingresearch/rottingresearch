@@ -1,5 +1,7 @@
 name: Safe Space
 on: [issue_comment, pull_request_review]
+permissions:
+  contents: read
 
 jobs:
   toxic_check:
