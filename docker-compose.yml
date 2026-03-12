@@ -26,7 +26,7 @@ services:
 
   redis:
     container_name: redis
-    image: "redis:6.0.5-buster"
+    image: "valkey/valkey:7"
     depends_on:
       - "worker"
     volumes:
