@@ -18,6 +18,7 @@ app = Flask(__name__)
 app.config['UPLOAD_FOLDER'] = utilites.get_tmp_folder()  # '/tmp/'
 app.secret_key = os.environ.get('APP_SECRET_KEY')
 
+BASE_DIR = os.path.dirname(os.path.abspath(__file__))
 broker = os.environ['REDIS_URL']  # "redis://localhost"
 backend = os.environ['REDIS_URL']
 app.config['PERMANENT_SESSION_LIFETIME'] = timedelta(minutes=60)
@@ -77,7 +78,48 @@ def sitemap_xml():
 </urlset>"""
 
     return Response(xml, mimetype='application/xml')
+@app.route("/security.txt")
+def security_txt():
+    return send_from_directory(
+        os.path.join(BASE_DIR, "public_txt"),
+        "security.txt",
+        mimetype="text/plain"
+    )
 
+@app.route("/robots.txt")
+def robots_txt():
+    robots_path = os.path.join(BASE_DIR, "static", "robots.txt")
+    with open(robots_path, "r", encoding="utf-8") as f:
+        content = f.read()
+    content = content.replace(
+        "https://rottingresearch.org//sitemap.xml",
+        "https://rottingresearch.org/sitemap.xml",
+    )
+    return Response(content, mimetype="text/plain")
+
+
+def test_security_txt_route():
+    """
+    Integration test for the /security.txt endpoint.
+    Ensures it returns HTTP 200 and a text/plain content type.
+    """
+    with app.test_client() as client:
+        response = client.get("/security.txt")
+        assert response.status_code == 200
+        content_type = response.headers.get("Content-Type", "")
+        assert content_type.startswith("text/plain")
+
+
+def test_robots_txt_route():
+    """
+    Integration test for the /robots.txt endpoint.
+    Ensures it returns HTTP 200 and a text/plain content type.
+    """
+    with app.test_client() as client:
+        response = client.get("/robots.txt")
+        assert response.status_code == 200
+        content_type = response.headers.get("Content-Type", "")
+        assert content_type.startswith("text/plain")
 @app.errorhandler(404) 
 # inbuilt function which takes error as parameter 
 def not_found(e): 

@@ -1,5 +1,6 @@
 from unittest.mock import patch, Mock
 from io import BytesIO
+from flask import session
 from app import app, allowed_file, validateCaptcha, pdfdata
 
 
@@ -133,11 +134,9 @@ class TestUploadPDF:
 class TestValidateCaptcha:
     """Test captcha validation."""
     
-    @patch('app.app.config')
-    def test_validate_captcha_dev_env(self, mock_config):
+    def test_validate_captcha_dev_env(self, monkeypatch):
         """Test captcha validation in dev environment."""
-        mock_config.get.return_value = 'DEV'
-        app.config['ENV'] = 'DEV'
+        monkeypatch.setitem(app.config, 'ENV', 'DEV')
         result = validateCaptcha('any_response')
         assert result is True
     
@@ -171,7 +170,7 @@ class TestPDFData:
         """Test pdfdata function."""
         mock_task.return_value = 'task_id_123'
         
-        with client.session_transaction() as sess:
+        with client.application.test_request_context():
             metadata, pdfs, urls, arxiv, doi, task_id = pdfdata(
                 '/test/path.pdf')
             
@@ -181,7 +180,7 @@ class TestPDFData:
             assert arxiv == []
             assert doi == []
             assert task_id == 'task_id_123'
-            assert sess['path'] == '/test/path.pdf'
+            assert session['path'] == '/test/path.pdf'
 
 
 class TestCheckRoute:
@@ -267,5 +266,5 @@ class TestDownloadPDF:
         mock_linkrot_instance.download_pdfs.assert_called_once()
         mock_archive.assert_called_once()
         mock_mkdir.assert_called_once()
-        mock_remove.assert_called_once()
+        assert mock_remove.call_count == 2
         mock_rmtree.assert_called_once()

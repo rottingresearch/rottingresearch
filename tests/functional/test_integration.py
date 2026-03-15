@@ -7,16 +7,18 @@ class TestApplicationIntegration:
     
     @patch('app.linkrot.linkrot')
     @patch('app.validateCaptcha')
+    @patch('app.pdfdata_task.delay')
     @patch('tasks.linkrot.linkrot')
     @patch('tasks.get_status_code')
     def test_full_pdf_processing_integration(
             self, mock_status, mock_task_linkrot,
-            mock_captcha, mock_app_linkrot,
+            mock_pdfdata_delay, mock_captcha, mock_app_linkrot,
             client, sample_pdf_file):
         """Test the complete PDF processing pipeline."""
         # Setup mocks
         mock_captcha.return_value = True
         mock_status.return_value = 200
+        mock_pdfdata_delay.return_value = Mock(id='task_123')
         
         # Mock app linkrot
         mock_app_pdf = Mock()
@@ -69,10 +71,14 @@ class TestApplicationIntegration:
             assert sess['file'] == 'research_paper'
             assert sess['type'] == 'file'
         
-        # Step 2: Check URL status
-        check_response = client.get('/check?url=example.com')
-        assert check_response.status_code == 200
-        assert check_response.data == b'200'
+        # Step 2: Check URL status (mock app-level helpers to avoid real network calls)
+        with patch('app.sanitize_url') as mock_san, \
+                patch('app.get_status_code') as mock_stat:
+            mock_san.return_value = 'https://example.com'
+            mock_stat.return_value = 200
+            check_response = client.get('/check?url=example.com')
+            assert check_response.status_code == 200
+            assert check_response.data == b'200'
         
         # Step 3: Simulate task completion and check result
         with patch('app.AsyncResult') as mock_result:
@@ -139,9 +145,11 @@ class TestApplicationIntegration:
             result_data = pending_response.get_json()
             assert result_data['ready'] is False
     
+    @patch('app.pdfdata_task.delay')
     @patch('app.validateCaptcha')
-    def test_captcha_integration(self, mock_captcha, client, sample_pdf_file):
+    def test_captcha_integration(self, mock_captcha, mock_pdfdata_delay, client, sample_pdf_file):
         """Test captcha validation integration."""
+        mock_pdfdata_delay.return_value = Mock(id='task_123')
         # Test successful captcha
         mock_captcha.return_value = True
         
@@ -214,7 +222,7 @@ class TestApplicationIntegration:
         mock_mkdir.assert_called_once()
         mock_archive.assert_called_once()
         mock_send.assert_called_once()
-        mock_remove.assert_called_once()
+        assert mock_remove.call_count == 2
         mock_rmtree.assert_called_once()
     
     @patch('app.sanitize_url')
