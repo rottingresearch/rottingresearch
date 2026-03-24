@@ -20,7 +20,7 @@ The status of our services can be observed at [status.rottingresearch.org/status
 ## Requirements
 - Python3 (3.10+)
 - Pip3
-- Redis
+- Valkey (or Redis) key-value store
 
 ## Docker Instructions  
 ### Local Development    

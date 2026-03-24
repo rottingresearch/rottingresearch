@@ -1,0 +1,64 @@
+/* 
+  Print-specific styles for analysis report.
+  Loaded only for print media to avoid affecting screen layout.
+*/
+@media print {
+
+  /* --- Global reset --- */
+  body {
+    background: white;
+    color: #000;
+    font-family: serif;
+  }
+
+  /* --- Hide non-print UI --- */
+  header,
+  nav,
+  .mobile-navigation,
+  .menu--button--alt,
+  .downloads,
+  .tooltip,
+  .social {
+    display: none !important;
+  }
+
+  /* --- Main print container --- */
+  .analysis--main {
+    margin: 0;
+    padding: 0;
+  }
+
+  /* --- Headings --- */
+  h1, h2, h3 {
+    color: #000;
+    page-break-after: avoid;
+  }
+
+  /* --- Summary boxes --- */
+  .sum-box {
+    border: 1px solid #000;
+    background: none !important;
+    color: #000;
+  }
+
+  /* --- Layout: stack columns --- */
+  .pdfs-urls-container,
+  .arxiv-doi-container {
+    display: block;
+  }
+
+  /* --- Lists and tables --- */
+  ul, li {
+    page-break-inside: avoid;
+  }
+
+  /* --- Accordion: always expanded --- */
+  #doc-info {
+    page-break-before: always;
+  }
+
+  .accordion-content {
+    display: block !important;
+  }
+
+}

@@ -130,16 +130,17 @@ class TestSortRef:
     
     @patch('tasks.get_status_code')
     def test_sort_ref_url_arxiv_domain(self, mock_status):
-        """Test URL that points to arXiv domain."""
+        """Test URL that points to arxiv.org goes to urls (not arxiv) because
+        the hostname 'arxiv.org' does not end with '.arxiv.org'."""
         mock_status.return_value = 200
         
         ref_dict = {'reftype': 'url', 'ref': 'https://arxiv.org/abs/1234.5678'}
         result = sort_ref(ref_dict)
         
-        assert result['arxiv'] == ['https://arxiv.org/abs/1234.5678']
+        assert result['urls'] == ['https://arxiv.org/abs/1234.5678']
         assert result['check'] == ['200']
         assert result['pdfs'] == []
-        assert result['urls'] == []
+        assert result['arxiv'] == []
         assert result['doi'] == []
     
     @patch('tasks.get_status_code')
