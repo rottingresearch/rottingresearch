@@ -33,10 +33,18 @@ As docker volume is used, any changes made are reflected immediately. To view
 the container logs you can use `docker logs -f rottingresearch`. The `-f` flag 
 is used for following the logs.
 
+### Pulling Prebuilt Image 
+- The easiest way to get started is by using the prebuilt Docker image.
+
+#### Recommended (with analytics)
+- Pull the Docker image using SCARF: `docker pull rotting-research.docker.scarf.sh/rottingresearch/rottingresearch`
+
+#### Direct pull (without analytics)
+- Pull directly from the default registry: `docker pull rottingresearch/rottingresearch`
+
 ### Building Image  
 - Build the docker image `docker build --tag rottingresearch .`
 - Run image `docker run -d -p 8080:8080 rottingresearch`
-
 
 ## Linux/Mac  
 - Clone Repository: `git clone https://github.com/rottingresearch/rottingresearch`  
@@ -57,6 +65,14 @@ and setup the environment variables
 - Run Celery worker `celery -A app:celery_app worker -B`  
 - Open [127.0.0.1:8080](http://127.0.0.1:8080) on your browser.  
 
+## Usage Analytics  
+
+- This project uses SCARF to collect anonymous download statistics for Docker images.
+
+- Using the SCARF endpoint is optional but helps maintainers understand
+project usage and improve the tool.
+
+- No personal or identifiable information is collected.
 
 # Code of Conduct  
 For our code of conduct, please visit our [Code of Conduct page](https://github.com/rottingresearch/rottingresearch/blob/main/code_of_conduct.md).
