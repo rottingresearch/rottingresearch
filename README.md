@@ -20,7 +20,7 @@ The status of our services can be observed at [status.rottingresearch.org/status
 ## Requirements
 - Python3 (3.10+)
 - Pip3
-- Redis
+- Valkey (or Redis) key-value store
 
 ## Docker Instructions  
 ### Local Development    
@@ -59,7 +59,7 @@ and setup the environment variables
 - Edit `app.py` and set `app.config['UPLOAD_FOLDER']` to a valid temporary folder.  
 - Set `APP_SECRET_KEY` environment variable - `setx APP_SECRET_KEY "random"`  
 - Set `ENV` running environment variable `setx ENV "DEV"` 
-- Run redis `redis-server`  
+- Run valkey `valkey-server`  
 - Set REDIS_URL environment `setx REDIS_URL "redis://localhost:6379"`  
 - Run app `python3 app.py`  
 - Run Celery worker `celery -A app:celery_app worker -B`  
