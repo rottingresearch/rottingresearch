@@ -34,9 +34,9 @@
       <div class="mobile-navigation--header">
 
         <div class="close-button" onclick="toggleMobileNavigation()">
-          <button>
-            <i class="fa fa-close"></i>
-          </button>
+          <button type="button" aria-label="Close dialog">
+    <i class="fa fa-close" aria-hidden="true"></i>
+</button>
         </div>
       </div>
 
@@ -52,7 +52,7 @@
       <header class="alt">
 
         <nav class="navigation">
-          <a href="{{ url_for('upload_form')}}" class="navigation--item--alt"><img src="../static/img/branding/app-logo/white/rotting-research-sans-powered-by-white.svg" alt="rottingresearch logo"></a>
+          <a href="{{ url_for('upload_form')}}" class="navigation--item--alt"><img alt="Rotting Research logo" src="../static/img/branding/app-logo/white/rotting-research-sans-powered-by-white.svg" alt="rottingresearch logo"></a>
           <a href="{{ url_for('upload_form')}}" class="navigation--item--alt">Home</a>
           <a href="{{ url_for('projects')}}" class="navigation--item--alt ">Projects</a>
           <a href="{{ url_for('research')}}" class="navigation--item--alt ">Research</a>
@@ -70,9 +70,9 @@
         </div>
 
         <div class="menu--button--alt" onclick="toggleMobileNavigation()">
-          <button>
-            <i class="fa fa-reorder"></i>
-          </button>
+          <button type="button" aria-label="Open navigation menu">
+    <i class="fa fa-reorder" aria-hidden="true"></i>
+</button>
         </div>
       </header>
       <main class="about--main">
