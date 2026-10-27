@@ -412,7 +412,7 @@ form button[type="submit"]:disabled,
 button:disabled {
 	border: 2px solid #cccccc;
 	background-color: #cccccc;
-	color: #666666;
+	color: #575757;
 }
 
 .main--img {
